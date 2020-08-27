@@ -1,4 +1,4 @@
-local D, C, L = unpack(select(2, ...))
+--[[local D, C, L = unpack(select(2, ...))
 if not DuffedUIInfoLeft then return end
 
 local PowerTextures = {
@@ -44,7 +44,7 @@ end
 
 local function OnEvent(self)
 	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
-	if GetUnitPowerBarInfo('player') then self:Show() else self:Hide() end
+	if UnitAlternatePowerInfo('player') then self:Show() else self:Hide() end -> removed with current build
 end
 AltPowerBar:SetScript('OnEvent', OnEvent)
 
@@ -54,20 +54,17 @@ local function OnUpdate(self, elapsed)
 	TimeSinceLastUpdate = TimeSinceLastUpdate + elapsed
 	
 	if (TimeSinceLastUpdate >= 1) then
-		local barType = GetUnitPowerBarInfo('player')
-		local powerName, powerTooltip = GetUnitPowerBarStrings('player')
+		local barType, min, _, _, _, _, _, _, _, _, powerName, powerTooltip = UnitAlternatePowerInfo("player")
+		self:SetMinMaxValues(0, UnitPowerMax('player', ALTERNATE_POWER_INDEX))
 		self.powerName = powerName
-		local power = UnitPower('player', ALTERNATE_POWER_INDEX) or 0
-		local mpower = UnitPowerMax('player', ALTERNATE_POWER_INDEX) or 0
-		self:SetMinMaxValues(barType.minPower, mpower)
+		local power = UnitPower('player', ALTERNATE_POWER_INDEX)
+		local mpower = UnitPowerMax('player', ALTERNATE_POWER_INDEX)
 		self:SetValue(power)
 		AltPowerText:SetText(powerName.. ': '..power..' / '..mpower)
-		local value = (mpower > 0 and power / mpower) or 0
-		self.colorGradientValue = value
-		local r, g, b = oUFDuffedUI.ColorGradient(value, 0.8,0,0, 0.8,0.8,0, 0,0.8,0)
-		self.colorGradientR, self.colorGradientG, self.colorGradientB = r, g, b
+		local texture, r, g, b = UnitAlternatePowerTextureInfo('player', 2, 0) -- 2 = status bar index, 0 = displayed bar
+		if texture and PowerTextures[texture] then r, g, b = PowerTextures[texture].r, PowerTextures[texture].g, PowerTextures[texture].b else r, g, b = oUFDuffedUI.ColorGradient(power,mpower, 0, .8, 0, .8, .8, 0, .8, 0, 0) end
 		AltPowerBarStatus:SetStatusBarColor(r, g, b)
 		self.TimeSinceLastUpdate = 0
 	end
 end
-AltPowerBarStatus:SetScript('OnUpdate', OnUpdate)
+AltPowerBarStatus:SetScript('OnUpdate', OnUpdate)]]--
