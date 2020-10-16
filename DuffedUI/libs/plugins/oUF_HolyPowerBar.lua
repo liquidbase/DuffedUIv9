@@ -13,10 +13,6 @@ local Update = function(self, event, unit, powerType)
     local num = UnitPower(unit, Enum.PowerType.HolyPower)
     local numMax = UnitPowerMax('player', Enum.PowerType.HolyPower)
     local spec = GetSpecialization()
-	
-	if spec ~= 3 then
-		num = 0
-	end
     
     if(hp.PreUpdate) then 
         hp:PreUpdate()
