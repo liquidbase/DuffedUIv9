@@ -14,8 +14,9 @@ local ChangeLogData = {
 	-- 115 chars per line
 	"Changes:",
 		--"• ",
-		"• Update Aurora",
-		"• Fixed Holypower for all Paladin specs",
+		"• Fixed buffs for weapon enchants if two enchants are used eg Enhancer Shaman",
+		"• Added support for other minimap addons",
+		"• Fixed UI-Breaking bug for several classes",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",
