@@ -15,7 +15,7 @@ local move = D['move']
 
 local backdrop = CreateFrame('Frame', 'Azerite_Backdrop', UIParent, 'BackdropTemplate')
 backdrop:SetSize(barWidth, barHeight)
-backdrop:SetPoint('BOTTOM', DuffedUIMinimap, 'BOTTOM', 0, -8)
+backdrop:SetPoint('BOTTOM', DuffedUIMinimap or MinimapCluster, 'BOTTOM', 0, -8)
 backdrop:SetBackdropColor(C['general']['backdropcolor'])
 backdrop:SetBackdropBorderColor(C['general']['backdropcolor'])
 backdrop:CreateBackdrop('Transparent')

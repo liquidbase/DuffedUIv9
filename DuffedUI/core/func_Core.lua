@@ -12,6 +12,10 @@ if GameMenuFrame_UpdateVisibleButtons then
 end
 CharacterFrameTab3:Show()
 
+D['IsAddOnEnabled'] = function(addon)
+    return GetAddOnEnableState(D['MyName'], addon) > 0
+end
+
 -- Hover tooltip
 local orig1, orig2 = {}, {}
 local GameTooltip = GameTooltip

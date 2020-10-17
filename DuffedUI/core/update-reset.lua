@@ -3,13 +3,9 @@ if D['Patch'] ~= '9.0.1' then return end
 
 local update = CreateFrame('Frame')
 
-local function IsAddOnEnabled(addon)
-    return GetAddOnEnableState(D['MyName'], addon) > 0
-end
-
 function update:DisableAddOns()
-    if IsAddOnEnabled('AddOnSkins') then DisableAddOn('AddOnSkins') end
-    if IsAddOnEnabled('ProjectAzilroka') then DisableAddOn('ProjectAzilroka') end
+    if D['IsAddOnEnabled']('AddOnSkins') then DisableAddOn('AddOnSkins') end
+    if D['IsAddOnEnabled']('ProjectAzilroka') then DisableAddOn('ProjectAzilroka') end
 end
 
 function update:Load()

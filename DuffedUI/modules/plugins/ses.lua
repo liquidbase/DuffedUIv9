@@ -75,7 +75,7 @@ if C['chat']['rbackground'] then
 	spec:SetPoint('LEFT', DuffedUITabsRightBackground, 'RIGHT', 2, 0)
 	spec:Size(144 + 3, 20)
 else
-	spec:SetPoint('TOPLEFT', DuffedUIMinimap, 'BOTTOMLEFT', 0, -2)
+	spec:SetPoint('TOPLEFT', DuffedUIMinimap or MinimapCluster, 'BOTTOMLEFT', 0, -2)
 	spec:Size(144 - 22, 20)
 	spec:SetParent(oUFDuffedUI_PetBattleFrameHider)
 end
