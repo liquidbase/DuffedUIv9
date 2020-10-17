@@ -21,9 +21,7 @@ if race == 'Goblin' then
 	if sex == 'male' then proxyicon = 'Interface\\Icons\\Achievement_goblinhead' else proxyicon = 'Interface\\Icons\\Achievement_femalegoblinhead' end
 end
 
-if race == 'Worgen' then
-	proxyicon = 'Interface\\Icons\\Achievement_worganhead'
-end
+if race == 'Worgen' then proxyicon = 'Interface\\Icons\\Achievement_worganhead' end
 
 local StartStopFlash = function(self, timeLeft)
 	if(timeLeft < 31) then
@@ -51,7 +49,7 @@ local OnUpdate = function(self, elapsed)
 		self.Duration:SetText('')
 		return self:SetScript('OnUpdate', nil)
 	else
-		local text = D.FormatTime(timeLeft)
+		local text = D['FormatTime'](timeLeft)
 		local r, g, b = oUFDuffedUI.ColorGradient(self.timeLeft, self.Dur, .8, 0, 0, .8, .8, 0, 0, .8, 0)
 
 		self.Bar:SetValue(self.timeLeft)
@@ -114,12 +112,7 @@ end
 
 local UpdateTempEnchant = function(self, slot)
 	self.Icon:SetTexture(GetInventoryItemTexture('player', slot))
-
-	local offset
-	local weapon = self:GetName():sub(-1)
-
-	if weapon:match('1') then offset = 2 elseif weapon:match('2') then offset = 5 end
-
+	local offset = (slot == 16 and 2) or 6
 	local expiration = select(offset, GetWeaponEnchantInfo())
 
 	if expiration then
