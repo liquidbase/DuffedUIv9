@@ -57,11 +57,6 @@ DuffedUIConfig ['enUS'] = {
 			['Desc'] = 'Automatically accepts group invitations from friends and guild members',
 		},
 
-		['blizzardreskin'] = {
-			['Name'] = 'Blizzard elements in |cffC41F3BDuffedUI|r style',
-			['Desc'] = "Displays Blizzard's own frames in DuffedUI style",
-		},
-
 		['calendarevent'] = {
 			['Name'] = 'Customize Calendar',
 			['Desc'] = 'The textures of the events in the calendar are deactivated',

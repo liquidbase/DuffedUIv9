@@ -56,11 +56,6 @@ DuffedUIConfig['deDE'] = {
 			['Desc'] = 'Akzeptiert automatisch Gruppeneinladungen von Freunden und Gildenmitgliedern',
 		},
 		
-		['blizzardreskin'] = {
-			['Name'] = 'Blizzard Elemente im |cffC41F3BDuffedUI|r Style',
-			['Desc'] = 'Zeigt die Blizzard eigenen Fenster im DuffedUI Stil an',
-		},
-		
 		['calendarevent'] = {
 			['Name'] = 'Kalender anpassen',
 			['Desc'] = 'Die Texturen, der Events im Kalender werden deaktivert',
