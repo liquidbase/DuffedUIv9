@@ -65,6 +65,12 @@ D['ClassRessource']['PALADIN'] = function(self)
 	Visibility:RegisterEvent('PLAYER_REGEN_ENABLED')
 	Visibility:RegisterEvent('UPDATE_SHAPESHIFT_FORM')
 	Visibility:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED')
-
-	if C['unitframes']['oocHide'] then D['oocHide'](HolyPower) else HolyPower:Show() end
+	Visibility:SetScript('OnEvent', function()
+		local spec = GetSpecialization()
+		if spec == 3 then 
+			if C['unitframes']['oocHide'] then D['oocHide'](HolyPower) else HolyPower:Show() end
+		else
+			HolyPower:Hide()
+		end
+	end)
 end
