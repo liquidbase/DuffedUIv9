@@ -14,9 +14,9 @@ local ChangeLogData = {
 	-- 115 chars per line
 	"Changes:",
 		--"• ",
-		"• Fixed friend datatext",
-		"• Fixed auto invite",
-		"• Moved coords on worldmap to better position if World Quest Tracker is loaded.",
+		"• Fixed buffs for weapon enchants if two enchants are used eg Enhancer Shaman",
+		"• Added support for other minimap addons",
+		"• Fixed UI-Breaking bug for several classes",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",

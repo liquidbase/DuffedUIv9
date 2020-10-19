@@ -66,13 +66,13 @@ local abbrev = function(name)
 end
  
 local f = CreateFrame('Frame', 'DuffedUITeleportMenu', UIParent, 'BackdropTemplate')
-f:Size(DuffedUIMinimap:GetWidth(),(#spells + 1) * 21 + 3)
+f:Size(144,(#spells + 1) * 21 + 3)
 f:SetPoint('BOTTOMLEFT', DuffedUIInfoCenter, 'TOPLEFT', 0, 2)
 f:SetFrameStrata('HIGH')
 f:SetTemplate('Transparent')
  
 local r = CreateFrame('Frame', nil, f)
-r:Size(DuffedUIMinimap:GetWidth() - 4, 20)
+r:Size(140, 20)
 r:SetPoint('TOPLEFT', f, 'TOPLEFT', 2, -2)
 local l = r:CreateFontString('Title', 'OVERLAY')
 l:SetFont(C['media']['font'], 11, 'THINOUTLINE')
@@ -81,7 +81,7 @@ r:SetFrameStrata('HIGH')
  
 for i, spell in pairs(spells) do
 	local b = CreateFrame('Button', nil, f, 'SecureActionButtonTemplate, BackdropTemplate')
-	b:Size(DuffedUIMinimap:GetWidth() - 4, 20)
+	b:Size(140, 20)
 	b:SetPoint('TOPLEFT', f, 'TOPLEFT', 2, -(i * 21) - 2)
 	b:SetFrameStrata('HIGH')
 	b:SetTemplate('Transparent')

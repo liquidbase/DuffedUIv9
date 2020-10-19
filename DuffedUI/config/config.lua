@@ -7,7 +7,6 @@ C['general'] = {
 	['bordercolor'] = {.125, .125, .125},
 	['classcolor'] = true,
 	['autoaccept'] = true,
-	['blizzardreskin'] = true,
 	['calendarevent'] = false,
 	['moveblizzardframes'] = false,
 	['minimapsize'] = 144,

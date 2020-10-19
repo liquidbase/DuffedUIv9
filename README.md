@@ -2,7 +2,7 @@
 New Repository for WoW - Shadowlands
 
 ## Content
-This repository currently contains the development version of DuffedUI for WoW - Shadowlands. **This version is not useable on the current WoW live servers!**
+This repository currently contains the development version of DuffedUI for WoW - Shadowlands.
 
 If you find bugs, and you will find them, please report them at the following URL:
 

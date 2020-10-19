@@ -57,7 +57,7 @@ D['ClassRessource']['PALADIN'] = function(self)
 	self.HolyPower = HolyPower
 	
 	
-	--[[Visibility]]--
+	-- Visibility
 	Visibility = CreateFrame('Frame')
 	Visibility:RegisterEvent('PLAYER_LOGIN')
 	Visibility:RegisterEvent('PLAYER_ENTERING_WORLD')
@@ -66,11 +66,6 @@ D['ClassRessource']['PALADIN'] = function(self)
 	Visibility:RegisterEvent('UPDATE_SHAPESHIFT_FORM')
 	Visibility:RegisterEvent('ACTIVE_TALENT_GROUP_CHANGED')
 	Visibility:SetScript('OnEvent', function()
-		local spec = GetSpecialization()
-		if spec == 3 then 
-			if C['unitframes']['oocHide'] then D['oocHide'](HolyPower) else HolyPower:Show() end
-		else
-			HolyPower:Hide()
-		end
+		if C['unitframes']['oocHide'] then D['oocHide'](HolyPower) else HolyPower:Show() end
 	end)
 end

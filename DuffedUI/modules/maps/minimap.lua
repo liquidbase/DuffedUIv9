@@ -1,4 +1,5 @@
 local D, C, L = unpack(select(2, ...))
+if D['IsAddOnEnabled']('SexyMap') then return end
 
 local move = D['move']
 local ToggleHelpFrame = ToggleHelpFrame
