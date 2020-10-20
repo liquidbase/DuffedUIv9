@@ -19,14 +19,11 @@ local C_Garrison_HasGarrison = C_Garrison.HasGarrison
 local LoadAddOn = LoadAddOn
 local GarrisonMissionFrame = GarrisonMissionFrame
 
-local LE_FOLLOWER_TYPE_GARRISON_6_0, LE_FOLLOWER_TYPE_SHIPYARD_6_2 = LE_FOLLOWER_TYPE_GARRISON_6_0, LE_FOLLOWER_TYPE_SHIPYARD_6_2
+local LE_FOLLOWER_TYPE_GARRISON_6_0, LE_FOLLOWER_TYPE_SHIPYARD_6_2 = Enum.GarrisonFollowerType.FollowerType_6_0, Enum.GarrisonFollowerType.FollowerType_6_2
 local GARRISON_MISSIONS, GARRISON_LOCATION_TOOLTIP, GARRISON_SHIPMENT_EMPTY, GARRISON_MISSIONS_TITLE = GARRISON_MISSIONS, GARRISON_LOCATION_TOOLTIP, GARRISON_SHIPMENT_EMPTY, GARRISON_MISSIONS_TITLE
 local AVAILABLE, GARRISON_MISSION_COMPLETE = AVAILABLE, GARRISON_MISSION_COMPLETE
 local CAPACITANCE_WORK_ORDERS, SPLASH_NEW_6_2_FEATURE2_TITLE, MINIMAP_GARRISON_LANDING_PAGE_TOOLTIP = CAPACITANCE_WORK_ORDERS, SPLASH_NEW_6_2_FEATURE2_TITLE, MINIMAP_GARRISON_LANDING_PAGE_TOOLTIP
-
 local displayModifierString = ''
-local GARRISON_CURRENCY = 824
-local GARRISON_CURRENCY_OIL = 1101
 
 local function Update(self, event)
 	local inProgressMissions = {}
@@ -57,7 +54,7 @@ local OnLeave = function()
 	GameTooltip:Hide()
 end
 
-local garrisonType = LE_GARRISON_TYPE_6_0
+local garrisonType = Enum.GarrisonType.Type_6_0
 
 local function sortFunction(a, b)
 	return a.missionEndTime < b.missionEndTime
@@ -78,7 +75,7 @@ local OnEnter = function(self)
 	-- Work Orders
 	C_GarrisonRequestLandingPageShipmentInfo()
 
-	local buildings = C_GarrisonGetBuildings(LE_GARRISON_TYPE_6_0)
+	local buildings = C_GarrisonGetBuildings(Enum.GarrisonType.Type_6_0)
 	local NumBuildings = #buildings
 	local hasBuilding = false
 
@@ -157,11 +154,8 @@ local OnEnter = function(self)
 		GameTooltip:AddLine(' ')
 	end
 
-	local name, amount, tex = C_CurrencyInfo.GetCurrencyInfo(GARRISON_CURRENCY)
-	GameTooltip:AddDoubleLine('\124T' .. tex .. ':12\124t ' .. name, amount, 1, 1, 1, selectioncolor)
-
-	local name, amount, tex = C_CurrencyInfo.GetCurrencyInfo(GARRISON_CURRENCY_OIL)
-	GameTooltip:AddDoubleLine('\124T' .. tex .. ':12\124t ' .. name, amount, 1, 1, 1, selectioncolor)
+	D['Currency'](824)
+	D['Currency'](1101)
 	GameTooltip:Show()
 end
 
