@@ -32,8 +32,6 @@ local GOAL_COMPLETED = GOAL_COMPLETED
 local RESEARCH_TIME_LABEL = RESEARCH_TIME_LABEL
 local GARRISON_LANDING_SHIPMENT_COUNT = GARRISON_LANDING_SHIPMENT_COUNT
 local FOLLOWERLIST_LABEL_TROOPS = FOLLOWERLIST_LABEL_TROOPS
-local LE_FOLLOWER_TYPE_GARRISON_8_0 = LE_FOLLOWER_TYPE_GARRISON_8_0
-local LE_GARRISON_TYPE_8_0 = LE_GARRISON_TYPE_8_0
 local LE_EXPANSION_BATTLE_FOR_AZEROTH = LE_EXPANSION_BATTLE_FOR_AZEROTH
 local ISLANDS_QUEUE_WEEKLY_QUEST_PROGRESS = ISLANDS_QUEUE_WEEKLY_QUEST_PROGRESS
 local ISLANDS_HEADER = ISLANDS_HEADER
@@ -52,10 +50,7 @@ local C_GarrisonGetTalentTreeIDsByClassID = C_Garrison.GetTalentTreeIDsByClassID
 local C_GarrisonGetTalentTreeInfoForID = C_Garrison.GetTalentTreeInfoForID
 local C_GarrisonRequestLandingPageShipmentInfo = C_Garrison.RequestLandingPageShipmentInfo
 local LE_FOLLOWER_TYPE_GARRISON_6_0 = LE_FOLLOWER_TYPE_GARRISON_6_0
-local LE_FOLLOWER_TYPE_GARRISON_7_0 = LE_FOLLOWER_TYPE_GARRISON_7_0
-local LE_FOLLOWER_TYPE_GARRISON_7_0 = LE_FOLLOWER_TYPE_GARRISON_7_0
 local LE_FOLLOWER_TYPE_SHIPYARD_6_2 = LE_FOLLOWER_TYPE_SHIPYARD_6_2
-local LE_GARRISON_TYPE_7_0 = LE_GARRISON_TYPE_7_0
 local ORDER_HALL_MISSIONS = ORDER_HALL_MISSIONS
 
 local C_UIWidgetManager_GetStatusBarWidgetVisualizationInfo = C_UIWidgetManager.GetStatusBarWidgetVisualizationInfo
@@ -100,7 +95,7 @@ local function Update(self, event)
 		end
 
 		local Missions = {}
-		C_GarrisonGetInProgressMissions(Missions, LE_FOLLOWER_TYPE_GARRISON_7_0)
+		C_GarrisonGetInProgressMissions(Missions, Enum.GarrisonFollowerType.FollowerType_7_0)
 		local CountInProgress = 0
 		local CountCompleted = 0
 
@@ -120,7 +115,7 @@ local function Update(self, event)
 		local _, numGarrisonResources = C_CurrencyInfo.GetCurrencyInfo(WARRESOURCES_CURRENCY)
 		
 		local Missions = {}
-		C_Garrison_GetInProgressMissions(Missions, LE_FOLLOWER_TYPE_GARRISON_8_0)
+		C_Garrison_GetInProgressMissions(Missions, Enum.GarrisonFollowerType.FollowerType_8_0)
 		local CountInProgress = 0
 		local CountCompleted = 0
 
@@ -151,13 +146,13 @@ local OnEnter = function(self)
 	local firstLine = true
 
 if D['Level'] < 110 then	
-	if not (C_Garrison_HasGarrison(LE_GARRISON_TYPE_7_0)) then
+	if not (C_Garrison_HasGarrison(Enum.GarrisonType.Type_7_0)) then
 		GameTooltip:AddLine(L['dt']['NoOrderHallUnlock'])
 		return
 	end
 
 	--[[Loose Work Orders]]--
-	local looseShipments = C_GarrisonGetLooseShipments(LE_GARRISON_TYPE_7_0)
+	local looseShipments = C_GarrisonGetLooseShipments(Enum.GarrisonType.Type_7_0)
 	if (looseShipments) then
 		for i = 1, #looseShipments do
 			local name, _, _, shipmentsReady, shipmentsTotal = C_GarrisonGetLandingPageShipmentInfoByContainerID(looseShipments[i])
@@ -168,7 +163,7 @@ if D['Level'] < 110 then
 
 	--[[Orderhall Missions]]--
 	local inProgressMissions = {}
-	C_GarrisonGetInProgressMissions(inProgressMissions, LE_FOLLOWER_TYPE_GARRISON_7_0)
+	C_GarrisonGetInProgressMissions(inProgressMissions, Enum.GarrisonFollowerType.FollowerType_7_0)
 	local numMissions = #inProgressMissions
 	if(numMissions > 0) then
 		tsort(inProgressMissions, sortFunction)
@@ -185,7 +180,7 @@ if D['Level'] < 110 then
 	end
 
 	--[[Troop Work Orders]]--
-	local followerShipments = C_GarrisonGetFollowerShipments(LE_GARRISON_TYPE_7_0)
+	local followerShipments = C_GarrisonGetFollowerShipments(Enum.GarrisonType.Type_7_0)
 	local hasFollowers = false
 	if (followerShipments) then
 		for i = 1, #followerShipments do
@@ -202,11 +197,11 @@ if D['Level'] < 110 then
 	end
 
 	--[[Talents]]--
-	local talentTreeIDs = C_GarrisonGetTalentTreeIDsByClassID(LE_GARRISON_TYPE_7_0, select(3, UnitClass('player')))
+	local talentTreeIDs = C_GarrisonGetTalentTreeIDsByClassID(Enum.GarrisonType.Type_7_0, select(3, UnitClass('player')))
 	local hasTalent = false
 	if (followerShipments) then GameTooltip:AddLine(' ') end
 	if (talentTrees) then
-		local completeTalentID = C_GarrisonGetCompleteTalent(LE_GARRISON_TYPE_7_0)
+		local completeTalentID = C_GarrisonGetCompleteTalent(Enum.GarrisonType.Type_7_0)
 		for treeIndex, treeID in ipairs(talentTreeIDs) do
 			for talentIndex, talent in ipairs(tree) do
 				local showTalent = false;
@@ -230,7 +225,7 @@ if D['Level'] < 110 then
 else	
 	--Missions
 	local inProgressMissions = {}
-	C_Garrison_GetInProgressMissions(inProgressMissions, LE_FOLLOWER_TYPE_GARRISON_8_0)
+	C_Garrison_GetInProgressMissions(inProgressMissions, Enum.GarrisonFollowerType.FollowerType_8_0)
 	local numMissions = #inProgressMissions
 	if(numMissions > 0) then
 		tsort(inProgressMissions, sortFunction) --Sort by time left, lowest first
@@ -254,7 +249,7 @@ else
 	end
 
 	-- Troop Work Orders
-	local followerShipments = C_Garrison_GetFollowerShipments(LE_GARRISON_TYPE_8_0)
+	local followerShipments = C_Garrison_GetFollowerShipments(Enum.GarrisonType.Type_8_0)
 	local hasFollowers = false
 	if(followerShipments) then
 		for i = 1, #followerShipments do
@@ -280,11 +275,11 @@ else
 	end
 
 	-- Talents
-	local talentTreeIDs = C_Garrison_GetTalentTreeIDsByClassID(LE_GARRISON_TYPE_8_0, select(3, UnitClass('player')))
+	local talentTreeIDs = C_Garrison_GetTalentTreeIDsByClassID(Enum.GarrisonType.Type_8_0, select(3, UnitClass('player')))
 	local hasTalent = false
 	if(talentTreeIDs) then
 		-- this is a talent that has completed, but has not been seen in the talent UI yet.
-		local completeTalentID = C_Garrison_GetCompleteTalent(LE_GARRISON_TYPE_8_0)
+		local completeTalentID = C_Garrison_GetCompleteTalent(Enum.GarrisonType.Type_8_0)
 		for _, treeID in ipairs(talentTreeIDs) do
 			local _, _, tree = C_Garrison_GetTalentTreeInfoForID(treeID)
 			for _, talent in ipairs(tree) do
@@ -358,30 +353,30 @@ end
 
 local OnMouseDown = function(self)
 if D['Level'] < 110 then
-	if not (C_Garrison_HasGarrison(LE_GARRISON_TYPE_7_0)) then return end
+	if not (C_Garrison_HasGarrison(Enum.GarrisonType.Type_7_0)) then return end
 	local isShown = GarrisonLandingPage and GarrisonLandingPage:IsShown()
 	if (not isShown) then
-		ShowGarrisonLandingPage(LE_GARRISON_TYPE_7_0)
+		ShowGarrisonLandingPage(Enum.GarrisonType.Type_7_0)
 	elseif (GarrisonLandingPage) then
 		local currentGarrType = GarrisonLandingPage.garrTypeID
 		HideUIPanel(GarrisonLandingPage)
-		if (currentGarrType ~= LE_GARRISON_TYPE_7_0) then
-			ShowGarrisonLandingPage(LE_GARRISON_TYPE_7_0)
+		if (currentGarrType ~= Enum.GarrisonType.Type_7_0) then
+			ShowGarrisonLandingPage(Enum.GarrisonType.Type_7_0)
 		end
 	end
 else
-	if not (C_Garrison_HasGarrison(LE_GARRISON_TYPE_8_0)) then
+	if not (C_Garrison_HasGarrison(Enum.GarrisonType.Type_8_0)) then
 		return
 	end
 
 	local isShown = GarrisonLandingPage and GarrisonLandingPage:IsShown()
 	if (not isShown) then
-		ShowGarrisonLandingPage(LE_GARRISON_TYPE_8_0)
+		ShowGarrisonLandingPage(Enum.GarrisonType.Type_8_0)
 	elseif (GarrisonLandingPage) then
 		local currentGarrType = GarrisonLandingPage.garrTypeID
 		HideUIPanel(GarrisonLandingPage)
-		if (currentGarrType ~= LE_GARRISON_TYPE_8_0) then
-			ShowGarrisonLandingPage(LE_GARRISON_TYPE_8_0)
+		if (currentGarrType ~= Enum.GarrisonType.Type_8_0) then
+			ShowGarrisonLandingPage(Enum.GarrisonType.Type_8_0)
 		end
 	end
 end	
