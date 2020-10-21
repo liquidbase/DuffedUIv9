@@ -295,11 +295,8 @@ local function Update(self)
 		return
 	end
 
-	--GuildRoster()
 	C_GuildInfo_GuildRoster()
-	--local numTotal, numOnline, numOnlineAndMobile = GetNumGuildMembers()
 	totalOnline = select(3, GetNumGuildMembers())
-	--totalOnline = numOnline
 
 	self.Text:SetFormattedText('%s: %s', NameColor .. GUILD .. '|r', ValueColor .. totalOnline .. '|r')
 end

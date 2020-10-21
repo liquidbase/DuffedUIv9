@@ -25,7 +25,7 @@ if C['general']['autoaccept'] then
 			if accept:GetQueueStatus() or IsInGroup() or InCombatLockdown() then return end
 			local LeaderName = ...
 
-			if IsInGuild() then GuildRoster() end
+			if IsInGuild() then C_GuildInfo.GuildRoster() end
 
 			for guildIndex = 1, GetNumGuildMembers(true) do
 				local guildMemberName = gsub(GetGuildRosterInfo(guildIndex), '-.*', '')
