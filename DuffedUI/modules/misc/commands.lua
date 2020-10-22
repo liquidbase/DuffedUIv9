@@ -29,7 +29,7 @@ local function DisbandRaidGroup()
 			if GetNumGroupMembers(i) then UninviteUnit(UnitName('party'..i)) end
 		end
 	end
-	LeaveParty()
+	C_PartyInfo.LeaveParty()
 end
 
 D['CreatePopup']['DUFFEDUIDISBAND_RAID'] = {
