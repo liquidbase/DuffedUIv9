@@ -176,13 +176,6 @@ D['ConstructUFRaid'] = function(self)
 	leader:Point('TOPLEFT', 0, 8)
 	self.LeaderIndicator = leader
 
-	--[[local MasterLooter = health:CreateTexture(nil, 'OVERLAY')
-	MasterLooter:Height(12)
-	MasterLooter:Width(12)
-	self.MasterLooterIndicator = MasterLooter
-	self:RegisterEvent('PARTY_LEADER_CHANGED', D['MLAnchorUpdate'])
-	self:RegisterEvent('GROUP_ROSTER_UPDATE', D['MLAnchorUpdate'])]]--
-
 	if C['raid']['showrange'] then self.Range = Module.CreateRangeIndicator(self) end
 
 	if layout == 'heal' then
