@@ -2,11 +2,7 @@ local D, C, L = unpack(select(2, ...))
 
 -- Slash Commands
 local Split = function(cmd)
-	if cmd:find('%s') then
-		return strsplit(' ', strlower(cmd))
-	else
-		return cmd
-	end
+	if cmd:find('%s') then return strsplit(' ', strlower(cmd)) else return cmd end
 end
 
 -- ReloadUI
@@ -53,10 +49,10 @@ local function RaidLayout(cmd)
 	local arg1 = Split(cmd)
 
 	if C['raid'].layout == 'dps' then
-		D.SetValue('raid', 'layout', 'heal')
+		D['SetValue']('raid', 'layout', 'heal')
 		ReloadUI()
 	else
-		D.SetValue('raid', 'layout', 'dps')
+		D['SetValue']('raid', 'layout', 'dps')
 		ReloadUI()
 	end
 end
