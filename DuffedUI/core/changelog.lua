@@ -19,6 +19,8 @@ local ChangeLogData = {
 		"• Removed datatext for bfa-missions and garrison, no longer needed in fact of combined datatext modul",
 		"  missions",
 		"• Fixed issue with autoinvite on guilds",
+		"• Removed drink annoucement",
+		"• Removed code that is no longer needed",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",
