@@ -166,10 +166,6 @@ DuffedUIConfig ['enUS'] = {
 		['Dispell'] = {
 			['Name'] = 'Chat for dispels',
 		},
-		
-		['drinkannouncement'] = {
-			['Name'] = 'Drink Announcement',
-		},
 	},
 
 	['datatext'] = {

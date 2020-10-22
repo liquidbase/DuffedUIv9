@@ -261,7 +261,6 @@ C['announcements'] = {
 		},
 		['Value'] = 'NONE'
 	},
-	['drinkannouncement'] = false,
 }
 
 C['loot'] = {
