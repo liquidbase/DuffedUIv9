@@ -210,13 +210,14 @@ function private.OnLoad()
     private.disabled.tooltips = not AuroraConfig.tooltips
     private.disabled.mainmenubar = not AuroraConfig.mainmenubar
     if not AuroraConfig.chatBubbles then
-        private.FrameXML.ChatBubbles = nil
+        Hook.ChatBubble_OnEvent = private.nop
+        Hook.ChatBubble_OnUpdate = private.nop
     end
     if not AuroraConfig.chatBubbleNames then
-        Hook.UpdateChatBubble = private.nop
+        Hook.ChatBubble_SetName = private.nop
     end
     if not AuroraConfig.loot then
-        private.FrameXML.LootFrame = nil
+        private.FrameXML.LootFrame = private.nop
     end
 
     function private.AddOns.Aurora()

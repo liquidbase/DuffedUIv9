@@ -88,7 +88,7 @@ hooksecurefunc('UnitPopup_OnClick', function(self)
     end
 end)
 
-UnitPopupButtons['ARMORYLINK'] = {text = L_POPUP_ARMORY, dist = 0, func = UnitPopup_OnClick}
+UnitPopupButtons['ARMORYLINK'] = {text = L_POPUP_ARMORY, func = UnitPopup_OnClick}
 tinsert(UnitPopupMenus['FRIEND'], #UnitPopupMenus['FRIEND'] - 1, 'ARMORYLINK')
 tinsert(UnitPopupMenus['PARTY'], #UnitPopupMenus['PARTY'] - 1, 'ARMORYLINK')
 tinsert(UnitPopupMenus['RAID'], #UnitPopupMenus['RAID'] - 1, 'ARMORYLINK')
