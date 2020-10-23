@@ -94,16 +94,10 @@ function Module:Logo_Create()
 	anim.fadeOut:SetSmoothing('OUT')
 	anim.fadeOut:SetStartDelay(delayTime)
 
-	frame:SetScript('OnShow', function()
-		anim:Play()
-	end)
-	anim:SetScript('OnFinished', function()
-		frame:Hide()
-	end)
+	frame:SetScript('OnShow', function() anim:Play() end)
+	anim:SetScript('OnFinished', function() frame:Hide() end)
 	if C['general']['welcomeSound'] then
-		anim.fadeIn:SetScript('OnFinished', function()
-			PlaySound(soundID, 'master')
-		end)
+		anim.fadeIn:SetScript('OnFinished', function() PlaySound(soundID, 'master') end)
 	end
 
 	Module.logoFrame = frame
@@ -113,9 +107,7 @@ function Module:LoginAnimation()
 	D:RegisterEvent('PLAYER_ENTERING_WORLD', Module.Logo_CheckStatus)
 
 	function PlayDuffedUILogo()
-		if not Module.logoFrame then
-			Module:Logo_Create()
-		end
+		if not Module.logoFrame then Module:Logo_Create() end
 		Module.logoFrame:Show()
 	end
 end

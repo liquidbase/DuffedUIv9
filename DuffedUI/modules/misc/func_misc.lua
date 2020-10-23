@@ -50,8 +50,8 @@ local function Skin(timer, value, maxvalue, scale, paused, label)
 			frame:SetTemplate('Default')
 
 			local statusbar = _G[frame:GetName()..'StatusBar']
-			local border = _G[frame:GetName()..'Border']
-			local text = _G[frame:GetName()..'Text']
+			local border = _G[frame:GetName() .. 'Border']
+			local text = _G[frame:GetName() .. 'Text']
 
 			statusbar:ClearAllPoints()
 			statusbar:Point('TOPLEFT', frame, 2, -2)

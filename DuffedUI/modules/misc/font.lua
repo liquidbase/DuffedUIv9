@@ -40,7 +40,6 @@ DuffedUIFonts:SetScript('OnEvent', function(self, event, addon)
 	NAMEPLATE_FONT     = NORMAL
 	DAMAGE_TEXT_FONT   = COMBAT
 	STANDARD_TEXT_FONT = NORMAL
-	--LARGE_NUMBER_SEPERATOR = ''
 
 	SetFont(GameTooltipHeader,                  NORMAL, 11)
 	SetFont(NumberFont_OutlineThick_Mono_Small, NUMBER, 11, 'OUTLINE')

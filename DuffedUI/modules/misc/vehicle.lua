@@ -14,7 +14,7 @@ hooksecurefunc(VehicleSeatIndicator,'SetPoint',function(_,_,parent)
 	end
 end)
 
--- vehicule on mouseover because this shit take too much space on screen
+-- vehicle on mouseover because this shit take too much space on screen
 local function VehicleNumSeatIndicator()
 	if VehicleSeatIndicatorButton6 then
 		D['numSeat'] = 6

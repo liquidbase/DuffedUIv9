@@ -38,9 +38,7 @@ AltPowerBar:RegisterEvent('UNIT_POWER_BAR_SHOW')
 AltPowerBar:RegisterEvent('UNIT_POWER_BAR_HIDE')
 AltPowerBar:RegisterEvent('PLAYER_ENTERING_WORLD')
 
-local function SetAltPowerBarText(text, name, value, max)
-	text:SetText(format('%s: %s / %s', name, value, max))
-end
+local function SetAltPowerBarText(text, name, value, max) text:SetText(format('%s: %s / %s', name, value, max)) end
 
 local function OnEvent(self)
 	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
@@ -68,7 +66,7 @@ local function OnUpdate(self, elapsed)
 		self.colorGradientR, self.colorGradientG, self.colorGradientB = r, g, b
 		self.TimeSinceLastUpdate = 0
 
-		AltPowerText:SetText(powerName.. ': '..power..' / '..mpower)
+		AltPowerText:SetText(powerName .. ': ' .. power .. ' / ' .. mpower)
 		AltPowerBarStatus:SetStatusBarColor(r, g, b)
 	end
 end

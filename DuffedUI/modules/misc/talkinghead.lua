@@ -1,7 +1,7 @@
 local D, C, L = unpack(select(2, ...))
 if C['general']['notalkinghead'] then return end
 
-local Module = D:NewModule("DuffedUITalkingHead", "AceEvent-3.0")
+local Module = D:NewModule('DuffedUITalkingHead', 'AceEvent-3.0')
 
 local _G = _G
 local ipairs = ipairs
@@ -15,36 +15,32 @@ local move = D['move']
 function Module:InitializeTalkingHead()
 	local content = _G.TalkingHeadFrame
 
-	if (not content) then
-		return self:RegisterEvent("ADDON_LOADED", "WaitForTalkingHead")
-	end
+	if (not content) then return self:RegisterEvent('ADDON_LOADED', 'WaitForTalkingHead') end
 
 	content:ClearAllPoints()
-	content:SetPoint("BOTTOM", self.frame, "BOTTOM", 0, 0)
+	content:SetPoint('BOTTOM', self.frame, 'BOTTOM', 0, 0)
 	content.ignoreFramePositionManager = true
 
-	UIParent:UnregisterEvent("TALKINGHEAD_REQUESTED")
-	UIPARENT_MANAGED_FRAME_POSITIONS["TalkingHeadFrame"] = nil
+	UIParent:UnregisterEvent('TALKINGHEAD_REQUESTED')
+	UIPARENT_MANAGED_FRAME_POSITIONS['TalkingHeadFrame'] = nil
 
 	local AlertFrame = _G.AlertFrame
 	for index, alertFrameSubSystem in ipairs(AlertFrame.alertFrameSubSystems) do
-		if (alertFrameSubSystem.anchorFrame and (alertFrameSubSystem.anchorFrame == content)) then
-			table_remove(AlertFrame.alertFrameSubSystems, index)
-		end
+		if (alertFrameSubSystem.anchorFrame and (alertFrameSubSystem.anchorFrame == content)) then table_remove(AlertFrame.alertFrameSubSystems, index) end
 	end
 end
 
 function Module:WaitForTalkingHead(_, ...)
 	local addon = ...
-	if (addon ~= "Blizzard_TalkingHeadUI") then	return end
+	if (addon ~= 'Blizzard_TalkingHeadUI') then	return end
 
 	self:InitializeTalkingHead()
-	self:UnregisterEvent("ADDON_LOADED", "WaitForTalkingHead")
+	self:UnregisterEvent('ADDON_LOADED', 'WaitForTalkingHead')
 end
 
 function Module:OnInitialize()
-	self.frame = CreateFrame("Frame", "TalkingHeadFrameMover", UIParent)
-	self.frame:SetPoint("TOP", UIParent, "TOP", 0, -18)
+	self.frame = CreateFrame('Frame', 'TalkingHeadFrameMover', UIParent)
+	self.frame:SetPoint('TOP', UIParent, 'TOP', 0, -18)
 	self.frame:SetSize(570, 155)
 
 	move:RegisterFrame(self.frame)

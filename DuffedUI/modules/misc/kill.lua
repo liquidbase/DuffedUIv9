@@ -8,7 +8,7 @@ Kill:SetScript('OnEvent', function(self, event, addon)
 	end
 
 	if addon ~= 'DuffedUI' then return end
-	if C['raid']['enable'] or C['raid']['PartyEnable'] then
+	if C['raid']['enable'] then
 		InterfaceOptionsFrameCategoriesButton11:SetScale(0.00001)
 		InterfaceOptionsFrameCategoriesButton11:SetAlpha(0)
 
@@ -21,14 +21,14 @@ Kill:SetScript('OnEvent', function(self, event, addon)
 			_G[member]:UnregisterAllEvents()
 			_G[member]:SetParent(DuffedUIHider)
 			_G[member]:Hide()
-			_G[member..'HealthBar']:UnregisterAllEvents()
-			_G[member..'ManaBar']:UnregisterAllEvents()
+			_G[member .. 'HealthBar']:UnregisterAllEvents()
+			_G[member .. 'ManaBar']:UnregisterAllEvents()
 
-			local pet = member..'PetFrame'
+			local pet = member .. 'PetFrame'
 
 			_G[pet]:UnregisterAllEvents()
 			_G[pet]:SetParent(DuffedUIHider)
-			_G[pet..'HealthBar']:UnregisterAllEvents()
+			_G[pet .. 'HealthBar']:UnregisterAllEvents()
 
 			HidePartyFrame()
 			ShowPartyFrame = function() return end
