@@ -16,6 +16,8 @@ local ToggleAchievementFrame = ToggleAchievementFrame
 local ToggleCharacter = ToggleCharacter
 local ToggleFrame = ToggleFrame
 local UIErrorsFrame = UIErrorsFrame
+local talent_level = 15
+local pvp_level = 10
 
 local menuFrame = CreateFrame('Frame', 'MinimapRightClickMenu', UIParent, 'UIDropDownMenuTemplate')
 local guildText = IsInGuild() and ACHIEVEMENTS_GUILD_TAB or LOOKINGFORGUILD
@@ -34,13 +36,13 @@ local micromenu = {
 	end},
 	{text = TALENTS_BUTTON, icon = 'Interface\\MINIMAP\\TRACKING\\Ammunition', notCheckable = 1, func = function()
 			if not PlayerTalentFrame then TalentFrame_LoadUI() end
-			if D['Level'] >= 15 then
+			if D['Level'] >= talent_level then
 				ShowUIPanel(PlayerTalentFrame)
 			else
 				if C['general']['errorfilter'] == false then
-					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, 15), 1, 0.1, 0.1)
+					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, talent_level), 1, 0.1, 0.1)
 				else
-					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, 15) .. '|r')
+					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, talent_level) .. '|r')
 				end
 			end
 	end},
@@ -61,9 +63,9 @@ local micromenu = {
 				TogglePVPUI()
 			else
 				if C['general']['errorfilter'] == false then
-					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, 10), 1, 0.1, 0.1)
+					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, pvp_level), 1, 0.1, 0.1)
 				else
-					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, 10)..'|r')
+					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, pvp_level) .. '|r')
 				end
 			end
 	end},
@@ -72,9 +74,9 @@ local micromenu = {
 				PVEFrame_ToggleFrame('GroupFinderFrame', nil)
 			else
 				if C['general']['errorfilter'] == false then
-					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, 10), 1, 0.1, 0.1)
+					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, pvp_level), 1, 0.1, 0.1)
 				else
-					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, 10)..'|r')
+					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, pvp_level) .. '|r')
 				end
 			end
 	end},
