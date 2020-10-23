@@ -461,14 +461,6 @@ D['EclipseDirection'] = function(self)
 	end
 end
 
---[[D['MLAnchorUpdate'] = function (self)
-	if self.LeaderIndicator:IsShown() then
-		self.MasterLooterIndicator:SetPoint('TOPLEFT', 14, 8)
-	else
-		self.MasterLooterIndicator:SetPoint('TOPLEFT', 0, 8)
-	end
-end]]--
-
 local UpdateManaLevelDelay = 0
 D['UpdateManaLevel'] = function(self, elapsed)
 	UpdateManaLevelDelay = UpdateManaLevelDelay + elapsed

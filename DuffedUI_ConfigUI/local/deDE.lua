@@ -165,10 +165,6 @@ DuffedUIConfig['deDE'] = {
 		['Dispell'] = {
 			['Name'] = 'Chat für Reinigungen',
 		},
-		
-		['drinkannouncement'] = {
-			['Name'] = 'Trinken ansagen',
-		},
 	},
 
 	['datatext'] = {

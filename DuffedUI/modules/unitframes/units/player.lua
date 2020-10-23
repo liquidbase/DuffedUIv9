@@ -231,13 +231,6 @@ D['ConstructUFPlayer'] = function(self)
 	Leader:Width(14)
 	Leader:Point('TOPLEFT', 2, 8)
 
-	--[[local MasterLooter = health:CreateTexture(nil, 'OVERLAY')
-	MasterLooter:Height(14)
-	MasterLooter:Width(14)
-	self.MasterLooterIndicator = MasterLooter
-	self:RegisterEvent('PARTY_LEADER_CHANGED', D['MLAnchorUpdate'])
-	self:RegisterEvent('GROUP_ROSTER_UPDATE', D['MLAnchorUpdate'])]]--
-
 	local RaidIcon = health:CreateTexture(nil, 'OVERLAY')
 	RaidIcon:SetTexture(C['media']['RaidIcons'])
 	RaidIcon:Size(20, 20)
