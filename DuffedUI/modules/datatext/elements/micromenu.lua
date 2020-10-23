@@ -101,7 +101,6 @@ local micromenu = {
 			if (not CalendarFrame) then LoadAddOn('Blizzard_Calendar') end
 			Calendar_Toggle()
 	end},
-	--{text = BATTLEFIELD_MINIMAP, colorCode = '|cff999999', icon = 'Interface\\PVPFrame\\Icon-Combat', notCheckable = 1, func = function() ToggleBattlefieldMinimap() end},
 	{text = LOOT_ROLLS, icon = 'Interface\\Buttons\\UI-GroupLoot-Dice-Up', notCheckable = 1, func = function() ToggleFrame(LootHistoryFrame) end},
 	{text = 'Compose New Tweet', icon = 'Interface\\FriendsFrame\\BroadcastIcon', notCheckable = 1, func = function()
 			if not SocialPostFrame then LoadAddOn('Blizzard_SocialUI') end
