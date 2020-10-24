@@ -104,6 +104,7 @@ C['nameplate'] = {
 	['hidetargetglow'] = false,
 	['showperc'] = true,
 	['debuffsize'] = 18,
+	['oosvisibilty'] = 0.4,
 }
 
 C['actionbar'] = {

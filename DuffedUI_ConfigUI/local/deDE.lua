@@ -635,7 +635,11 @@ DuffedUIConfig['deDE'] = {
 		},
 
 		['debuffsize'] = {
-			['Name'] = 'Größe der Schwächungszauber'
+			['Name'] = 'Größe der Schwächungszauber',
+		},
+		
+		['oosvisibilty'] = {
+			['Name'] = 'Sichtbarkeit der Nameplates für Gegner außer Sicht (Standard 0.4, Wert muss 0-1 sein)',
 		},
 	},
 	

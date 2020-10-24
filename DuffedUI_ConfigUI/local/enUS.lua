@@ -640,7 +640,11 @@ DuffedUIConfig ['enUS'] = {
 		},
 
 		['debuffsize'] = {
-			['Name'] = 'Set size of debuffs'
+			['Name'] = 'Set size of debuffs',
+		},
+
+		['oosvisibilty'] = {
+			['Name'] = 'Nameplate visibility for out of sight opponents (default 0.4, value can be 0 to 1)',
 		},
 	},
 

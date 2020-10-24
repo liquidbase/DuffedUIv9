@@ -329,7 +329,8 @@ local cvars = {
     nameplateMaxScale = 1,
     nameplateMinScale = 1,
     nameplateSelectedScale = 1,
-    nameplateSelfScale = 1,
+	nameplateSelfScale = 1,
+	nameplateOccludedAlphaMult = C['nameplate']['oosvisibilty'],
 }
 
 D['LoadUF'] = function()
