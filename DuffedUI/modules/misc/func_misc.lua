@@ -134,6 +134,6 @@ local function SkinBlizzTimer(self, event)
 	end
 end
 
-local load = CreateFrame('Frame')
-load:RegisterEvent('START_TIMER')
-load:SetScript('OnEvent', SkinBlizzTimer)
+local timerframe = CreateFrame('Frame')
+timerframe:RegisterEvent('START_TIMER')
+timerframe:SetScript('OnEvent', SkinBlizzTimer)
