@@ -162,10 +162,12 @@ DuffedUIAFKPanel:SetScript('OnEvent', function(self, event, unit)
 				GuildText()
 				if not AFKPlayerModel then Model() end
 				Minimap:Hide()
+				ObjectiveTrackerFrame:Hide()
 			else
 				SpinStop()
 				DuffedUIAFKPanel:Hide()
 				Minimap:Show()
+				ObjectiveTrackerFrame:Show()
 			end
 		end
 	elseif event == 'PLAYER_DEAD' then
@@ -173,12 +175,14 @@ DuffedUIAFKPanel:SetScript('OnEvent', function(self, event, unit)
 			SpinStop()
 			DuffedUIAFKPanel:Hide()
 			Minimap:Show()
+			ObjectiveTrackerFrame:Show()
 		end
 	elseif event == 'PLAYER_REGEN_DISABLED' then
 		if UnitIsAFK('player') then
 			SpinStop()
 			DuffedUIAFKPanel:Hide()
 			Minimap:Show()
+			ObjectiveTrackerFrame:Show()
 		end
 	end
 end)
