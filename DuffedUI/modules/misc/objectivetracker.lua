@@ -26,6 +26,31 @@ local lST = 'Wowhead'
 local lQ = 'http://www.wowhead.com/quest=%d'
 local lA = 'http://www.wowhead.com/achievement=%d'
 
+local function AddQuestNumString()
+	local questNum = 0
+	local q, o
+	local block = _G.ObjectiveTrackerBlocksFrame
+	local frame = _G.ObjectiveTrackerFrame
+
+	if not InCombatLockdown() then
+		for questLogIndex = 1, C_QuestLog.GetNumQuestLogEntries() do
+			local info = C_QuestLog.GetInfo(questLogIndex)
+			if not info.isHeader and not info.isHidden then	questNum = questNum + 1	end
+		end
+
+		if questNum >= (MAX_QUESTS - 5) then -- go red
+			q = string.format("|cffff0000%d/%d|r %s", questNum, MAX_QUESTS, TRACKER_HEADER_QUESTS)
+			o = string.format("|cffff0000%d/%d|r %s", questNum, MAX_QUESTS, OBJECTIVES_TRACKER_LABEL)
+		else
+			q = string.format("%d/%d %s", questNum, MAX_QUESTS, TRACKER_HEADER_QUESTS)
+			o = string.format("%d/%d %s", questNum, MAX_QUESTS, OBJECTIVES_TRACKER_LABEL)
+		end
+
+		block.QuestHeader.Text:SetText(q)
+		frame.HeaderMenu.Title:SetText(o)
+	end
+end
+
 local function SkinObjectiveTracker()
 	local ObjectiveTrackerFrame = _G['ObjectiveTrackerFrame']
 	local TrackerTexture = [[Interface\TargetingFrame\UI-StatusBar]]
@@ -185,6 +210,7 @@ local function SkinObjectiveTracker()
 	hooksecurefunc('QuestObjectiveSetupBlockButton_AddRightButton', PositionFindGroupButton)
 	hooksecurefunc('ObjectiveTracker_Update', SkinOjectiveTrackerHeaders)
 	hooksecurefunc('QuestObjectiveSetupBlockButton_FindGroup', SkinFindGroupButton)
+	hooksecurefunc("ObjectiveTracker_Update", AddQuestNumString)
 	hooksecurefunc(_G.BONUS_OBJECTIVE_TRACKER_MODULE,'AddProgressBar', SkinProgressBars)
 	hooksecurefunc(_G.WORLD_QUEST_TRACKER_MODULE,'AddProgressBar', SkinProgressBars)
 	hooksecurefunc(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE,'AddProgressBar', SkinProgressBars)
@@ -337,23 +363,3 @@ function Module:OnEnable()
 		SkinObjectiveTracker()
 	end
 end
-
--- NumQuests
-local a = ...
-local numQuests = CreateFrame('Frame', a)
-local MAX_QUESTS=MAX_QUESTS
-local TRACKER_HEADER_QUESTS=TRACKER_HEADER_QUESTS
-local OBJECTIVES_TRACKER_LABEL=OBJECTIVES_TRACKER_LABEL
-local MAP_AND_QUEST_LOG=MAP_AND_QUEST_LOG
-
-numQuests:RegisterEvent('QUEST_LOG_UPDATE')
-numQuests:SetScript('OnEvent',function()
-	local numQuests = tostring(select(2, C_QuestLog.GetNumQuestLogEntries()))
-	local Quests = numQuests .. '/' .. MAX_QUESTS .. ' ' .. TRACKER_HEADER_QUESTS
-	local Objectives = numQuests .. '/' .. MAX_QUESTS .. ' ' .. OBJECTIVES_TRACKER_LABEL
-	local WorldMap = MAP_AND_QUEST_LOG .. ' (' .. numQuests .. '/' .. MAX_QUESTS .. ')'
-
-	ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(Quests) -- edits the 'Quests' tracker header
-	ObjectiveTrackerFrame.HeaderMenu.Title:SetText(Objectives) -- edits the 'Objectives' text when the tracker is minimized
-	WorldMapFrame.BorderFrame.TitleText:SetText(WorldMap) -- edits the title at the top of the world map frame
-end)
