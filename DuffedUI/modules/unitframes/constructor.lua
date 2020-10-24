@@ -320,15 +320,15 @@ D['SpawnUF'] = function(self)
 end
 
 local cvars = {
-    -- important, strongly recommend to set these to 1
-    nameplateGlobalScale = 1,
-    NamePlateHorizontalScale = 1,
-    NamePlateVerticalScale = 1,
-    -- optional, you may use any values
-    nameplateLargerScale = 1,
-    nameplateMaxScale = 1,
-    nameplateMinScale = 1,
-    nameplateSelectedScale = 1,
+	-- important, strongly recommend to set these to 1
+	nameplateGlobalScale = 1,
+	NamePlateHorizontalScale = 1,
+	NamePlateVerticalScale = 1,
+	-- optional, you may use any values
+	nameplateLargerScale = 1,
+	nameplateMaxScale = 1,
+	nameplateMinScale = 1,
+	nameplateSelectedScale = 1,
 	nameplateSelfScale = 1,
 	nameplateOccludedAlphaMult = C['nameplate']['oosvisibilty'],
 }
