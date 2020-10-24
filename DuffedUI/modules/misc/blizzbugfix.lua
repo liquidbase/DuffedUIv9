@@ -1,9 +1,7 @@
 local D, C, L = unpack(select(2, ...))
 local Module = D:NewModule('BlizzBugFixes', 'AceEvent-3.0', 'AceHook-3.0')
 
-if not Module then
-	return
-end
+if not Module then return end
 
 -- Fix Blank Tooltip
 local bug = nil
@@ -11,25 +9,19 @@ local FixTooltip = CreateFrame('Frame')
 FixTooltip:RegisterEvent('UPDATE_BONUS_ACTIONBAR')
 FixTooltip:RegisterEvent('ACTIONBAR_PAGE_CHANGED')
 FixTooltip:SetScript('OnEvent', function()
-	if GameTooltip:IsShown() then
-		bug = true
-	end
+	if GameTooltip:IsShown() then bug = true end
 end)
 
 local FixTooltipBags = CreateFrame('Frame')
 FixTooltipBags:RegisterEvent('BAG_UPDATE_DELAYED')
 FixTooltipBags:SetScript('OnEvent', function()
 	if StuffingFrameBags and StuffingFrameBags:IsShown() then
-		if GameTooltip:IsShown() then
-			bug = true
-		end
+		if GameTooltip:IsShown() then bug = true end
 	end
 end)
 
 GameTooltip:HookScript('OnTooltipCleared', function(self)
-	if self:IsForbidden() then
-		return
-	end
+	if self:IsForbidden() then return end
 	if bug and self:NumLines() == 0 then
 		self:Hide()
 		bug = false
@@ -96,9 +88,7 @@ function Module:OnEnable()
 	self:BuyMaxStacks()
 	self:MisclickPopups()
 	
-	hooksecurefunc(StaticPopupDialogs['DELETE_GOOD_ITEM'], 'OnShow', function(self)
-		self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING)
-	end)
+	hooksecurefunc(StaticPopupDialogs['DELETE_GOOD_ITEM'], 'OnShow', function(self) self.editBox:SetText(DELETE_ITEM_CONFIRM_STRING) end)
 
 	for i = 0, 3 do
 		local bagSlot = _G['CharacterBag'..i..'Slot']

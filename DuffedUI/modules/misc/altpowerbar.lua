@@ -8,7 +8,7 @@ local PowerTextures = {
 	['INTERFACE\\UNITPOWERBARALT\\STONEGUARDJADE_HORIZONTAL_FILL.BLP'] = {r = .13, g = .55, b = .13},
 	['INTERFACE\\UNITPOWERBARALT\\STONEGUARDAMETHYST_HORIZONTAL_FILL.BLP'] = {r = .67, g = 0, b = 1},
 }
-local layout = C['unitframes']['layout']
+local layout = C['unitframes']['style']['Value']
 
 PlayerPowerBarAlt:UnregisterEvent('UNIT_POWER_BAR_SHOW')
 PlayerPowerBarAlt:UnregisterEvent('UNIT_POWER_BAR_HIDE')
@@ -38,9 +38,7 @@ AltPowerBar:RegisterEvent('UNIT_POWER_BAR_SHOW')
 AltPowerBar:RegisterEvent('UNIT_POWER_BAR_HIDE')
 AltPowerBar:RegisterEvent('PLAYER_ENTERING_WORLD')
 
-local function SetAltPowerBarText(text, name, value, max)
-	text:SetText(format('%s: %s / %s', name, value, max))
-end
+local function SetAltPowerBarText(text, name, value, max) text:SetText(format('%s: %s / %s', name, value, max)) end
 
 local function OnEvent(self)
 	self:UnregisterEvent('PLAYER_ENTERING_WORLD')
@@ -68,7 +66,7 @@ local function OnUpdate(self, elapsed)
 		self.colorGradientR, self.colorGradientG, self.colorGradientB = r, g, b
 		self.TimeSinceLastUpdate = 0
 
-		AltPowerText:SetText(powerName.. ': '..power..' / '..mpower)
+		AltPowerText:SetText(powerName .. ': ' .. power .. ' / ' .. mpower)
 		AltPowerBarStatus:SetStatusBarColor(r, g, b)
 	end
 end

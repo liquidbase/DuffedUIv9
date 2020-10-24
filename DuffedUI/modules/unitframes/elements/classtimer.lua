@@ -21,7 +21,7 @@ local TARGET_BAR_COLOR = C['classtimer']['targetbuffcolor']
 local TARGET_DEBUFF_COLOR = C['classtimer']['targetdebuffcolor']
 local TRINKET_BAR_COLOR = C['classtimer']['trinketcolor']
 local f, fs, ff = C['media']['font'], 11, 'THINOUTLINE'
-local layout = C['unitframes']['layout']
+local layout = C['unitframes']['style']['Value']
 local move = D['move']
 
 local SORT_DIRECTION = true

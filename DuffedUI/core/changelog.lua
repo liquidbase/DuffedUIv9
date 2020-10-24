@@ -21,6 +21,7 @@ local ChangeLogData = {
 		"• Fixed issue with autoinvite on guilds",
 		"• Removed drink annoucement",
 		"• Removed code that is no longer needed",
+		"• Fixed issues with micromenu on datatext elements",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",

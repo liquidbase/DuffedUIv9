@@ -48,7 +48,7 @@ if (D['ScreenWidth'] > 3840) then
 	f:SetScript('OnEvent',OnEvent)
 	f:SetSize(200, 200)
 	f:SetPoint('TOP', 0, -50)
-	f:SetFont(C['media'].dmgfont, 36, 'OUTLINE')
+	f:SetFont(C['media']['dmgfont'], 36, 'OUTLINE')
 	f:SetShadowColor(0, 0, 0, 0)
 	f:SetFading(true)
 	f:SetFadeDuration(.5)

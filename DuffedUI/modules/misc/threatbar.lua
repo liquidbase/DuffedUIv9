@@ -19,10 +19,10 @@ DuffedUIThreatBar:SetBackdrop({bgFile = C['media']['blank']})
 DuffedUIThreatBar:SetBackdropColor(0, 0, 0, 0)
 DuffedUIThreatBar:SetMinMaxValues(0, 100)
 
-DuffedUIThreatBar.text = D.SetFontString(DuffedUIThreatBar, C['media']['font'], 11)
+DuffedUIThreatBar.text = D['SetFontString'](DuffedUIThreatBar, C['media']['font'], 11)
 DuffedUIThreatBar.text:Point('RIGHT', DuffedUIThreatBar, 'RIGHT', -30, 0)
 
-DuffedUIThreatBar.Title = D.SetFontString(DuffedUIThreatBar, C['media']['font'], 11)
+DuffedUIThreatBar.Title = D['SetFontString'](DuffedUIThreatBar, C['media']['font'], 11)
 DuffedUIThreatBar.Title:SetText(L['uf']['threat1'])
 DuffedUIThreatBar.Title:SetPoint('LEFT', DuffedUIThreatBar, 'LEFT', D['Scale'](30), 0)
   
@@ -31,9 +31,6 @@ DuffedUIThreatBar.bg:SetAllPoints(DuffedUIThreatBar)
 DuffedUIThreatBar.bg:SetColorTexture(.1, .1, .1)
 
 local function OnEvent(self, event, ...)
-	--[[local party = GetNumGroupMembers()
-	local raid = GetNumGroupMembers()
-	local pet = select(1, HasPetUI())]]
 	local party, raid, pet = IsInGroup(), IsInRaid(), UnitExists('pet')
 	if event == 'PLAYER_ENTERING_WORLD' then
 		self:Hide()
@@ -41,10 +38,8 @@ local function OnEvent(self, event, ...)
 	elseif event == 'PLAYER_REGEN_ENABLED' then
 		self:Hide()
 	elseif event == 'PLAYER_REGEN_DISABLED' then
-		--if party > 0 or raid > 0 or pet == 1 then self:Show() else self:Hide() end
 		if party or raid or pet then self:Show() else self:Hide() end
 	else
-		--if (InCombatLockdown()) and (party > 0 or raid > 0 or pet == 1) then self:Show() else self:Hide() end
 		if (InCombatLockdown()) and (party or raid or pet) then self:Show() else self:Hide() end
 	end
 end

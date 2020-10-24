@@ -29,7 +29,6 @@ local lA = 'http://www.wowhead.com/achievement=%d'
 local function SkinObjectiveTracker()
 	local ObjectiveTrackerFrame = _G['ObjectiveTrackerFrame']
 	local TrackerTexture = [[Interface\TargetingFrame\UI-StatusBar]]
-	ObjectiveTrackerFrame:SetScale(1.02)
 	
 	local function SkinOjectiveTrackerHeaders()
 		local frame = ObjectiveTrackerFrame.MODULES
@@ -49,23 +48,6 @@ local function SkinObjectiveTracker()
 					text:SetShadowColor(0, 0, 0, 0.4)
 					text:SetParent(header)
 					text:SetTextColor(Color.r, Color.g, Color.b, 1)
-
-					if not modules.IsSkinned then
-						local headerPanel = _G.CreateFrame('Frame', nil, header)
-						headerPanel:SetFrameLevel(header:GetFrameLevel() - 1)
-						headerPanel:SetFrameStrata('BACKGROUND')
-						headerPanel:SetPoint('TOPLEFT', 1, 1)
-						headerPanel:SetPoint('BOTTOMRIGHT', 1, 1)
-
-						local headerBar = headerPanel:CreateTexture(nil, 'ARTWORK')
-						headerBar:SetTexture('Interface\\LFGFrame\\UI-LFG-SEPARATOR')
-						headerBar:SetTexCoord(0, 0.6640625, 0, 0.3125)
-						headerBar:SetVertexColor(D.Colors.class[D.Class][1], D.Colors.class[D.Class][2], D.Colors.class[D.Class][3], D.Colors.class[D.Class][4])
-						headerBar:SetPoint('CENTER', headerPanel, -20, -4)
-						headerBar:SetSize(232, 30)
-
-						modules.IsSkinned = true
-					end
 				end
 			end
 		end
@@ -73,7 +55,6 @@ local function SkinObjectiveTracker()
 
 	local function ColorProgressBars(self, value)
 		if not (self.Bar and value) then return end
-
 		D['StatusBarColorGradient'](self.Bar, value, 100)
 	end
 
@@ -368,9 +349,9 @@ local MAP_AND_QUEST_LOG=MAP_AND_QUEST_LOG
 numQuests:RegisterEvent('QUEST_LOG_UPDATE')
 numQuests:SetScript('OnEvent',function()
 	local numQuests = tostring(select(2, C_QuestLog.GetNumQuestLogEntries()))
-	local Quests = numQuests..'/'..MAX_QUESTS..' '..TRACKER_HEADER_QUESTS
-	local Objectives = numQuests..'/'..MAX_QUESTS..' '..OBJECTIVES_TRACKER_LABEL
-	local WorldMap = MAP_AND_QUEST_LOG..' ('..numQuests..'/'..MAX_QUESTS..')'
+	local Quests = numQuests .. '/' .. MAX_QUESTS .. ' ' .. TRACKER_HEADER_QUESTS
+	local Objectives = numQuests .. '/' .. MAX_QUESTS .. ' ' .. OBJECTIVES_TRACKER_LABEL
+	local WorldMap = MAP_AND_QUEST_LOG .. ' (' .. numQuests .. '/' .. MAX_QUESTS .. ')'
 
 	ObjectiveTrackerBlocksFrame.QuestHeader.Text:SetText(Quests) -- edits the 'Quests' tracker header
 	ObjectiveTrackerFrame.HeaderMenu.Title:SetText(Objectives) -- edits the 'Objectives' text when the tracker is minimized
