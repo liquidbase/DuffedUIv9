@@ -19,7 +19,6 @@ local UIErrorsFrame = UIErrorsFrame
 
 local menuFrame = CreateFrame('Frame', 'MinimapRightClickMenu', UIParent, 'UIDropDownMenuTemplate')
 local guildText = IsInGuild() and ACHIEVEMENTS_GUILD_TAB or LOOKINGFORGUILD
-local checkminlevel = 10
 
 local micromenu = {
 	{
@@ -40,13 +39,13 @@ local micromenu = {
 			if not PlayerTalentFrame then
 				TalentFrame_LoadUI()
 			end
-			if D['Level'] >= checkminlevel then
+			if D['Level'] >= SHOW_TALENT_LEVEL then
 				ShowUIPanel(PlayerTalentFrame)
 			else
 				if C.Error.White == false then
-					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, checkminlevel), 1, 0.1, 0.1)
+					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_TALENT_LEVEL), 1, 0.1, 0.1)
 				else
-					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, checkminlevel)..'|r')
+					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_TALENT_LEVEL)..'|r')
 				end
 			end
 	end},
@@ -66,24 +65,24 @@ local micromenu = {
 			ToggleFriendsFrame()
 	end},
 	{text = PLAYER_V_PLAYER, icon = 'Interface\\MINIMAP\\TRACKING\\BattleMaster', notCheckable = 1, func = function()
-			if D['Level'] >= checkminlevel then
+			if D['Level'] >= SHOW_PVP_LEVEL then
 				TogglePVPUI()
 			else
 				if C.Error.White == false then
-					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, checkminlevel), 1, 0.1, 0.1)
+					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_PVP_LEVEL), 1, 0.1, 0.1)
 				else
-					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, checkminlevel)..'|r')
+					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_PVP_LEVEL)..'|r')
 				end
 			end
 	end},
 	{text = DUNGEONS_BUTTON, icon = 'Interface\\LFGFRAME\\BattleNetWorking0', notCheckable = 1, func = function()
-			if D['Level'] >= checkminlevel then
+			if D['Level'] >= SHOW_LFD_LEVEL then
 				PVEFrame_ToggleFrame('GroupFinderFrame', nil)
 			else
 				if C.Error.White == false then
-					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, checkminlevel), 1, 0.1, 0.1)
+					UIErrorsFrame:AddMessage(format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_LFD_LEVEL), 1, 0.1, 0.1)
 				else
-					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, checkminlevel)..'|r')
+					print('|cffffff00'..format(FEATURE_BECOMES_AVAILABLE_AT_LEVEL, SHOW_LFD_LEVEL)..'|r')
 				end
 			end
 	end},
