@@ -20,6 +20,7 @@ local ChangeLogData = {
 		"• Added configvalue for out of sight enemys on nameplates",
 		"• Fixed summarize display for active quests (by Rav99)",
 		"• Fixed links for Download and Bugreport of the UI",
+		"• Update Aurora",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",
