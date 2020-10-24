@@ -10,7 +10,7 @@ ns._Headers = {}
 
 local texture = C['media']['normTex']
 local f, fs, ff = C['media']['font'], 11, 'THINOUTLINE'
-local layout = C['unitframes']['layout']
+local layout = C['unitframes']['style']['Value']
 local backdrop = {
 	bgFile = C['media']['blank'],
 	insets = {top = -D['mult'], left = -D['mult'], bottom = -D['mult'], right = -D['mult']},

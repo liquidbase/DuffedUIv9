@@ -8,7 +8,7 @@ local PowerTextures = {
 	['INTERFACE\\UNITPOWERBARALT\\STONEGUARDJADE_HORIZONTAL_FILL.BLP'] = {r = .13, g = .55, b = .13},
 	['INTERFACE\\UNITPOWERBARALT\\STONEGUARDAMETHYST_HORIZONTAL_FILL.BLP'] = {r = .67, g = 0, b = 1},
 }
-local layout = C['unitframes']['layout']
+local layout = C['unitframes']['style']['Value']
 
 PlayerPowerBarAlt:UnregisterEvent('UNIT_POWER_BAR_SHOW')
 PlayerPowerBarAlt:UnregisterEvent('UNIT_POWER_BAR_HIDE')

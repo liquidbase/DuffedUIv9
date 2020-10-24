@@ -2,7 +2,7 @@ local D, C, L = unpack(select(2, ...))
 
 local class = select(2, UnitClass('player'))
 local texture = C['media']['normTex']
-local layout = C['unitframes']['layout']
+local layout = C['unitframes']['style']['Value']
 
 if class ~= 'DEATHKNIGHT' then return end
 
@@ -28,7 +28,7 @@ D['ClassRessource']['DEATHKNIGHT'] = function(self)
 		end
 
 	for index = 1, 6 do
-		local Rune = CreateFrame("StatusBar", 'Rune'..index, Runes, 'BackdropTemplate')
+		local Rune = CreateFrame('StatusBar', 'Rune'..index, Runes, 'BackdropTemplate')
 		Rune:SetStatusBarTexture(texture)
 		Rune:SetStatusBarColor(.84, .75, .65)
 		Rune:SetMinMaxValues(0, 10)
@@ -46,7 +46,7 @@ D['ClassRessource']['DEATHKNIGHT'] = function(self)
 	end
 
 	Runes.colorSpec = true
-	Runes.sortOrder = "asc"
+	Runes.sortOrder = 'asc'
 	Runes.PostUpdate = PostUpdateRunes
 
 	self.Runes = Runes
@@ -73,14 +73,14 @@ D['ClassRessource']['DEATHKNIGHT'] = function(self)
 			if rune:IsShown() then
 				if runeReady then
 					rune:SetAlpha(1)
-					rune:SetScript("OnUpdate", nil)
+					rune:SetScript('OnUpdate', nil)
 					if rune.timer then
 						rune.timer:SetText(nil)
 					end
 				elseif start then
 					rune:SetAlpha(.6)
 					rune.runeDuration = duration
-					rune:SetScript("OnUpdate", OnUpdateRunes)
+					rune:SetScript('OnUpdate', OnUpdateRunes)
 				end
 			end
 		end
