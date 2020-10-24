@@ -58,13 +58,12 @@ local function Skin(timer, value, maxvalue, scale, paused, label)
 			statusbar:Point('BOTTOMRIGHT', frame, -2, 2)
 			text:ClearAllPoints()
 			text:SetPoint('CENTER', frame)
-			statusbar:SetStatusBarTexture(C.media.normTex)
+			statusbar:SetStatusBarTexture(C['media']['normTex'])
 			border:SetTexture(nil)
 			frame.isSkinned = true
 		end
 	end
 end
-
 hooksecurefunc('MirrorTimer_Show', Skin)
 
 -- Raidmark menu
@@ -97,43 +96,3 @@ WorldFrame:HookScript('OnMouseDown', function(self, button)
 		if (inRaid and (IsRaidLeader() or IsRaidOfficer()) or (inParty and not inRaid)) or (not inParty and not inRaid) then EasyMenu(menuList, menuFrame, 'cursor', 0, 0, 'MENU', nil) end
 	end
 end)
-
--- Blizzard Timetracker
-local function SkinIt(bar)
-	local _, originalPoint, _, _, _ = bar:GetPoint()
-
-	bar:ClearAllPoints()
-	bar:Point('TOPLEFT', originalPoint, 'TOPLEFT', 2, -2)
-	bar:Point('BOTTOMRIGHT', originalPoint, 'BOTTOMRIGHT', -2, 2)
-
-	for i = 1, bar:GetNumRegions() do
-		local region = select(i, bar:GetRegions())
-		if region:GetObjectType() == 'Texture' then
-			region:SetTexture(nil)
-		elseif region:GetObjectType() == 'FontString' then
-			region:SetFont(C['media']['font'], 11, 'THINOUTLINE')
-			region:SetShadowColor(0, 0, 0, 0)
-		end
-	end
-
-	bar:SetStatusBarTexture(C['media']['normTex'])
-	bar:SetStatusBarColor(170 / 255, 10 / 255, 10 / 255)
-
-	bar.backdrop = CreateFrame('Frame', nil, barMixin, 'BackdropTemplate')
-	bar.backdrop:SetFrameLevel(0)
-	bar.backdrop:SetTemplate('Default')
-	bar.backdrop:SetAllPoints(originalPoint)
-end
-
-local function SkinBlizzTimer(self, event)
-	for _, b in pairs(TimerTracker.timerList) do
-		if not b['bar'].skinned then
-			SkinIt(b['bar'])
-			b['bar'].skinned = true
-		end
-	end
-end
-
-local timerframe = CreateFrame('Frame')
-timerframe:RegisterEvent('START_TIMER')
-timerframe:SetScript('OnEvent', SkinBlizzTimer)
