@@ -19,7 +19,6 @@
 	<Script file="missions.lua"/>
 	<Script file="professions.lua"/>
 	<Script file="power.lua"/>
-	<Script file="regen.lua"/>
 	<Script file="system.lua"/>
 	<Script file="time.lua"/>
 	<Script file="versatility.lua"/>

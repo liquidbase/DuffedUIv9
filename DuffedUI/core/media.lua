@@ -18,7 +18,7 @@ DuffedUIFontOutline:SetShadowColor(0, 0, 0, 0)
 DuffedUIFontOutline:SetShadowOffset(0, -0)
 
 local TextureTable = {
-	['DuffedUI'] = C['media'].normTex,
+	['DuffedUI'] = C['media']['normTex'],
 }
 
 local FontTable = {
@@ -27,7 +27,7 @@ local FontTable = {
 }
 
 D['GetFont'] = function(font)
-	if FontTable[font] then return FontTable[font] else return FontTable['DuffedUI'] 	end
+	if FontTable[font] then return FontTable[font] else return FontTable['DuffedUI'] end
 end
 
 D['GetTexture'] = function(texture)

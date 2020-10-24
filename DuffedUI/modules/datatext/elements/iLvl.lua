@@ -11,17 +11,11 @@ local ValueColor = DataText.ValueColor
 
 local function Update(self)
 	total, equipped, pvp = getILVL()
-	
 	self.Text:SetText(NameColor..'iLvl: '..strform(ValueColor..'%.1f',equipped))
 end
 
-local OnLeave = function()
-	GameTooltip:Hide()
-end
-
-local OnMouseDown = function(self)
-	ToggleCharacter('PaperDollFrame')
-end	
+local OnLeave = function() GameTooltip:Hide() end
+local OnMouseDown = function(self) ToggleCharacter('PaperDollFrame') end	
 
 local OnEnter = function(self)
 	if not C['datatext']['ShowInCombat'] then

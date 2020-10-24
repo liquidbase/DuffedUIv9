@@ -183,7 +183,7 @@ _G.StaticPopupDialogs['BUGREPORT'] = {
 	editBoxWidth = 325,
 	OnShow = function(self, ...)
 		self.editBox:SetFocus()
-		self.editBox:SetText('https://github.com/liquidbase/DuffedUIv8/issues')
+		self.editBox:SetText('https://github.com/liquidbase/DuffedUIv9/issues')
 		self.editBox:HighlightText()
 	end,
 	EditBoxOnEnterPressed = function(self) self:GetParent():Hide() end,
@@ -199,7 +199,7 @@ _G.StaticPopupDialogs['DOWNLOAD'] = {
 	editBoxWidth = 325,
 	OnShow = function(self, ...)
 		self.editBox:SetFocus()
-		self.editBox:SetText('https://github.com/liquidbase/DuffedUIv8/archive/master.zip')
+		self.editBox:SetText('https://www.wowinterface.com/downloads/info23668-DuffedUIv9.html')
 		self.editBox:HighlightText()
 	end,
 	EditBoxOnEnterPressed = function(self) self:GetParent():Hide() end,

@@ -79,5 +79,4 @@ local function CreateUICommands()
 		self.show = true
     end)
 end
-
 CreateUICommands()

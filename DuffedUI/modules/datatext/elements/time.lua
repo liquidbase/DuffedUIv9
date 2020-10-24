@@ -61,9 +61,7 @@ local enteredFrame = false
 local Update, lastPanel -- UpValue
 local localizedName, isActive, startTime, canEnter, _
 
-if lastPanel ~= nil then
-	Update(lastPanel, 20000)
-end
+if lastPanel ~= nil then Update(lastPanel, 20000) end
 
 local function ConvertTime(h, m)
 	local AmPm
@@ -91,11 +89,7 @@ local function CalculateTimeValues(tooltip)
 end
 
 local OnMouseUp = function(self, btn)
-	if btn == 'RightButton' then				
-		ToggleTimeManager()
-	else
-		ToggleCalendar()
-	end	
+	if btn == 'RightButton' then ToggleTimeManager() else ToggleCalendar() end	
 end
 
 local function OnLeave()
@@ -156,9 +150,7 @@ end
 local function CheckInvasion(index)
 	for _, mapID in pairs(invIndex[index].maps) do
 		local timeLeft, name = GetInvasionTimeInfo(mapID)
-		if timeLeft and timeLeft > 0 then
-			return timeLeft, name
-		end
+		if timeLeft and timeLeft > 0 then return timeLeft, name end
 	end
 end
 
@@ -175,9 +167,7 @@ local function GetNextLocation(nextTime, index)
 	local elapsed = nextTime - inv.baseTime
 	local round = mod(math_floor(elapsed / inv.duration) + 1, count)
 
-	if round == 0 then
-		round = count
-	end
+	if round == 0 then round = count end
 
 	return C_Map.GetMapInfo(inv.maps[inv.timeTable[round]]).name
 end
@@ -217,9 +207,7 @@ local function OnEnter(self)
 				GetInstanceImages(1, true)
 			end
 
-			if currentTier then
-				EJ_SelectTier(currentTier)
-			end
+			if currentTier then EJ_SelectTier(currentTier) end
 			collectedInstanceImages = true
 		end
 	end
@@ -265,14 +253,10 @@ local function OnEnter(self)
 
 	local reset, maxPlayers, numEncounters, encounterProgress, lockoutColor
 	if next(lockedInstances['raids']) then
-		if GameTooltip:NumLines() > 0 then
-			GameTooltip:AddLine(' ')
-		end
+		if GameTooltip:NumLines() > 0 then GameTooltip:AddLine(' ') end
 		GameTooltip:AddLine(L['dt']['savedraids'])
 
-		table_sort(lockedInstances['raids'], function(a, b)
-			return a[1] < b[1]
-		end)
+		table_sort(lockedInstances['raids'], function(a, b) return a[1] < b[1] end)
 
 		for i = 1, #lockedInstances['raids'] do
 			difficultyLetter = lockedInstances['raids'][i][2]
@@ -289,14 +273,10 @@ local function OnEnter(self)
 	end
 
 	if next(lockedInstances['dungeons']) then
-		if GameTooltip:NumLines() > 0 then
-			GameTooltip:AddLine(' ')
-		end
+		if GameTooltip:NumLines() > 0 then GameTooltip:AddLine(' ') end
 		GameTooltip:AddLine(L['dt']['savedsaveddungeons'])
 
-		table_sort(lockedInstances['dungeons'], function(a, b)
-			return a[1] < b[1]
-		end)
+		table_sort(lockedInstances['dungeons'], function(a, b) return a[1] < b[1] end)
 
 		for i = 1, #lockedInstances['dungeons'] do
 			difficultyLetter = lockedInstances['dungeons'][i][2]
@@ -318,9 +298,7 @@ local function OnEnter(self)
 		name, _, reset = GetSavedWorldBossInfo(i)
 		table_insert(worldbossLockoutList, {name, reset})
 	end
-	table_sort(worldbossLockoutList, function(a, b)
-		return a[1] < b[1]
-	end)
+	table_sort(worldbossLockoutList, function(a, b) return a[1] < b[1] end)
 	for i = 1,#worldbossLockoutList do
 		name, reset = unpack(worldbossLockoutList[i])
 		if (reset) then
@@ -335,9 +313,7 @@ local function OnEnter(self)
 
 	local Hr, Min, AmPm = CalculateTimeValues(true)
 
-	if GameTooltip:NumLines() > 0 then
-		GameTooltip:AddLine(' ')
-	end
+	if GameTooltip:NumLines() > 0 then GameTooltip:AddLine(' ') end
 	if AmPm == -1 then
 		GameTooltip:AddDoubleLine(C['datatext']['localtime'] and TIMEMANAGER_TOOLTIP_REALMTIME or TIMEMANAGER_TOOLTIP_LOCALTIME,
 		string_format(europeDisplayFormat_nocolor, Hr, Min), 1, 1, 1, lockoutColorNormal.r, lockoutColorNormal.g, lockoutColorNormal.b)
@@ -376,9 +352,7 @@ local function OnEnter(self)
 end
 
 local function OnEvent(self, event)
-	if event == 'UPDATE_INSTANCE_INFO' and enteredFrame then
-		OnEnter(self)
-	end
+	if event == 'UPDATE_INSTANCE_INFO' and enteredFrame then OnEnter(self) end
 end
 
 local int = 3
@@ -389,15 +363,8 @@ function Update(self, t)
 		return
 	end
 
-	if GameTimeFrame.flashInvite then
-		D.Flash(self, 0.53, true)
-	else
-		D.StopFlash(self)
-	end
-
-	if enteredFrame then
-		OnEnter(self)
-	end
+	if GameTimeFrame.flashInvite then D['Flash'](self, 0.53, true) else D['StopFlash'](self) end
+	if enteredFrame then OnEnter(self) end
 
 	local Hr, Min, AmPm = CalculateTimeValues(false)
 

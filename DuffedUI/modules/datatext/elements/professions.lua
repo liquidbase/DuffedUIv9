@@ -7,9 +7,7 @@ local ValueColor = DataText.ValueColor
 local format = string.format
 
 local function OnMouseDown(self, btn)
-	if(btn ~= 'LeftButton') then
-		return
-	end
+	if(btn ~= 'LeftButton') then return end
 
 	securecall(ToggleSpellBook, BOOKTYPE_PROFESSION)
 end

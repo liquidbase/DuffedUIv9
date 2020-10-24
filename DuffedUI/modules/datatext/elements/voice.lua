@@ -7,57 +7,33 @@ local ValueColor = DataText.ValueColor
 local menuFrame = CreateFrame('Frame', 'DuffedUIVoiceClickMenu', UIParent, 'UIDropDownMenuTemplate')
 
 local IsMicrophoneEnabled = function()
-	if C_VoiceChat.IsMuted() then
-		return false
-	else
-		return true
-	end
+	if C_VoiceChat.IsMuted() then return false else return true end
 end
 
 local IsVoiceChatEnabled = function()
-	if C_VoiceChat.IsDeafened() then
-		return false
-	else
-		return true
-	end
+	if C_VoiceChat.IsDeafened() then return false else return true end
 end
 
 local menuList = {
 	{
 		text = ENABLE_MICROPHONE,
-
-		func = function(self)
-			C_VoiceChat.ToggleMuted()
-		end,
-
+ 		func = function(self) C_VoiceChat.ToggleMuted() end,
 		checked = IsMicrophoneEnabled,
-
 		isNotRadio = true,
 	},
 	{
 		text = ENABLE_VOICECHAT,
-		
-		func = function(self)
-			C_VoiceChat.ToggleDeafened()
-		end,
-
+		func = function(self) C_VoiceChat.ToggleDeafened() end,
 		checked = IsVoiceChatEnabled,
-		
 		isNotRadio = true,
 	},
 }
 
 local OnMouseDown = function(self)
-	if btn == 'RightButton' then
-		EasyMenu(menuList, menuFrame, 'cursor', 0, 0, 'MENU', 2)
-	else
-		ToggleChannelFrame()
-	end
+	if btn == 'RightButton' then EasyMenu(menuList, menuFrame, 'cursor', 0, 0, 'MENU', 2) else ToggleChannelFrame() end
 end
 
-local OnLeave = function()
-	GameTooltip:Hide()
-end
+local OnLeave = function() GameTooltip:Hide() end
 
 local OnEnter = function(self)
 	if not C['datatext']['ShowInCombat'] then

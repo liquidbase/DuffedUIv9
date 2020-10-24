@@ -11,18 +11,12 @@ local ValueColor = DataText.ValueColor
 local Update = function(self)
 	local Free, Total, Used = 0, 0, 0
 
-	for i = 0, NUM_BAG_SLOTS do
-		Free, Total = Free + GetContainerNumFreeSlots(i), Total + GetContainerNumSlots(i)
-	end
-
+	for i = 0, NUM_BAG_SLOTS do Free, Total = Free + GetContainerNumFreeSlots(i), Total + GetContainerNumSlots(i) end
 	Used = Total - Free
-
 	self.Text:SetText(NameColor .. BAGSLOT .. ': ' .. '|r' .. ValueColor .. Total ..' / '.. Used ..' / '.. Free ..'|r')
 end
 
-local OnMouseDown = function(self)
-	ToggleAllBags()
-end
+local OnMouseDown = function(self) ToggleAllBags() end
 
 local Enable = function(self)
 	self:RegisterEvent('BAG_UPDATE')

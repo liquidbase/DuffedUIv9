@@ -8,13 +8,8 @@ local Menu = DataTexts.Menu
 local Active = false
 local CurrentFrame
 
-DataTexts.Toggle = function(self, object)
-	CurrentFrame:SetData(object)
-end
-
-DataTexts.Remove = function()
-	CurrentFrame:RemoveData()
-end
+DataTexts.Toggle = function(self, object) CurrentFrame:SetData(object) end
+DataTexts.Remove = function() CurrentFrame:RemoveData() end
 
 local function OnMouseDown(self)
 	CurrentFrame = self
@@ -51,17 +46,12 @@ tinsert(Menu, {text = '', notCheckable = true})
 SlashCmdList.DATATEXT = function(msg)
 	local DataText = D['DataTexts']
 
-	if msg == 'reset' then
-		DataText:Reset() ReloadUI()
+	if msg == 'reset' then 
+		DataText:Reset()
+		ReloadUI()
 	elseif msg == 'toggle' then
 		DataText:ToggleDataPositions()
 	end
 end
 
-if not IsAddOnLoaded('Details') then
-	SLASH_DATATEXT1 = '/dt'
-end
-
-if IsAddOnLoaded('Details') then
-	SLASH_DATATEXT1 = '/datatext'
-end
+if D['IsAddOnEnabled']('Details') then SLASH_DATATEXT1 = '/datatext' else SLASH_DATATEXT1 = '/dt' end

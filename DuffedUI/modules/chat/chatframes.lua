@@ -54,13 +54,13 @@ local function SetChatStyle(frame)
 	tab:SetAlpha(1)
 	tab.SetAlpha = UIFrameFadeRemoveFrame
 
-	if not C['chat'].lbackground and C['chat'].rbackground then
+	if not C['chat']['lbackground'] and C['chat']['rbackground'] then
 		_G[chat..'TabText']:Hide()
 		tab:HookScript('OnEnter', function() _G[chat..'TabText']:Show() end)
 		tab:HookScript('OnLeave', function() _G[chat..'TabText']:Hide() end)
 	end
 
-	_G[chat..'TabText']:SetTextColor(unpack(C['media'].datatextcolor1))
+	_G[chat..'TabText']:SetTextColor(unpack(C['media']['datatextcolor1']))
 	_G[chat..'TabText'].SetTextColor = D['Dummy']
 	_G[chat..'TabText']:SetFont(C['media']['font'], 11)
 	if id == 4 then
@@ -71,7 +71,7 @@ local function SetChatStyle(frame)
 	_G[chat]:SetClampRectInsets(0, 0, 0, 0)
 	_G[chat]:SetClampedToScreen(false)
 
-	_G[chat]:SetFading(C['chat'].fading)
+	_G[chat]:SetFading(C['chat']['fading'])
 
 	_G[chat]:SetMinResize(371, 114)
 	_G[chat]:SetMinResize(D.InfoLeftRightWidth + 1, 114)
@@ -115,11 +115,8 @@ local function SetChatStyle(frame)
 	local a, b, c = select(6, _G[chat..'EditBox']:GetRegions()) a:Kill() b:Kill() c:Kill()
 
 	_G[chat..'EditBox']:SetAltArrowKeyMode(false)
-
 	_G[chat..'EditBox']:Hide()
-
 	_G[chat..'EditBox']:HookScript('OnEditFocusLost', function(self) self:Hide() end)
-
 	_G[chat..'Tab']:HookScript('OnClick', function() _G[chat..'EditBox']:Hide() end)
 
 	_G[chat..'EditBox']:CreateBackdrop()

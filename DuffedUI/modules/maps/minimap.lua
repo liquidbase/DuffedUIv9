@@ -127,7 +127,7 @@ m_coord_text:SetText(' ')
 local int = 0
 m_coord:HookScript('OnUpdate', function(self, elapsed)
 	int = int + 1
-	if int >= 3 then
+	if int >= 5 then
 		local UnitMap = C_Map.GetBestMapForUnit('player')
 		local x, y = 0, 0
 
@@ -137,8 +137,8 @@ m_coord:HookScript('OnUpdate', function(self, elapsed)
 		end
 		
 		if UnitMap then
-			local GetPlayerMapPosition = C_Map.GetPlayerMapPosition(UnitMap, 'player')
-			if GetPlayerMapPosition then x, y = C_Map.GetPlayerMapPosition(UnitMap, 'player'):GetXY() end
+			local coord_pos = C_Map.GetPlayerMapPosition(UnitMap, 'player')
+			if coord_pos then x, y = C_Map.GetPlayerMapPosition(UnitMap, 'player'):GetXY() end
 		end		
 		x = math.floor(100 * x)
 		y = math.floor(100 * y)

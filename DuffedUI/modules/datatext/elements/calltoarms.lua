@@ -22,17 +22,9 @@ local MakeString = function(tank, healer, damage)
 	local strheal = ''
 	local strdps = ''
 
-	if (tank) then
-		strtank = TANK_ICON
-	end
-
-	if (healer) then
-		strheal = HEALER_ICON
-	end
-
-	if (damage) then
-		strdps = DPS_ICON
-	end
+	if (tank) then strtank = TANK_ICON end
+	if (healer) then strheal = HEALER_ICON end
+	if (damage) then strdps = DPS_ICON end
 
 	return format(Result, strtank, strheal, strdps)
 end
@@ -49,21 +41,10 @@ local Update = function(self)
 		for x = 1, LFG_ROLE_NUM_SHORTAGE_TYPES do
 			local Eligible, ForTank, ForHealer, ForDamage, ItemCount = GetLFGRoleShortageRewards(ID, x)
 
-			if (Eligible) then
-				Unavailable = false
-			end
-
-			if (Eligible and ForTank and ItemCount > 0) then
-				TankReward = true
-			end
-
-			if (Eligible and ForHealer and ItemCount > 0) then
-				HealerReward = true
-			end
-
-			if (Eligible and ForDamage and ItemCount > 0) then
-				DPSReward = true
-			end
+			if (Eligible) then Unavailable = false end
+			if (Eligible and ForTank and ItemCount > 0) then TankReward = true end
+			if (Eligible and ForHealer and ItemCount > 0) then HealerReward = true end
+			if (Eligible and ForDamage and ItemCount > 0) then DPSReward = true end
 		end
 	end
 
@@ -101,50 +82,27 @@ local OnEnter = function(self)
 		for x = 1, LFG_ROLE_NUM_SHORTAGE_TYPES do
 			local Eligible, ForTank, ForHealer, ForDamage, ItemCount = GetLFGRoleShortageRewards(ID, x)
 
-			if (Eligible) then
-				Unavailable = false
-			end
-
-			if (Eligible and ForTank and ItemCount > 0) then
-				TankReward = true
-			end
-
-			if (Eligible and ForHealer and ItemCount > 0) then
-				HealerReward = true
-			end
-
-			if (Eligible and ForDamage and ItemCount > 0) then
-				DPSReward = true
-			end
+			if (Eligible) then Unavailable = false end
+			if (Eligible and ForTank and ItemCount > 0) then TankReward = true end
+			if (Eligible and ForHealer and ItemCount > 0) then HealerReward = true end
+			if (Eligible and ForDamage and ItemCount > 0) then DPSReward = true end
 		end
 
 		if (not Unavailable) then
 			AllUnavailable = false
 			local RolesString = MakeString(TankReward, HealerReward, DPSReward)
 
-			if (RolesString ~= ' ') then
-				GameTooltip:AddDoubleLine(Name .. ':', RolesString, 1, 1, 1)
-			end
-
-			if (TankReward or HealerReward or DPSReward) then
-				NumCTA = NumCTA + 1
-			end
+			if (RolesString ~= ' ') then GameTooltip:AddDoubleLine(Name .. ':', RolesString, 1, 1, 1) end
+			if (TankReward or HealerReward or DPSReward) then NumCTA = NumCTA + 1 end
 		end
 	end
 
-	if (AllUnavailable) then
-		GameTooltip:AddLine(L['dt']['cta_allunavailable'])
-	elseif (NumCTA == 0) then
-		GameTooltip:AddLine(L['dt']['cta_nodungeons'])
-	end
-
+	if (AllUnavailable) then GameTooltip:AddLine(L['dt']['cta_allunavailable']) elseif (NumCTA == 0) then GameTooltip:AddLine(L['dt']['cta_nodungeons']) end
 	GameTooltip:Show()
 end
 
 local OnMouseDown = function(self, btn)
-	if (btn ~= 'LeftButton') then
-		return
-	end
+	if (btn ~= 'LeftButton') then return end
 
 	PVEFrame_ToggleFrame()
 end

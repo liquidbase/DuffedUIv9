@@ -13,9 +13,7 @@ local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 
-local OnMouseDown = function(self, btn)
-	ToggleCharacter('PaperDollFrame')
-end
+local OnMouseDown = function(self, btn) ToggleCharacter('PaperDollFrame') end
 
 local OnEnter = function(self)
 	if not C['datatext']['ShowInCombat'] then

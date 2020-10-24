@@ -411,13 +411,8 @@ local SetCastTicks = function(frame, numTicks)
 	end
 end
 
-D['CustomCastTime'] = function(self, duration)
-	self.Time:SetText(('%.1f / %.1f'):format(self.channeling and duration or self.max - duration, self.max))
-end
-
-D['CustomCastDelayText'] = function(self, duration)
-	self.Time:SetText(('%.1f |cffaf5050%s %.1f|r'):format(self.channeling and duration or self.max - duration, self.channeling and '- ' or '+', self.delay))
-end
+D['CustomCastTime'] = function(self, duration) self.Time:SetText(('%.1f / %.1f'):format(self.channeling and duration or self.max - duration, self.max)) end
+D['CustomCastDelayText'] = function(self, duration) self.Time:SetText(('%.1f |cffaf5050%s %.1f|r'):format(self.channeling and duration or self.max - duration, self.channeling and '- ' or '+', self.delay)) end
 
 D['CastBar'] = function(self, unit, name, rank, castid)
 	local color
@@ -487,11 +482,7 @@ D['UpdateThreat'] = function(self, event, unit)
 	if (self.unit ~= unit) or (unit == 'target' or unit == 'pet' or unit == 'focus' or unit == 'focustarget' or unit == 'targettarget') then return end
 	local threat = UnitThreatSituation(self.unit)
 	if (threat == 3) then
-		if self.panel then
-			self.panel:SetBackdropBorderColor(.69, .31, .31, 1)
-		else
-			self.Name:SetTextColor(1,.1, .1)
-		end
+		if self.panel then self.panel:SetBackdropBorderColor(.69, .31, .31, 1) else self.Name:SetTextColor(1,.1, .1) end
 	else
 		if self.panel then
 			local r, g, b = unpack(C['media']['bordercolor'])

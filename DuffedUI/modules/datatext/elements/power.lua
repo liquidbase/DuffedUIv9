@@ -18,11 +18,7 @@ local function Update(self)
 	SpellPower = GetSpellBonusDamage(7)
 	AttackPower = Effective
 
-	if (HealPower > SpellPower) then
-		Spell = HealPower
-	else
-		Spell = SpellPower
-	end
+	if (HealPower > SpellPower) then Spell = HealPower else Spell = SpellPower end
 
 	if (AttackPower > Spell and D['MyClass'] ~= 'HUNTER') then
 		Value = AttackPower
@@ -30,7 +26,6 @@ local function Update(self)
 		Value = RangedEffective
 	else
 		Value = Spell
-		--Text = ITEM_MOD_SPELL_POWER_SHORT
 		Text = 'AP'
 	end
 

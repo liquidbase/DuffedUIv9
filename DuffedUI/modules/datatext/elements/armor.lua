@@ -12,9 +12,7 @@ local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
 
 local OnMouseDown = function(self, btn)
-	if (btn ~= 'LeftButton') then
-		return
-	end
+	if (btn ~= 'LeftButton') then return end
 
 	ToggleCharacter('PaperDollFrame')
 end
