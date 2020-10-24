@@ -7,6 +7,9 @@
 
   * Error when loot skin is disabled
   * Chat bubble didn't work
+  * [retail] PvP category buttons had off borders
+  * [retail] Sell item icon had the wrong texture
+  * [retail] Volume sliders were white
   * [retail] Missed some textures on the spec frame
   * [retail] Display bug with quest detail
   * [retail] World quest header wasn't skinned
