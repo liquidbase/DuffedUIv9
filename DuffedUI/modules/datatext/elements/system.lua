@@ -26,7 +26,7 @@ local percentageString = '%.2f%%'
 local DataText = D['DataTexts']
 local NameColor = DataText.NameColor
 local ValueColor = DataText.ValueColor
-local MemoryColor = D.RGBToHex(1, 1, 1 or 1, 1, 1)
+local MemoryColor = D['RGBToHex'](1, 1, 1 or 1, 1, 1)
 local KilobyteString = '%d '.. MemoryColor ..'kb'..'|r'
 local MegabyteString = '%.2f '.. MemoryColor ..'mb'..'|r'
 
@@ -44,15 +44,11 @@ end
 -- Build MemoryTable
 local RebuildAddonList = function(self)
 	local AddOnCount = GetNumAddOns()
-	if (AddOnCount == #MemoryTable) or self.tooltip then
-		return
-	end
+	if (AddOnCount == #MemoryTable) or self.tooltip then return end
 
 	wipe(MemoryTable)
 
-	for i = 1, AddOnCount do
-		MemoryTable[i] = {i, select(2, GetAddOnInfo(i)), 0, IsAddOnLoaded(i)}
-	end
+	for i = 1, AddOnCount do MemoryTable[i] = {i, select(2, GetAddOnInfo(i)), 0, IsAddOnLoaded(i)} end
 end
 
 -- Update MemoryTable
@@ -69,9 +65,7 @@ local UpdateMemory = function()
 	end
 	-- Sort the table to put the largest addon on top
 	table_sort(MemoryTable, function(a, b)
-		if (a and b) then
-			return a[3] > b[3]
-		end
+		if (a and b) then return a[3] > b[3] end
 	end)
 
 	return TotalMem
@@ -147,9 +141,7 @@ local OnEnter = function(self)
 	GameTooltip:Show()
 end
 
-local OnLeave = function()
-	GameTooltip:Hide()
-end
+local OnLeave = function() GameTooltip:Hide() end
 
 local OnMouseUp = function(self, btn)
 	if (btn == 'LeftButton') then
@@ -160,9 +152,7 @@ local OnMouseUp = function(self, btn)
 	end
 end
 
-local ResetData = function(self, event)
-	wipe(MemoryTable)
-end
+local ResetData = function(self, event) wipe(MemoryTable) end
 
 local Enable = function(self)
 	self:SetScript('OnEvent', ResetData)

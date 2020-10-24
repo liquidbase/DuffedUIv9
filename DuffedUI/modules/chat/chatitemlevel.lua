@@ -46,18 +46,14 @@ local function isItemHasGem(link)
 	local stats = GetItemStats(link)
 	for stat, count in pairs(stats) do
 		local socket = string_match(stat, "EMPTY_SOCKET_(%S+)")
-		if socket and socketWatchList[socket] then
-			text = text..GetSocketTexture(socket, count)
-		end
+		if socket and socketWatchList[socket] then text = text..GetSocketTexture(socket, count) end
 	end
 
 	return text
 end
 
 local function convertItemLevel(link)
-	if itemCache[link] then
-		return itemCache[link]
-	end
+	if itemCache[link] then return itemCache[link] end
 
 	local itemLink = string_match(link, '|Hitem:.-|h')
 	if itemLink then
@@ -78,7 +74,7 @@ function Module:UpdateChatItemLevel(_, msg, ...)
 end
 
 function Module:OnEnable()
-	if C['chat'].chatitemlevel then
+	if C['chat']['chatitemlevel'] then
 		ChatFrame_AddMessageEventFilter('CHAT_MSG_LOOT', self.UpdateChatItemLevel)
 		ChatFrame_AddMessageEventFilter('CHAT_MSG_CHANNEL', self.UpdateChatItemLevel)
 		ChatFrame_AddMessageEventFilter('CHAT_MSG_SAY', self.UpdateChatItemLevel)

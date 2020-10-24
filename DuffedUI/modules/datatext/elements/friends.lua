@@ -85,26 +85,14 @@ local function inviteClick(self, name, guid)
 	if guid then
 		local inviteType = GetDisplayedInviteType(guid)
 		if inviteType == 'INVITE' or inviteType == 'SUGGEST_INVITE' then
-			if isBNet then
-				BNInviteFriend(name)
-			else
-				InviteToGroup(name)
-			end
+			if isBNet then BNInviteFriend(name) else InviteToGroup(name) end
 		elseif inviteType == 'REQUEST_INVITE' then
-			if isBNet then
-				BNRequestInviteFriend(name)
-			else
-				RequestInviteFromUnit(name)
-			end
+			if isBNet then BNRequestInviteFriend(name) else RequestInviteFromUnit(name) end
 		end
 	else
 		-- if for some reason guid isnt here fallback and just try to invite them
 		-- this is unlikely but having a fallback doesnt hurt
-		if isBNet then
-			BNInviteFriend(name)
-		else
-			InviteToGroup(name)
-		end
+		if isBNet then BNInviteFriend(name) else InviteToGroup(name) end
 	end
 end
 
@@ -165,9 +153,7 @@ local clientIndex = {
 }
 
 local function SortAlphabeticName(a, b)
-	if a[1] and b[1] then
-		return a[1] < b[1]
-	end
+	if a[1] and b[1] then return a[1] < b[1] end
 end
 
 local function BuildFriendTable(total)
@@ -192,9 +178,7 @@ local function BuildFriendTable(total)
 			friendTable[i] = { name, level, class, area, connected, status, note, guid }
 		end
 	end
-	if next(friendTable) then
-		sort(friendTable, SortAlphabeticName)
-	end
+	if next(friendTable) then sort(friendTable, SortAlphabeticName) end
 end
 
 --Sort: client-> (WoW: faction-> name) ELSE:btag
@@ -203,9 +187,7 @@ local function Sort(a, b)
 		if (a[6] == b[6]) then
 			if (a[6] == wowString) and a[11] and b[11] then
 				if (a[11] == b[11]) and a[13] and b[13] then
-					if (a[13] == b[13]) and a[4] and b[4] then
-						return a[4] < b[4] --sort by name
-					end
+					if (a[13] == b[13]) and a[4] and b[4] then return a[4] < b[4] end --sort by name
 					return a[13] < b[13] --sort by faction
 				end
 				return a[11] < b[11] --sort by project
@@ -220,9 +202,7 @@ end
 --Sort client by statically given index (this is a `pairs by keys` sorting method)
 local function clientSort(a, b)
 	if a and b then
-		if clientIndex[a] and clientIndex[b] then
-			return clientIndex[a] < clientIndex[b]
-		end
+		if clientIndex[a] and clientIndex[b] then return clientIndex[a] < clientIndex[b] end
 		return a < b
 	end
 end
@@ -267,9 +247,7 @@ local function PopulateBNTable(bnIndex, bnetIDAccount, accountName, battleTag, c
 					isAdded = 2 --swap data
 				end
 			elseif bnInfo[6] then -- Game
-				if client == 'BSAp' or client == 'App' then -- ignore Mobile and App
-					isAdded = 1
-				end
+				if client == 'BSAp' or client == 'App' then isAdded = 1 end  -- ignore Mobile and App
 			end
 		end
 		if isAdded == 2 then -- swap data
@@ -283,13 +261,9 @@ local function PopulateBNTable(bnIndex, bnetIDAccount, accountName, battleTag, c
 			end
 			AddToBNTable(i, bnetIDAccount, accountName, battleTag, characterName, bnetIDGameAccount, client, isOnline, isBnetAFK, isBnetDND, noteText, wowProjectID, realmName, faction, race, class, zoneName, level, guid, gameText)
 		end
-		if isAdded ~= 0 then
-			break
-		end
+		if isAdded ~= 0 then break end
 	end
-	if isAdded ~= 0 then
-		return bnIndex
-	end
+	if isAdded ~= 0 then return bnIndex end
 
 	bnIndex = bnIndex + 1 --bump the index one for a new addition
 	AddToBNTable(bnIndex, bnetIDAccount, accountName, battleTag, characterName, bnetIDGameAccount, client, isOnline, isBnetAFK, isBnetDND, noteText, wowProjectID, realmName, faction, race, class, zoneName, level, guid, gameText)
@@ -322,20 +296,14 @@ local function BuildBNTable(total)
 		end
 	end
 
-	if next(BNTable) then
-		sort(BNTable, Sort)
-	end
+	if next(BNTable) then sort(BNTable, Sort) end
 	if next(tableList) then
 		for c, v in pairs(tableList) do
-			if next(v) then
-				sort(v, Sort)
-			end
+			if next(v) then sort(v, Sort) end
 			tinsert(clientSorted, c)
 		end
 	end
-	if next(clientSorted) then
-		sort(clientSorted, clientSort)
-	end
+	if next(clientSorted) then sort(clientSorted, clientSort) end
 end
 
 local function OnEvent(self, event, message)
@@ -463,13 +431,12 @@ local function OnEnter(self)
 		for i = 1, #friendTable do
 			info = friendTable[i]
 			if info[5] then
-					if D.MapInfo.zoneText and (D.MapInfo.zoneText == info[4]) then zonec = activezone else zonec = inactivezone end
-					classc, levelc = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[info[3]], GetQuestDifficultyColor(info[2])
+				if D['MapInfo']['zoneText'] and (D['MapInfo']['zoneText'] == info[4]) then zonec = activezone else zonec = inactivezone end
+				classc, levelc = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[info[3]], GetQuestDifficultyColor(info[2])
+				classc = classc or GetQuestDifficultyColor(info[2])
 
-					classc = classc or GetQuestDifficultyColor(info[2])
-
-					if UnitInParty(info[1]) or UnitInRaid(info[1]) then grouped = 1 else grouped = 2 end
-					TooltipAddXLine(true, worldOfWarcraftString, format(levelNameClassString,levelc.r*255,levelc.g*255,levelc.b*255,info[2],info[1],groupedTable[grouped],info[6]),info[4],classc.r,classc.g,classc.b,zonec.r,zonec.g,zonec.b)
+				if UnitInParty(info[1]) or UnitInRaid(info[1]) then grouped = 1 else grouped = 2 end
+				TooltipAddXLine(true, worldOfWarcraftString, format(levelNameClassString,levelc.r*255,levelc.g*255,levelc.b*255,info[2],info[1],groupedTable[grouped],info[6]),info[4],classc.r,classc.g,classc.b,zonec.r,zonec.g,zonec.b)
 			end
 		end
 	end
@@ -502,14 +469,12 @@ local function OnEnter(self)
 								end
 
 								--Sometimes the friend list is fubar with level 0 unknown friends
-								if not classc then
-									classc = RAID_CLASS_COLORS['PRIEST']
-								end
+								if not classc then classc = RAID_CLASS_COLORS['PRIEST'] end
 
 								if UnitInParty(info[4]) or UnitInRaid(info[4]) then grouped = 1 else grouped = 2 end
 								TooltipAddXLine(true, header, format(levelNameString..'%s%s',levelc.r*255,levelc.g*255,levelc.b*255,info[17],classc.r*255,classc.g*255,classc.b*255,info[4],groupedTable[grouped],status),info[2],238,238,238,238,238,238)
 								if IsShiftKeyDown() then
-									if D.MapInfo.zoneText and (D.MapInfo.zoneText == info[16]) then zonec = activezone else zonec = inactivezone end
+									if D['MapInfo']['zoneText'] and (D['MapInfo']['zoneText'] == info[16]) then zonec = activezone else zonec = inactivezone end
 									if GetRealmName() == info[12] then realmc = activezone else realmc = inactivezone end
 									TooltipAddXLine(true, header, info[16], info[12], zonec.r, zonec.g, zonec.b, realmc.r, realmc.g, realmc.b)
 								end
@@ -529,9 +494,7 @@ local function OnEnter(self)
 	GameTooltip:Show()
 end
 
-local OnLeave = function()
-	GameTooltip:Hide()
-end
+local OnLeave = function() GameTooltip:Hide() end
 
 local Enable = function(self)
 	self:RegisterEvent('BN_FRIEND_ACCOUNT_OFFLINE')

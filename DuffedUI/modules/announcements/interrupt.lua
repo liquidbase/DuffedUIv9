@@ -18,7 +18,7 @@ local InterruptMessage = INTERRUPTED.." %s's \124cff71d5ff\124Hspell:%d:0\124h[%
 
 function AnnounceInterrupt:COMBAT_LOG_EVENT_UNFILTERED()
 	local _, event, _, sourceGUID, _, _, _, _, destName, _, _, _, _, _, spellID, spellName = CombatLogGetCurrentEventInfo()
-	if C["announcements"].Interrupt.Value == "NONE" then return	end
+	if C["announcements"]['Interrupt']['Value'] == "NONE" then return	end
 
 	if not (event == "SPELL_INTERRUPT" and (sourceGUID == UnitGUID("player") or sourceGUID == UnitGUID("pet"))) then return	end
 
@@ -29,35 +29,28 @@ function AnnounceInterrupt:COMBAT_LOG_EVENT_UNFILTERED()
 	if instanceType and instanceType == "arena" then
 		local skirmish = IsArenaSkirmish()
 		local _, isRegistered = IsActiveBattlefieldArena()
-		if skirmish or not isRegistered then
-			inPartyLFG = true
-		end
+		if skirmish or not isRegistered then inPartyLFG = true end
 		inRaid = false
 	end
 
-	if C["announcements"].Interrupt.Value == "PARTY" then
+	if C["announcements"]['Interrupt']['Value'] == "PARTY" then
 		SendChatMessage(string_format(InterruptMessage, destName, spellID, spellName), inPartyLFG and "INSTANCE_CHAT" or "PARTY")
-	elseif C["announcements"].Interrupt.Value == "RAID" then
+	elseif C["announcements"]['Interrupt']['Value'] == "RAID" then
 		if inRaid then
 			SendChatMessage(string_format(InterruptMessage, destName, spellID, spellName), inPartyLFG and "INSTANCE_CHAT" or "RAID")
 		else
 			SendChatMessage(string_format(InterruptMessage, destName, spellID, spellName), inPartyLFG and "INSTANCE_CHAT" or "PARTY")
 		end
-	elseif C["announcements"].Interrupt.Value == "RAID_ONLY" then
+	elseif C["announcements"]['Interrupt']['Value'] == "RAID_ONLY" then
 		if inRaid then
 			SendChatMessage(string_format(InterruptMessage, destName, spellID, spellName), inPartyLFG and "INSTANCE_CHAT" or "RAID")
 		end
-	elseif C["announcements"].Interrupt.Value == "SAY" then
+	elseif C["announcements"]['Interrupt']['Value'] == "SAY" then
 		SendChatMessage(string_format(InterruptMessage, destName, spellID, spellName), "SAY")
-	elseif C["announcements"].Interrupt.Value == "EMOTE" then
+	elseif C["announcements"]['Interrupt']['Value'] == "EMOTE" then
 		SendChatMessage(string_format(InterruptMessage, destName, spellID, spellName), "EMOTE")
 	end
 end
 
-function AnnounceInterrupt:OnEnable()
-	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-end
-
-function AnnounceInterrupt:OnDisable()
-	self:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-end
+function AnnounceInterrupt:OnEnable() self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED") end
+function AnnounceInterrupt:OnDisable() self:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED") end

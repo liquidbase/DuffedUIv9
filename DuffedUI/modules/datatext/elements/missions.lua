@@ -237,9 +237,7 @@ local OnEnter = function(self)
 		local questNum = 0
 		for _, calling in ipairs(callingsData) do
 			local callingObj = CovenantCalling_Create(calling)
-			if callingObj:GetState() == 0 then
-				questNum = questNum + 1
-			end
+			if callingObj:GetState() == 0 then questNum = questNum + 1 end
 		end
 		if questNum > 0 then
 			GameTooltip:AddLine(' ')
@@ -248,9 +246,7 @@ local OnEnter = function(self)
 	end
 
 	local currentCovenant = C_Covenants_GetActiveCovenantID()
-	if currentCovenant and currentCovenant > 0 then
-		AddTalentInfo(LE_GARRISON_TYPE_9_0, currentCovenant)
-	end
+	if currentCovenant and currentCovenant > 0 then AddTalentInfo(LE_GARRISON_TYPE_9_0, currentCovenant) end
 
 	if IsShiftKeyDown() then
 		-- Battle for Azeroth
@@ -281,7 +277,7 @@ local OnEnter = function(self)
 		end
 
 		local widgetGroup = Widget_IDs[D['Faction']]
-		if D.MapInfo.mapID == NAZJATAR_MAP_ID and widgetGroup and C_QuestLog_IsQuestFlaggedCompleted(widgetGroup[1]) then
+		if D['MapInfo']['mapID'] == NAZJATAR_MAP_ID and widgetGroup and C_QuestLog_IsQuestFlaggedCompleted(widgetGroup[1]) then
 			GameTooltip:AddLine(' ')
 			GameTooltip:AddLine(L['dt']['NazjatarFollowerXP'])
 
@@ -364,7 +360,7 @@ local OnEnter = function(self)
 end
 
 local OnMouseDown = function(self)
-if InCombatLockdown() then _G.UIErrorsFrame:AddMessage(D['InfoColor'].._G.ERR_NOT_IN_COMBAT) return end
+	if InCombatLockdown() then _G.UIErrorsFrame:AddMessage(D['InfoColor'].._G.ERR_NOT_IN_COMBAT) return end
 	EasyMenu(menuList, menuFrame, 'cursor', 0, 0, 'MENU', 1)
 end
 
@@ -374,13 +370,9 @@ local CountCompleted = 0
 
 local function Update(self, event, ...)
 	if event == 'CURRENCY_DISPLAY_UPDATE' and select(1, ...) ~= MAIN_CURRENCY then return end
-	
 	if event == 'COVENANT_CALLINGS_UPDATED' then wipe(callingsData) callingsData = ... end
-	
 	if event == 'PLAYER_LOGIN' or event == 'GARRISON_SHIPMENT_RECEIVED' or (event == 'SHIPMENT_UPDATE' and select(1, ...) == true) then C_Garrison_RequestLandingPageShipmentInfo() end
-
 	if event == 'GARRISON_MISSION_NPC_OPENED' then self:RegisterEvent('GARRISON_MISSION_LIST_UPDATE') elseif event == 'GARRISON_MISSION_NPC_CLOSED' then self:UnregisterEvent('GARRISON_MISSION_LIST_UPDATE') end
-
 	if event == 'PLAYER_LOGIN' or event == 'GARRISON_LANDINGPAGE_SHIPMENTS' or event == 'GARRISON_MISSION_FINISHED' or event == 'GARRISON_MISSION_NPC_CLOSED' or event == 'GARRISON_MISSION_LIST_UPDATE' then
 		CountCompleted = #C_Garrison_GetCompleteMissions(LE_FOLLOWER_TYPE_GARRISON_9_0)
 		+ #C_Garrison_GetCompleteMissions(LE_FOLLOWER_TYPE_GARRISON_8_0)

@@ -30,9 +30,7 @@ DataTexts.ValueColor = D['RGBToHex'](unpack(C['media']['datatextcolor2']))
 
 local EventFrame = CreateFrame('Frame')
 EventFrame:RegisterEvent('PLAYER_LOGIN')
-EventFrame:SetScript('OnEvent', function(self, event, ...)
-	self[event](self, ...)
-end)
+EventFrame:SetScript('OnEvent', function(self, event, ...) self[event](self, ...) end)
 
 function EventFrame:PLAYER_LOGIN() D['DataTexts_Init']() end
 
@@ -86,32 +84,16 @@ function DataTexts:CreateAnchors()
 
 		if (i == 1 or i == 2 or i == 3) then
 			Frame:SetSize((DuffedUIInfoLeft:GetWidth() / 3) - 1, DuffedUIInfoLeft:GetHeight() - 2)
-
-			if (i == 1) then
-				Frame:SetPoint('LEFT', DuffedUIInfoLeft, 1, 0)
-			else
-				Frame:SetPoint('LEFT', self.Anchors[i - 1], 'RIGHT', 1, 0)
-			end
+			if (i == 1) then Frame:SetPoint('LEFT', DuffedUIInfoLeft, 1, 0) else Frame:SetPoint('LEFT', self.Anchors[i - 1], 'RIGHT', 1, 0) end
 		elseif (i == 4) then
 			Frame:SetSize((DuffedUIInfoCenter:GetWidth()) - 280, DuffedUIInfoCenter:GetHeight() - 2)
-
-			if (i == 4) then
-				Frame:SetPoint('LEFT', DuffedUIInfoCenter, 1, 0)
-			end
+			if (i == 4) then Frame:SetPoint('LEFT', DuffedUIInfoCenter, 1, 0) end
 		elseif (i == 5) then
 			Frame:SetSize((DuffedUIInfoCenter:GetWidth()) - 280, DuffedUIInfoCenter:GetHeight() - 2)
-			
-			if (i == 5) then
-				Frame:SetPoint('LEFT', DuffedUIInfoCenter, 'RIGHT', - 100, 0)
-			end
+			if (i == 5) then Frame:SetPoint('LEFT', DuffedUIInfoCenter, 'RIGHT', - 100, 0) end
 		elseif (i == 6 or i == 7 or i == 8) then
 			Frame:SetSize((DuffedUIInfoRight:GetWidth() / 3) - 1, DuffedUIInfoRight:GetHeight() - 2)
-
-			if (i == 6) then
-				Frame:SetPoint('LEFT', DuffedUIInfoRight, 1, 0)
-			else
-				Frame:SetPoint('LEFT', self.Anchors[i - 1], 'RIGHT', 1, 0)
-			end
+			if (i == 6) then Frame:SetPoint('LEFT', DuffedUIInfoRight, 1, 0) else Frame:SetPoint('LEFT', self.Anchors[i - 1], 'RIGHT', 1, 0) end
 		end
 	end
 end
@@ -274,7 +256,6 @@ function DataTexts:Load()
 	self:CreateAnchors()
 
 	if (not DuffedUIData) then DuffedUIData = {} end
-
 	if (not DuffedUIData['Texts']) then self:AddDefaults() end
 
 	if (DuffedUIData and DuffedUIData['Texts']) then
@@ -297,9 +278,7 @@ function DataTexts:Load()
 end
 
 DataTexts:RegisterEvent('PLAYER_LOGOUT')
-DataTexts:SetScript('OnEvent', function(self, event, ...)
-	self[event](self, ...)
-end)
+DataTexts:SetScript('OnEvent', function(self, event, ...) self[event](self, ...) end)
 
 D['DataTexts_Init'] = function() DataTexts:Load() end
 
@@ -307,11 +286,11 @@ function DataTexts:PLAYER_LOGOUT() self:Save() end
 
 D['DataTexts'] = DataTexts
 
-function D.FlashLoopFinished(self, requested)
+D['FlashLoopFinished'] = function(self, requested)
 	if not requested then self:Play() end
 end
 
-function D.SetUpAnimGroup(obj, Type, ...)
+D['SetUpAnimGroup'] = function(obj, Type, ...)
 	if not Type then Type = 'Flash' end
 
 	if string.sub(Type, 1, 5) == 'Flash' then
@@ -326,9 +305,7 @@ function D.SetUpAnimGroup(obj, Type, ...)
 		obj.anim.fadeout:SetToAlpha(0)
 		obj.anim.fadeout:SetOrder(1)
 
-		if Type == 'FlashLoop' then
-			obj.anim:SetScript('OnFinished', D.FlashLoopFinished)
-		end
+		if Type == 'FlashLoop' then obj.anim:SetScript('OnFinished', D['FlashLoopFinished']) end
 	else
 		local x, y, duration, customName = ...
 		if not customName then customName = 'anim' end
@@ -339,13 +316,13 @@ function D.SetUpAnimGroup(obj, Type, ...)
 		anim.in1 = anim:CreateAnimation('Translation')
 		anim.in1:SetDuration(0)
 		anim.in1:SetOrder(1)
-		anim.in1:SetOffset(D.Scale(x), D.Scale(y))
+		anim.in1:SetOffset(D['Scale'](x), D['Scale'](y))
 
 		anim.in2 = anim:CreateAnimation('Translation')
 		anim.in2:SetDuration(duration)
 		anim.in2:SetOrder(2)
 		anim.in2:SetSmoothing('OUT')
-		anim.in2:SetOffset(D.Scale(-x), D.Scale(-y))
+		anim.in2:SetOffset(D['Scale'](-x), D['Scale'](-y))
 
 		anim.out1 = obj:CreateAnimationGroup('Move_Out')
 		anim.out1:SetScript('OnFinished', function()
@@ -356,14 +333,12 @@ function D.SetUpAnimGroup(obj, Type, ...)
 		anim.out2:SetDuration(duration)
 		anim.out2:SetOrder(1)
 		anim.out2:SetSmoothing('IN')
-		anim.out2:SetOffset(D.Scale(x), D.Scale(y))
+		anim.out2:SetOffset(D['Scale'](x), D['Scale'](y))
 	end
 end
 
-function D.Flash(obj, duration, loop)
-	if not obj.anim then
-		D.SetUpAnimGroup(obj, loop and 'FlashLoop' or 'Flash')
-	end
+D['Flash'] = function(obj, duration, loop)
+	if not obj.anim then D['SetUpAnimGroup'](obj, loop and 'FlashLoop' or 'Flash') end
 
 	if not obj.anim:IsPlaying() then
 		obj.anim.fadein:SetDuration(duration)
@@ -372,8 +347,6 @@ function D.Flash(obj, duration, loop)
 	end
 end
 
-function D.StopFlash(obj)
-	if obj.anim and obj.anim:IsPlaying() then
-		obj.anim:Stop()
-	end
+D['StopFlash'] = function(obj)
+	if obj.anim and obj.anim:IsPlaying() then obj.anim:Stop() end
 end

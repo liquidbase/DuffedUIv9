@@ -27,14 +27,12 @@ function Module:SetupDispellAnnounce()
 	if instanceType == "arena" then
 		local skirmish = IsArenaSkirmish()
 		local _, isRegistered = IsActiveBattlefieldArena()
-		if skirmish or not isRegistered then
-			inPartyLFG = true
-		end
+		if skirmish or not isRegistered then inPartyLFG = true end
 
 		inRaid = false
 	end
 
-	local interruptAnnounce, msg = C["announcements"].Dispell.Value, string_format(DISPELL_MSG, destName, spellID, spellName)
+	local interruptAnnounce, msg = C["announcements"]['Dispell']['Value'], string_format(DISPELL_MSG, destName, spellID, spellName)
 	if interruptAnnounce == "PARTY" then
 		SendChatMessage(msg, inPartyLFG and "INSTANCE_CHAT" or "PARTY")
 	elseif interruptAnnounce == "RAID" then
@@ -51,6 +49,6 @@ function Module:SetupDispellAnnounce()
 end
 
 function Module:OnEnable()
-	if C["announcements"].Dispell.Value == "NONE" then return end
+	if C["announcements"]['Dispell']['Value'] == "NONE" then return end
 	D:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED", self.SetupDispellAnnounce)
 end

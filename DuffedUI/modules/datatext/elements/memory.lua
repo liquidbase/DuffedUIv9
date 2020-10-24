@@ -37,9 +37,7 @@ local function UpdateMemory()
 	end
 
 	table.sort(MemoryTable, function(a, b)
-		if(a and b) then
-			return a[3] > b[3]
-		end
+		if(a and b) then return a[3] > b[3] end
 	end)
 
 	return TotalMem
@@ -47,9 +45,7 @@ end
 
 local function RebuildAddonList(self)
 	local AddOnCount = GetNumAddOns()
-	if(AddOnCount == #MemoryTable) or self.tooltip then
-		return
-	end
+	if(AddOnCount == #MemoryTable) or self.tooltip then return end
 
 	MemoryTable = {}
 
@@ -93,9 +89,7 @@ local function OnEnter(self)
 	GameTooltip:Show()
 end
 
-local function OnMouseUp()
-	collectgarbage('collect')
-end
+local function OnMouseUp() collectgarbage('collect') end
 
 local function Update(self, second)
 	int = int - second

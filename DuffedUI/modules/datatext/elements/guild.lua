@@ -60,15 +60,11 @@ local function BuildGuildTable()
 		end
 
 		guildTable[i] = {name, rank, level, zone, note, officernote, connected, status, class, isMobile}
-		if(connected) then
-			totalOnline = totalOnline + 1
-		end
+		if(connected) then totalOnline = totalOnline + 1 end
 	end
 
 	table_sort(guildTable, function(a, b)
-		if(a and b) then
-			return a[1] < b[1]
-		end
+		if(a and b) then return a[1] < b[1] end
 	end)
 end
 
@@ -76,18 +72,14 @@ local function UpdateGuildXP()
 	local currentXP, remainingXP = UnitGetGuildXP('player')
 	local nextLevelXP = currentXP + remainingXP
 
-	if(nextLevelXP == 0 or maxDailyXP == 0) then
-		return
-	end
+	if(nextLevelXP == 0 or maxDailyXP == 0) then return end
 
 	local percentTotal = tostring(math_ceil((currentXP / nextLevelXP) * 100))
 
 	guildXP[0] = {currentXP, nextLevelXP, percentTotal}
 end
 
-local function UpdateGuildMessage()
-	guildMotD = GetGuildRosterMOTD()
-end
+local function UpdateGuildMessage() guildMotD = GetGuildRosterMOTD() end
 
 local menuFrame = CreateFrame('Frame', '_GuildRightClickMenu', UIParent, 'UIDropDownMenuTemplate')
 local menuList = {
@@ -124,27 +116,18 @@ end
 
 local function ToggleGuildFrame()
 	if(IsInGuild()) then
-		if(not GuildFrame) then
-			GuildFrame_LoadUI()
-		end
+		if(not GuildFrame) then GuildFrame_LoadUI() end
 
 		GuildFrame_Toggle()
 		GuildFrame_TabClicked(GuildFrameTab2)
 	else
-		if(not LookingForGuildFrame) then
-			LookingForGuildFrame_LoadUI()
-		end
-
-		if(LookingForGuildFrame) then
-			LookingForGuildFrame_Toggle()
-		end
+		if(not LookingForGuildFrame) then LookingForGuildFrame_LoadUI() end
+		if(LookingForGuildFrame) then LookingForGuildFrame_Toggle() end
 	end
 end
 
 local function OnMouseUp(self, btn)
-	if(btn ~= 'RightButton' or not IsInGuild()) then
-		return
-	end
+	if(btn ~= 'RightButton' or not IsInGuild()) then return end
 
 	GameTooltip:Hide()
 
@@ -191,9 +174,7 @@ local function OnEnter(self)
 		if InCombatLockdown() then return end
 	end
 
-	if not IsInGuild() then
-		return
-	end
+	if not IsInGuild() then return end
 
 	C_GuildInfo_GuildRoster()
 	UpdateGuildMessage()
@@ -207,22 +188,19 @@ local function OnEnter(self)
 	GameTooltip:SetOwner(self:GetTooltipAnchor())
 	GameTooltip:ClearLines()
 
-	if(GuildInfo) then
-		GameTooltip:AddDoubleLine(string.format(guildInfoString, GuildInfo, GuildLevel), string.format(guildInfoString2, GUILD, online, #guildTable), tthead.r, tthead.g, tthead.b, tthead.r, tthead.g, tthead.b)
-	end
+	if(GuildInfo) then GameTooltip:AddDoubleLine(string.format(guildInfoString, GuildInfo, GuildLevel), string.format(guildInfoString2, GUILD, online, #guildTable), tthead.r, tthead.g, tthead.b, tthead.r, tthead.g, tthead.b) end
 
 	if(guildMotD ~= '') then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(string.format(guildMotDString, GUILD_MOTD, guildMotD), ttsubh.r, ttsubh.g, ttsubh.b, 1)
 	end
 
-	local col = D.RGBToHex(ttsubh.r, ttsubh.g, ttsubh.b)
+	local col = D['RGBToHex'](ttsubh.r, ttsubh.g, ttsubh.b)
 	GameTooltip:AddLine(' ')
 	if(GuildLevel and GuildLevel ~= 25) then
 
 		if(guildXP[0]) then
 			local currentXP, nextLevelXP, percentTotal = unpack(guildXP[0])
-
 			GameTooltip:AddLine(string.format(col .. GUILD_EXPERIENCE_CURRENT, '|r |cffffffff' .. D['ShortValue'](currentXP), D['ShortValue'](nextLevelXP), percentTotal))
 		end
 	end
@@ -239,36 +217,22 @@ local function OnEnter(self)
 		GameTooltip:AddLine(' ')
 		for i = 1, #guildTable do
 			if(online <= 1) then
-				if(online > 1) then
-					GameTooltip:AddLine(string.format('+ %d More...', online - modules.Guild.maxguild), ttsubh.r, ttsubh.g, ttsubh.b)
-				end
-
+				if(online > 1) then GameTooltip:AddLine(string.format('+ %d More...', online - modules.Guild.maxguild), ttsubh.r, ttsubh.g, ttsubh.b) end
 				break
 			end
 
 			name, rank, level, zone, note, officernote, connected, status, class, isMobile = unpack(guildTable[i])
 			if connected then
-				if(GetRealZoneText() == zone) then
-					zonec = activezone
-				else
-					zonec = inactivezone
-				end
+				if(GetRealZoneText() == zone) then zonec = activezone else zonec = inactivezone end
 				classc, levelc = (CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS)[class], GetQuestDifficultyColor(level)
 
-				if(isMobile) then
-					zone = ''
-				end
+				if(isMobile) then zone = '' end
 
 				if(IsShiftKeyDown()) then
 					GameTooltip:AddDoubleLine(string.format(nameRankString, name, rank), zone, classc.r, classc.g, classc.b, zonec.r, zonec.g, zonec.b)
 
-					if(note ~= '') then
-						GameTooltip:AddLine(string.format(noteString, note), ttsubh.r, ttsubh.g, ttsubh.b, 1)
-					end
-
-					if(officernote ~= '') then
-						GameTooltip:AddLine(string.format(officerNoteString, officernote), ttoff.r, ttoff.g, ttoff.b ,1)
-					end
+					if(note ~= '') then GameTooltip:AddLine(string.format(noteString, note), ttsubh.r, ttsubh.g, ttsubh.b, 1) end
+					if(officernote ~= '') then GameTooltip:AddLine(string.format(officerNoteString, officernote), ttoff.r, ttoff.g, ttoff.b ,1) end
 				else
 					GameTooltip:AddDoubleLine(string.format(levelNameStatusString, levelc.r * 255, levelc.g * 255, levelc.b * 255, level, name, status), zone, classc.r, classc.g, classc.b, zonec.r, zonec.g, zonec.b)
 				end
@@ -282,22 +246,18 @@ local function OnEnter(self)
 end
 
 local function OnMouseDown(self, btn)
-	if(btn ~= 'LeftButton') then
-		return
-	end
+	if(btn ~= 'LeftButton') then return end
 	ToggleCommunitiesFrame()
 end
 
 local function Update(self)
 	if(not IsInGuild()) then
 		self.Text:SetText(NameColor .. L['dt']['noguild'] .. '|r')
-
 		return
 	end
 
 	C_GuildInfo_GuildRoster()
 	totalOnline = select(3, GetNumGuildMembers())
-
 	self.Text:SetFormattedText('%s: %s', NameColor .. GUILD .. '|r', ValueColor .. totalOnline .. '|r')
 end
 
