@@ -644,7 +644,7 @@ DuffedUIConfig ['enUS'] = {
 		},
 
 		['oosvisibilty'] = {
-			['Name'] = 'Nameplate visibility for out of sight opponents (default 0.4, value can be 0 to 1)',
+			['Name'] = 'Nameplate visibility for out of sight Mobs (default 0.4, value can be 0 to 1)',
 		},
 	},
 
