@@ -16,6 +16,7 @@ local ChangeLogData = {
 		--"• ",
 		"• Fixed ressource display on alternative unitframe layouts",
 		"• Added ObjectiveTracker to AFK-Camera",
+		"• Fixed issue with MirrorTimer-Skin",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",

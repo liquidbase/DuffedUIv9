@@ -1,4 +1,3 @@
-local ADDON = ...
 local D, C, L = unpack(select(2, ...))
 
 -- Sourced: oUF_Phanx (Phanx)
@@ -13,7 +12,7 @@ local borderLayer = "OVERLAY"
 local borderLevel = 1
 local borderOffset = 0
 local borderSize = 1
-local borderPath = [[Interface\AddOns\]] .. ADDON .. [[\media\textures\blank]]
+local borderPath = [[Interface\AddOns\DuffedUI\media\textures\blank]]
 
 local borderCache = {}
 

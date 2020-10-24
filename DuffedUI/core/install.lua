@@ -347,7 +347,6 @@ local step1 = function()
 		cvarsetup()
 		step2()
 	end)
-	--SetActionBarToggles(1, 1, 1, 1, 0)
 end
 
 D['Install'] = function()

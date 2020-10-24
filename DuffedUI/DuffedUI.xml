@@ -16,7 +16,6 @@
 	<Script file='media\medias.lua' />
 	<Script file='core\api.lua' />
 	<Script file='core\border.lua' />
-	<Script file='core\customconfig.lua' />
 	<Script file='core\config.lua' />
 	<Include file='libs\load_libs.xml' />
 	<Script file='core\popup.lua' />
