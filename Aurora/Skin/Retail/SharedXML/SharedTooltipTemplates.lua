@@ -6,7 +6,6 @@ if private.isClassic then return end
 
 --[[ Core ]]
 local Aurora = private.Aurora
-local Base = Aurora.Base
 local Hook, Skin = Aurora.Hook, Aurora.Skin
 
 do --[[ FrameXML\SharedTooltipTemplates.lua ]]
@@ -18,16 +17,16 @@ do --[[ FrameXML\SharedTooltipTemplates.lua ]]
 end
 
 do --[[ FrameXML\SharedTooltipTemplates.xml ]]
-    Skin.SharedTooltipTemplate = Base.SetBackdrop
-    Skin.SharedNoHeaderTooltipTemplate = Skin.SharedTooltipTemplate
+    function Skin.SharedTooltipTemplate(GameTooltip)
+        Skin.FrameTypeFrame(GameTooltip)
+    end
+    function Skin.SharedNoHeaderTooltipTemplate(GameTooltip)
+        Skin.SharedTooltipTemplate(GameTooltip)
+    end
 end
 
 function private.SharedXML.SharedTooltipTemplates()
     if private.disabled.tooltips then return end
 
-    if private.isPatch then
-        _G.hooksecurefunc("SharedTooltip_SetBackdropStyle", Hook.SharedTooltip_SetBackdropStyle)
-    else
-        _G.hooksecurefunc("GameTooltip_SetBackdropStyle", Hook.SharedTooltip_SetBackdropStyle)
-    end
+    _G.hooksecurefunc("SharedTooltip_SetBackdropStyle", Hook.SharedTooltip_SetBackdropStyle)
 end
