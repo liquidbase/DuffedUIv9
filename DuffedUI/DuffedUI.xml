@@ -64,6 +64,7 @@
 	<Script file='modules\chat\mousescroll.lua' />
 	<Script file='modules\chat\sounds.lua' />
 	<Script file='modules\chat\chatitemlevel.lua' />
+	<!--Script include='modules\chat\embed\load_embed.xml' />-->
 	<Script file='modules\tooltip\tooltip.lua' />
 	<Script file='modules\tooltip\tooltipazerite.lua' />
 	<Script file='modules\tooltip\tooltipicons.lua' />
