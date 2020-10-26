@@ -42,7 +42,7 @@ if C['general']['autoaccept'] then
 				end
 			end
 
-			if C_FriendList.GetNumFriends() > 0 then ShowFriends() end
+			if C_FriendList.GetNumFriends() > 0 then C_FriendList.ShowFriends() end
 
 			for friendIndex = 1, C_FriendList.GetNumFriends() do
 				local friendName = gsub(C_FriendList.GetFriendInfo(friendIndex),  '-.*', '')
