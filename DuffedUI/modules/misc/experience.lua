@@ -1,6 +1,6 @@
 local D, C, L = unpack(select(2, ...))
 
-local barHeight, barWidth = 10, 373
+local barHeight, barWidth = 10, 374
 local barTex, flatTex = C['media']['normTex']
 local color = RAID_CLASS_COLORS[D['Class']]
 local FactionInfo = {
@@ -22,7 +22,7 @@ end
 
 local backdrop = CreateFrame('Frame', 'Experience_Backdrop', UIParent, 'BackdropTemplate')
 backdrop:SetSize(barWidth, barHeight)
-backdrop:SetPoint('BOTTOM', UIParent, 'BOTTOM', 0, 3)
+backdrop:SetPoint('TOP', DuffedUIInfoCenter, 'BOTTOM', 0, -3)
 backdrop:SetBackdropColor(C['general']['backdropcolor'])
 backdrop:SetBackdropBorderColor(C['general']['backdropcolor'])
 backdrop:SetFrameStrata('LOW')
