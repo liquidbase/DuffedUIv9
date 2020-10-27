@@ -40,6 +40,7 @@ D['ClassFilter'] = {
 			D['CreateSpellEntry'](196770), -- Remorseless Winter
 			D['CreateSpellEntry'](207127), -- Hungering Rune Weapon
 			D['CreateSpellEntry'](207256), -- Obliteration
+			D['CreateSpellEntry'](281209), -- Coldheart
 			-- Unholy
 			D['CreateSpellEntry'](207319), -- Corpse Shield
 		},
