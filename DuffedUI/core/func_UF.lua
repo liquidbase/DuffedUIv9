@@ -296,6 +296,7 @@ D['PostCreateAura'] = function(self, button)
 
 	button.cd.noOCC = true
 	button.cd.noCooldownCount = true
+	button.cd:SetHideCountdownNumbers(true)
 
 	button.cd:SetReverse()
 	button.icon:Point('TOPLEFT', 2, -2)
