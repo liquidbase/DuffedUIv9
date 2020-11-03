@@ -1,6 +1,6 @@
 local D, C, L = unpack(select(2, ...))
 
-if D.Client == 'deDE' then
+if D['Client'] == 'deDE' then
 	L['move'] = {
 		['tooltip'] = 'Bewege Tooltip',
 		['minimap'] = 'Bewege Minimap',
