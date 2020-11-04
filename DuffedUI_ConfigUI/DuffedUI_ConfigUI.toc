@@ -14,5 +14,11 @@ core.lua
 
 local\enUS.lua
 local\deDE.lua
+local\esMX.lua
 local\frFR.lua
-
+local\itIT.lua
+local\koKR.lua
+local\ptBR.lua
+local\ruRU.lua
+local\zhCN.lua
+local\zhTW.lua
