@@ -1,10 +1,6 @@
-local locale = GetLocale ()
-
-if (locale ~= 'frFR') then return end
-
 local ModuleNewFeature = [[|TInterface\OptionsFrame\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t]]
 
-DuffedUIConfig ['frFR'] = {
+DuffedUIConfig['frFR'] = {
 	['GroupNames'] = {
 		['actionbar'] = BINDING_HEADER_ACTIONBAR,
 		['announcements'] = 'Annonces',

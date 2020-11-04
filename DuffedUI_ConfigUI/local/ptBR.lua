@@ -1,10 +1,6 @@
-local locale = GetLocale()
-
-if (locale ~= 'ptBR') then return end
-
 local ModuleNewFeature = [[|TInterface\OptionsFrame\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t]]
 
-DuffedUIConfig ['enUS'] = {
+DuffedUIConfig['ptBR'] = {
 	['GroupNames'] = {
 		['actionbar'] = BINDING_HEADER_ACTIONBAR,
 		['announcements'] = 'Announcements',

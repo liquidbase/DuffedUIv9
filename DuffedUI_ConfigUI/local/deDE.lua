@@ -1,7 +1,3 @@
-local locale = GetLocale()
-
-if (locale ~= 'deDE') then return end
-
 local ModuleNewFeature = [[|TInterface\OptionsFrame\UI-OptionsFrame-NewFeatureIcon:0:0:0:0|t]]
 
 DuffedUIConfig['deDE'] = {
