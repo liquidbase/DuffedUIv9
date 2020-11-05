@@ -759,13 +759,15 @@ D['ClassFilter'] = {
 			D['CreateSpellEntry'](980), -- Bane of Agony
 			D['CreateSpellEntry'](5484), -- Howl of Terror
 			D['CreateSpellEntry'](27243, false, nil, nil, 27243), -- Seed of Corruption
-			D['CreateSpellEntry'](30108, false, nil, nil, 30108), -- Unstable Affliction
+			D['CreateSpellEntry'](30108, false, nil, nil, 30108), -- Unstable Affliction Base
+			D['CreateSpellEntry'](43522, false, nil, nil, 43522), -- Unstable Affliction Rank 3
 			D['CreateSpellEntry'](48181, false, nil, nil, 48181), -- Haunt
 			D['CreateSpellEntry'](63106), -- Siphon Life
 			D['CreateSpellEntry'](146739), -- Corruption Debuff
 			D['CreateSpellEntry'](198590), -- Drain Soul
 			D['CreateSpellEntry'](205178), -- Soul Effigy
 			D['CreateSpellEntry'](205179), -- Phantom Singularity
+			D['CreateSpellEntry'](342938, false, nil, nil, 342938), -- Unstable Affliction 9.0.1
 			-- Demonology
 			D['CreateSpellEntry'](603), -- Bane of Doom
 			D['CreateSpellEntry'](30213), -- Legion Strike
