@@ -19,6 +19,7 @@ local ChangeLogData = {
 		"• Fixed locals for ConfigUI",
 		"• Update Aurora",
 		"• Fixed issue with SpellIDs on different classes on classtimer",
+		"• Fixed issue on bags with Pawn (by Rav99)",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",
