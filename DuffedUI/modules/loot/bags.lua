@@ -335,7 +335,7 @@ function Stuffing:SlotUpdate(b)
 		b.frame:UpdateItemContextMatching()
 	end
 	
-	if b.frame.UpgradeIcon then
+	if b.frame.UpgradeIcon and IsAddOnLoaded('Pawn') then
 		b.frame.UpgradeIcon:ClearAllPoints()
 		b.frame.UpgradeIcon:SetTexture('Interface\\AddOns\\DuffedUI\\media\\textures\\upgradeicon')
 		b.frame.UpgradeIcon:SetPoint('BOTTOMRIGHT', 6, -3)
