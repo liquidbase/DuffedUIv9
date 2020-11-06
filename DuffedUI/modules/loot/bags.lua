@@ -342,7 +342,7 @@ function Stuffing:SlotUpdate(b)
 		b.frame.UpgradeIcon:SetSize(C['bags'].ButtonSize / 1.4, C['bags'].ButtonSize / 1.4)
 		b.frame.UpgradeIcon:SetTexCoord(0, 1, 0, 1)
 
-		local itemIsUpgrade = PawnIsContainerItemAnUpgrade(b.frame:GetParent():GetID(), b.frame:GetID())
+		local itemIsUpgrade = _G.IsContainerItemAnUpgrade(b.frame:GetParent():GetID(), b.frame:GetID())
 		if not itemIsUpgrade or itemIsUpgrade == nil then
 			b.frame.UpgradeIcon:SetShown(false)
 		else

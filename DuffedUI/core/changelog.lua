@@ -14,12 +14,7 @@ local ChangeLogData = {
 	-- 115 chars per line
 	"Changes:",
 		--"• ",
-		"• Fixed timer display on buffs & debuffs",
-		"• Update Client List",
-		"• Fixed locals for ConfigUI",
-		"• Update Aurora",
-		"• Fixed issue with SpellIDs on different classes on classtimer",
-		"• Fixed issue on bags with Pawn (by Rav99)",
+		"• Revert fix for pawn, fix breaks the function of bag script",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",
