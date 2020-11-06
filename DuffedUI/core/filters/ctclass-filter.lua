@@ -334,6 +334,7 @@ D['ClassFilter'] = {
 			-- Fire
 			D['CreateSpellEntry'](48108), -- Hot Streak
 			D['CreateSpellEntry'](190319), -- Combustion
+			D['CreateSpellEntry'](235313), -- Blazing Barrier
 			--Frost
 			D['CreateSpellEntry'](12472), -- Icy Veins
 			D['CreateSpellEntry'](195418), -- Chain Reaction
