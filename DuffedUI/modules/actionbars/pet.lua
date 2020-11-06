@@ -12,7 +12,7 @@ function ab:CreatePetBar()
 
 	PetActionBarFrame:EnableMouse(0)
 	PetActionBarFrame:ClearAllPoints()
-	PetActionBarFrame:SetParent(hide)
+	--PetActionBarFrame:SetParent(hide)
 
 	for i = 1, NUM_PET_ACTION_SLOTS do
 		local Button = _G['PetActionButton'..i]
