@@ -768,6 +768,7 @@ D['ClassFilter'] = {
 			D['CreateSpellEntry'](198590), -- Drain Soul
 			D['CreateSpellEntry'](205178), -- Soul Effigy
 			D['CreateSpellEntry'](205179), -- Phantom Singularity
+			D['CreateSpellEntry'](316099, false, nil, nil, 316099), -- Unstable Affliction 9.0.1
 			D['CreateSpellEntry'](342938, false, nil, nil, 342938), -- Unstable Affliction 9.0.1
 			-- Demonology
 			D['CreateSpellEntry'](603), -- Bane of Doom
