@@ -22,7 +22,6 @@ D['ConstructUFToT'] = function(self)
 	self:RegisterForClicks('AnyUp')
 	self:SetScript('OnEnter', UnitFrame_OnEnter)
 	self:SetScript('OnLeave', UnitFrame_OnLeave)
-	self:SetAttribute('type2', 'togglemenu')
 
 	if layout == 1 then
 		local panel = CreateFrame('Frame', nil, self)

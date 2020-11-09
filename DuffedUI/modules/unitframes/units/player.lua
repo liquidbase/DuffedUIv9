@@ -24,7 +24,6 @@ D['ConstructUFPlayer'] = function(self)
 	self:RegisterForClicks('AnyUp')
 	self:SetScript('OnEnter', UnitFrame_OnEnter)
 	self:SetScript('OnLeave', UnitFrame_OnLeave)
-	self:SetAttribute('type2', 'togglemenu')
 
 	local panel = CreateFrame('Frame', nil, self, 'BackdropTemplate')
 	if layout == 1 or layout == 4 then

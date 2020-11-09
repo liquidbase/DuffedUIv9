@@ -183,11 +183,6 @@ D['SpawnUF'] = function(self)
 						end
 					end
 				end
-
-				--[[for i = 1, 5 do
-					local f = _G['oUF_PrepArena' .. i]
-					f:Hide()
-				end]]
 			end
 		end
 
