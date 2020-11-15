@@ -31,7 +31,6 @@ function quickbind:OnEvent(event, addon)
 	MultiBarBottomLeft.QuickKeybindGlow:SetAlpha(0)
 	MultiBarBottomRight.QuickKeybindGlow:SetAlpha(0)
 
-	
 	extra:SetParent(DuffedUIHider)
 end
 
