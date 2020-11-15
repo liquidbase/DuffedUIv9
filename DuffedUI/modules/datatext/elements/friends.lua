@@ -310,25 +310,6 @@ local function BuildBNTable(total)
 	if next(clientSorted) then sort(clientSorted, clientSort) end
 end
 
-local function OnEvent(self, event, message)
-	local onlineFriends = C_FriendList_GetNumOnlineFriends()
-	local _, numBNetOnline = BNGetNumFriends()
-
-	-- special handler to detect friend coming online or going offline
-	-- when this is the case, we invalidate our buffered table and update the
-	-- datatext information
-	if event == 'CHAT_MSG_SYSTEM' then
-		if not (find(message, friendOnline) or find(message, friendOffline)) then return end
-	end
-
-	-- force update when showing tooltip
-	dataValid = false
-
-	self.Text:SetFormattedText('%s: %s%s',NameColor .. FRIENDS .. '|r', ValueColor, onlineFriends + numBNetOnline)
-
-	if event == 'MODIFIER_STATE_CHANGED' and not IsAltKeyDown() and GetMouseFocus() == self then OnEnter(self) end
-end
-
 local function OnMouseDown(self, btn)
 	GameTooltip:Hide()
 
@@ -498,6 +479,25 @@ local function OnEnter(self)
 	GameTooltip:AddLine(' ')
 	GameTooltip:AddDoubleLine(KEY_BUTTON1..':', L['dt']['friendleft'], 1, 1, 1)
 	GameTooltip:Show()
+end
+
+local function OnEvent(self, event, message)
+	local onlineFriends = C_FriendList_GetNumOnlineFriends()
+	local _, numBNetOnline = BNGetNumFriends()
+
+	-- special handler to detect friend coming online or going offline
+	-- when this is the case, we invalidate our buffered table and update the
+	-- datatext information
+	if event == 'CHAT_MSG_SYSTEM' then
+		if not (find(message, friendOnline) or find(message, friendOffline)) then return end
+	end
+
+	-- force update when showing tooltip
+	dataValid = false
+
+	self.Text:SetFormattedText('%s: %s%s',NameColor .. FRIENDS .. '|r', ValueColor, onlineFriends + numBNetOnline)
+
+	if event == 'MODIFIER_STATE_CHANGED' and not IsAltKeyDown() and GetMouseFocus() == self then OnEnter(self) end
 end
 
 local OnLeave = function() GameTooltip:Hide() end
