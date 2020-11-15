@@ -325,6 +325,8 @@ local function OnEvent(self, event, message)
 	dataValid = false
 
 	self.Text:SetFormattedText('%s: %s%s',NameColor .. FRIENDS .. '|r', ValueColor, onlineFriends + numBNetOnline)
+
+	if event == 'MODIFIER_STATE_CHANGED' and not IsAltKeyDown() and GetMouseFocus() == self then OnEnter(self) end
 end
 
 local function OnMouseDown(self, btn)
@@ -507,6 +509,7 @@ local Enable = function(self)
 	self:RegisterEvent('CHAT_MSG_SYSTEM')
 	self:RegisterEvent('FRIENDLIST_UPDATE')
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
+	self:RegisterEvent('MODIFIER_STATE_CHANGED')
 
 	self:SetScript('OnMouseDown', OnMouseDown)
 	self:SetScript('OnMouseUp', OnMouseUp)

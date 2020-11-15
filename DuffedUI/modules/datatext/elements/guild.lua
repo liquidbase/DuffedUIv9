@@ -259,6 +259,8 @@ local function Update(self)
 	C_GuildInfo_GuildRoster()
 	totalOnline = select(3, GetNumGuildMembers())
 	self.Text:SetFormattedText('%s: %s', NameColor .. GUILD .. '|r', ValueColor .. totalOnline .. '|r')
+	
+	if event == 'MODIFIER_STATE_CHANGED' and not IsAltKeyDown() and GetMouseFocus() == self then OnEnter(self) end
 end
 
 local function Enable(self)
@@ -268,6 +270,7 @@ local function Enable(self)
 	self:RegisterEvent('GUILD_ROSTER_UPDATE')
 	self:RegisterEvent('PLAYER_ENTERING_WORLD')
 	self:RegisterEvent('PLAYER_GUILD_UPDATE')
+	self:RegisterEvent('MODIFIER_STATE_CHANGED')
 
 	self:SetScript('OnMouseDown', OnMouseDown)
 	self:SetScript('OnMouseUp', OnMouseUp)
