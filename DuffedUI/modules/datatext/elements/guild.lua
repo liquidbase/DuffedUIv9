@@ -250,7 +250,7 @@ local function OnMouseDown(self, btn)
 	ToggleCommunitiesFrame()
 end
 
-local function Update(self)
+local function Update(self, event)
 	if(not IsInGuild()) then
 		self.Text:SetText(NameColor .. L['dt']['noguild'] .. '|r')
 		return
