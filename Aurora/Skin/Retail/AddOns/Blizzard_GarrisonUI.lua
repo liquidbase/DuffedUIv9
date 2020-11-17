@@ -22,6 +22,10 @@ do --[[ AddOns\Blizzard_GarrisonUI.lua ]]
         end
     end
     do --[[ Blizzard_CovenantMissionUI ]]
+        Hook.BFAMission = {}
+        Hook.BFAMission.SetupTabs = Hook.OrderHallMission.SetupTabs
+    end
+    do --[[ Blizzard_CovenantMissionUI ]]
         Hook.CovenantMission = {}
         Hook.CovenantMission.SetupTabs = Hook.OrderHallMission.SetupTabs
         function Hook.CovenantMission:SelectTab(id)
@@ -132,13 +136,15 @@ do --[[ AddOns\Blizzard_GarrisonUI.xml ]]
             Frame.Level:Hide()
 
             Frame.Empty:SetAtlas("Garr_FollowerPortrait_Bg")
+            Frame.Empty:SetDrawLayer("BACKGROUND", 1)
             Frame.Empty:SetAllPoints(Frame.Portrait)
             Frame.Empty:SetTexCoord(0.08620689655172, 0.86206896551724, 0.06896551724138, 0.8448275862069)
 
             Frame.Highlight:SetTexture([[Interface\Buttons\CheckButtonHilight]])
             Frame.Highlight:SetTexCoord(0.0625, 0.9375, 0.0625, 0.9375)
-            Frame.Highlight:SetPoint("TOPLEFT", Frame._auroraPortraitBG)
-            Frame.Highlight:SetPoint("BOTTOMRIGHT", Frame._auroraLvlBG, "TOPRIGHT")
+            Frame.Highlight:ClearAllPoints()
+            Frame.Highlight:SetPoint("TOPLEFT", Frame._auroraPortraitBG, 5, -5)
+            Frame.Highlight:SetPoint("BOTTOMRIGHT", Frame._auroraLvlBG, "TOPRIGHT", -1, 0)
         end
         function Skin.GarrisonMissionListTabTemplate(Button)
             Button.Left:SetAlpha(0)
@@ -228,9 +234,12 @@ do --[[ AddOns\Blizzard_GarrisonUI.xml ]]
             Frame:GetRegions():Hide()
 
             Base.SetBackdrop(Frame, Color.button, Color.frame.a)
-            local bg = Frame:GetBackdropTexture("bg")
-            bg:SetPoint("TOPLEFT", Frame, 3, -2)
-            bg:SetPoint("BOTTOMRIGHT", Frame, 0, -1)
+            Frame:SetBackdropOption("offsets", {
+                left = 3,
+                right = 0,
+                top = 2,
+                bottom = 1,
+            })
 
             Skin.GarrisonFollowerMissionPortraitTemplate(Frame.PortraitFrame)
             Skin.GarrisonMissionAbilityLargeCounterTemplate(Frame.Counters[1])
@@ -246,9 +255,12 @@ do --[[ AddOns\Blizzard_GarrisonUI.xml ]]
             Frame:GetRegions():Hide()
 
             Base.SetBackdrop(Frame, Color.button, Color.frame.a)
-            local bg = Frame:GetBackdropTexture("bg")
-            bg:SetPoint("TOPLEFT", Frame, 3, -2)
-            bg:SetPoint("BOTTOMRIGHT", Frame, 0, -1)
+            Frame:SetBackdropOption("offsets", {
+                left = 3,
+                right = 0,
+                top = 2,
+                bottom = 1,
+            })
 
             Skin.GarrisonFollowerPortraitTemplate(Frame.PortraitFrame)
             Skin.GarrisonFollowerXPBarTemplate(Frame.XP)
@@ -649,7 +661,7 @@ function private.AddOns.Blizzard_GarrisonUI()
     --      Blizzard_BFAMissionUI      --
     ----====####$$$$%%%%%$$$$####====----
     local BFAMissionFrame = _G.BFAMissionFrame
-    Util.Mixin(BFAMissionFrame, Hook.OrderHallMission)
+    Util.Mixin(BFAMissionFrame, Hook.BFAMission)
     Skin.GarrisonMissionFrameTemplate(BFAMissionFrame)
     Skin.GarrisonUITemplate(BFAMissionFrame)
     BFAMissionFrame.OverlayElements.CloseButtonBorder:Hide()

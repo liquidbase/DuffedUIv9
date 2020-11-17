@@ -128,21 +128,6 @@ do --[[ AddOns\Blizzard_EncounterJournal.lua ]]
             end
         end
     end
-    do --[[ Blizzard_LootJournal ]]
-        Hook.LootJournalItemSetsMixin = {}
-        function Hook.LootJournalItemSetsMixin:ConfigureItemButton(button)
-            if not button._auroraSkinned then
-                Skin.LootJournalItemSetItemButtonTemplate(button)
-                button._auroraSkinned = true
-            end
-
-            local _, _, itemQuality = _G.GetItemInfo(button.itemID)
-            itemQuality = itemQuality or private.Enum.ItemQuality.Epic
-
-            local color = _G.BAG_ITEM_QUALITY_COLORS[itemQuality]
-            button._auroraIconBorder:SetBackdropBorderColor(color.r, color.g, color.b)
-        end
-    end
 end
 
 do --[[ AddOns\Blizzard_EncounterJournal.xml ]]
@@ -270,9 +255,12 @@ do --[[ AddOns\Blizzard_EncounterJournal.xml ]]
         end
         function Skin.AdventureJournal_SecondaryTemplate(Frame)
             Base.SetBackdrop(Frame, Color.frame, Color.frame.a)
-            local bg = Frame:GetBackdropTexture("bg")
-            bg:SetPoint("TOPLEFT", 0, -12)
-            bg:SetPoint("BOTTOMRIGHT", 0, 0)
+            Frame:SetBackdropOption("offsets", {
+                left = 0,
+                right = 0,
+                top = 12,
+                bottom = 0,
+            })
 
             Frame.bg:Hide()
             Base.CropIcon(Frame.icon, Frame)
@@ -316,25 +304,25 @@ do --[[ AddOns\Blizzard_EncounterJournal.xml ]]
             Button.leftHighlight:Hide()
             Button.rightHighlight:Hide()
         end
+        function Skin.EncounterJournalScrollBarTemplate(Slider)
+            Skin.MinimalScrollBarTemplate(Slider)
+        end
     end
     do --[[ Blizzard_LootJournal ]]
-        function Skin.LootJournalItemSetItemButtonTemplate(Button)
+        function Skin.RuneforgeLegendaryPowerLootJournalTemplate(Button)
             Base.CropIcon(Button.Icon)
-            Button.Icon:SetAllPoints()
 
             Base.SetBackdrop(Button, Color.black, Color.frame.a)
-            local bg = Button:GetBackdropTexture("bg")
-            bg:SetPoint("TOPLEFT", -1, 1)
-            bg:SetPoint("BOTTOMRIGHT", 1, -1)
-            Button._auroraIconBorder = Button
+            Button:SetBackdropOption("offsets", {
+                left = 11,
+                right = 249,
+                top = 7,
+                bottom = 7,
+            })
+            Button:SetBackdropBorderColor(_G.LEGENDARY_ORANGE_COLOR:GetRGB())
 
-            Button.Border:Hide()
-        end
-        function Skin.LootJournalItemSetButtonTemplate(Button)
-            Button.Background:SetDesaturated(true)
-            Button.Background:SetAlpha(0.5)
-            Button.Background:SetTexCoord(0, 1, 0.04878048780488, 0.92682926829268)
-            Button.ItemLevel:SetTextColor(Color.grayLight:GetRGB())
+            Button.CircleMask:Hide()
+            Button.Background:Hide()
         end
     end
 end
@@ -422,7 +410,7 @@ function private.AddOns.Blizzard_EncounterJournal()
     Skin.EncounterTierTabTemplate(instanceSelect.raidsTab)
     Skin.EncounterTierTabTemplate(instanceSelect.LootJournalTab)
     Skin.UIDropDownMenuTemplate(instanceSelect.tierDropDown)
-    Skin.MinimalScrollBarTemplate(instanceSelect.scroll.ScrollBar)
+    Skin.EncounterJournalScrollBarTemplate(instanceSelect.scroll.ScrollBar)
 
     Skin.EncounterInstanceButtonTemplate(instanceSelect.scroll.child.instance1)
 
@@ -446,7 +434,7 @@ function private.AddOns.Blizzard_EncounterJournal()
     instance.mapButton:SetPoint("BOTTOMLEFT", 36, 125)
     instance.mapButton:GetRegions():SetTexCoord(0.013671875, 0.3359375, 0.8525390625, 0.8955078125)
 
-    Skin.MinimalScrollBarTemplate(instance.loreScroll.ScrollBar)
+    Skin.EncounterJournalScrollBarTemplate(instance.loreScroll.ScrollBar)
     instance.loreScroll.child.lore:SetTextColor(Color.grayLight:GetRGB())
 
     local info = encounter.info
@@ -475,7 +463,7 @@ function private.AddOns.Blizzard_EncounterJournal()
         info.modelTab,
     })
 
-    Skin.MinimalScrollBarTemplate(info.bossesScroll.ScrollBar)
+    Skin.EncounterJournalScrollBarTemplate(info.bossesScroll.ScrollBar)
     Skin.EJButtonTemplate(info.difficulty)
 
     Base.SetBackdrop(info.reset, Color.button)
@@ -484,11 +472,11 @@ function private.AddOns.Blizzard_EncounterJournal()
     info.reset:SetPushedTexture("")
     info.reset:SetHighlightTexture("")
 
-    Skin.MinimalScrollBarTemplate(info.detailsScroll.ScrollBar)
+    Skin.EncounterJournalScrollBarTemplate(info.detailsScroll.ScrollBar)
     info.detailsScroll.child.description:SetTextColor(Color.grayLight:GetRGB())
 
     local overviewScroll = info.overviewScroll
-    Skin.MinimalScrollBarTemplate(overviewScroll.ScrollBar)
+    Skin.EncounterJournalScrollBarTemplate(overviewScroll.ScrollBar)
     overviewScroll.child.loreDescription:SetTextColor(Color.grayLight:GetRGB())
     overviewScroll.child.header:SetDesaturated(true)
     _G.EncounterJournalEncounterFrameInfoOverviewScrollFrameScrollChildTitle:SetTextColor(Color.white:GetRGB())
@@ -517,9 +505,12 @@ function private.AddOns.Blizzard_EncounterJournal()
     local Suggestion1 = suggestFrame.Suggestion1
     Suggestion1.bg:Hide()
     Base.SetBackdrop(Suggestion1, Color.frame, Color.frame.a)
-    local suggestion1BG = Suggestion1:GetBackdropTexture("bg")
-    suggestion1BG:SetPoint("TOPLEFT", 0, -12)
-    suggestion1BG:SetPoint("BOTTOMRIGHT", 0, 0)
+    Suggestion1:SetBackdropOption("offsets", {
+        left = 0,
+        right = 0,
+        top = 12,
+        bottom = 0,
+    })
 
     Suggestion1.icon:SetMask("")
     Base.CropIcon(Suggestion1.icon, Suggestion1)
@@ -572,10 +563,11 @@ function private.AddOns.Blizzard_EncounterJournal()
     --      Blizzard_LootJournal      --
     ----====####$$$$%%%%$$$$####====----
     local LootJournal = EncounterJournal.LootJournal
-
     LootJournal:GetRegions():Hide()
 
-    Util.Mixin(LootJournal.ItemSetsFrame, Hook.LootJournalItemSetsMixin)
-    Skin.MinimalHybridScrollFrameTemplate(LootJournal.ItemSetsFrame)
-    Skin.EJButtonTemplate(LootJournal.ItemSetsFrame.ClassButton)
+    Skin.EJButtonTemplate(LootJournal.ClassDropDownButton)
+    Skin.EJButtonTemplate(LootJournal.RuneforgePowerFilterDropDownButton)
+
+    local PowersFrame = LootJournal.PowersFrame
+    Skin.EncounterJournalScrollBarTemplate(PowersFrame.ScrollBar)
 end

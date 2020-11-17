@@ -195,9 +195,12 @@ do --[[ AddOns\Blizzard_Communities.xml ]]
         end
         function Skin.CommunitiesChatEditBoxTemplate(EditBox)
             Skin.FrameTypeEditBox(EditBox)
-            local bg = EditBox:GetBackdropTexture("bg")
-            bg:SetPoint("TOPLEFT", -5, -5)
-            bg:SetPoint("BOTTOMRIGHT", 5, 5)
+            EditBox:SetBackdropOption("offsets", {
+                left = -5,
+                right = -5,
+                top = 5,
+                bottom = 5,
+            })
 
             EditBox.Left:Hide()
             EditBox.Right:Hide()
@@ -462,9 +465,12 @@ do --[[ AddOns\Blizzard_Communities.xml ]]
             Frame.BG:Hide()
 
             Base.SetBackdrop(Frame, Color.button, Color.frame.a)
-            local bg = Frame:GetBackdropTexture("bg")
-            bg:SetPoint("TOPLEFT", 0, -3)
-            bg:SetPoint("BOTTOMRIGHT", -1, 1)
+            Frame:SetBackdropOption("offsets", {
+                left = 0,
+                right = 1,
+                top = 3,
+                bottom = 1,
+            })
 
             Base.SetTexture(Frame.Progress, "gradientUp")
             Frame.Shadow:Hide()
@@ -832,7 +838,7 @@ function private.AddOns.Blizzard_Communities()
     --        CommunitiesFrame        --
     ----====####$$$$%%%%$$$$####====----
     local CommunitiesFrame = _G.CommunitiesFrame
-    Skin.ButtonFrameTemplate(CommunitiesFrame)
+    Skin.ButtonFrameTemplateMinimizable(CommunitiesFrame)
     CommunitiesFrame.PortraitOverlay:SetAlpha(0)
 
     Skin.MaximizeMinimizeButtonFrameTemplate(CommunitiesFrame.MaximizeMinimizeFrame)

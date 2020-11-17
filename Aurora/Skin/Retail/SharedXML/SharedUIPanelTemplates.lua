@@ -385,13 +385,18 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
     function Skin.NineSlicePanelTemplate(Frame)
         Frame._auroraNineSlice = true
         local layout = _G.NineSliceUtil.GetLayout(Frame:GetFrameLayoutType())
-        --print("NineSlicePanelTemplate", layout, Frame:GetDebugName())
+        if Frame.debug then
+            _G.print("NineSlicePanelTemplate", layout, Frame:GetDebugName())
+        end
         if layout then
             Hook.NineSliceUtil.ApplyLayout(Frame, layout)
         end
     end
     function Skin.InsetFrameTemplate(Frame)
         Frame.NineSlice.Center = Frame.Bg
+        if Frame.debug then
+            Frame.NineSlice.debug = Frame.debug
+        end
         Skin.NineSlicePanelTemplate(Frame.NineSlice)
     end
     function Skin.DialogBorderNoCenterTemplate(Frame)
@@ -455,6 +460,9 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
 
         Frame.TopTileStreaks:SetTexture("")
 
+        if Frame.debug then
+            Frame.NineSlice.debug = Frame.debug
+        end
         Frame.NineSlice.Center = Frame.Bg
         Skin.NineSlicePanelTemplate(Frame.NineSlice)
     end
@@ -467,6 +475,9 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
     function Skin.ButtonFrameTemplate(Frame)
         Skin.PortraitFrameTemplate(Frame)
         Skin.InsetFrameTemplate(Frame.Inset)
+    end
+    function Skin.ButtonFrameTemplateMinimizable(Frame)
+        Skin.ButtonFrameTemplate(Frame)
     end
 
     function Skin.MagicButtonTemplate(Button)

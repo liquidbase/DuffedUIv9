@@ -178,18 +178,31 @@ if private.isRetail then
     function BackdropMixin:OnBackdropLoaded()
         return _G.BackdropTemplateMixin.OnBackdropLoaded(self)
     end
+    function BackdropMixin:SetupPieceVisuals(piece, setupInfo, pieceLayout)
+        if self.debug then
+            _G.print("SetupPieceVisuals", piece:GetDebugName(), piece:GetSize())
+            --_G.error("Found usage")
+        end
+        _G.BackdropTemplateMixin.SetupPieceVisuals(self, piece, setupInfo, pieceLayout)
+
+    end
     function BackdropMixin:ApplyBackdrop()
         local userLayout = GetNineSliceLayout(self)
         _G.NineSliceUtil.ApplyLayout(self, userLayout)
         for old, pieceName in next, bgTextures do
             local pieceLayout = userLayout[pieceName]
             local piece = Util.GetNineSlicePiece(self, pieceName)
+            if self.debug then
+                _G.print("ApplyBackdrop", piece:GetDebugName(), piece:GetSize())
+                --_G.error("Found usage")
+            end
 
             if pieceLayout.layer then
                 piece:SetDrawLayer(pieceLayout.layer, pieceLayout.subLevel)
             end
             piece:SetTexelSnappingBias(0.0)
             piece:SetSnapToPixelGrid(false)
+            piece:Show()
         end
 
         local backdropInfo = self.backdropInfo
@@ -216,15 +229,18 @@ if private.isRetail then
 
 
     function BackdropMixin:SetBackdrop(backdropInfo, textures)
-        if backdropInfo == true then
-            if self._backdropInfo then
-                backdropInfo = self._backdropInfo
-            else
-                return
-            end
+        if self.debug then
+            _G.print("BackdropMixin:SetBackdrop", self.debug, backdropInfo, self.backdropInfo, self._backdropInfo)
         end
-        if not backdropInfo and self.backdropInfo then
-            self._backdropInfo = self.backdropInfo
+
+        if backdropInfo == true then
+            backdropInfo = self._backdropInfo
+        end
+
+        if self.backdropInfo then
+            if backdropInfo then
+                backdropInfo = self.backdropInfo
+            end
         end
 
         if textures and backdropInfo then
@@ -557,16 +573,27 @@ function Base.CreateBackdrop(frame, options, textures)
     else
         backdropInfo = SanitizeTable(options, backdrop)
     end
+
+    frame._backdropInfo = backdropInfo
+    if frame.backdropInfo then
+        frame.backdropInfo = nil
+    end
     frame:SetBackdrop(backdropInfo, textures)
 end
 
 function Base.SetBackdrop(frame, color, alpha)
-    Base.CreateBackdrop(frame, backdrop)
+    if frame.debug then
+        _G.print("Base.SetBackdrop", frame.debug)
+    end
+    Base.CreateBackdrop(frame, frame._backdropInfo or backdrop)
     Base.SetBackdropColor(frame, color, alpha)
 end
 function Base.SetBackdropColor(frame, color, alpha)
     if not color then color = Color.frame end
     if type(color) ~= "table" and color.r then error("`color` must be a Color object. See Color.Create") end
+    if frame.debug then
+        _G.print("Base.SetBackdropColor", frame.debug)
+    end
 
     frame:SetBackdropColor(Color.Lightness(color, -0.3), alpha or color.a)
     frame:SetBackdropBorderColor(color, 1)

@@ -1,7 +1,20 @@
-﻿## [Unreleased] ##
+﻿## [9.0.1.6] - 2020-11-16 ##
 ### Added ###
 
+  * [retail] Skinned Covenant Renown
   * Skinned RatingMenuFrame
+
+### Changed ###
+
+  * [retail] Updated gossip frame friendship status bar
+
+### Fixed ###
+
+  * Various bugs with backdrops
+  * [retail] Quest tracker progress bars weren't skinned
+  * [retail] Empty mission spots had the highlight out of place
+  * [retail] Help tip arrows would sometimes be placed wrong
+  * [retail] Various bugs from 9.0.2
 
 
 
@@ -15,7 +28,7 @@
   * Error when loot skin is disabled
   * Chat bubble didn't work
   * [retail] Out of place borders on LFG list refresh buttons
-  * [retail] Queue status frame wasn't skined properly
+  * [retail] Queue status frame wasn't skinned properly
   * [retail] Void Storage item background didn't display properly
   * [retail] Optional reagents icons would get stretched when adding an item
   * [retail] Out of place borders on the PvP category buttons
@@ -85,7 +98,7 @@
   * [retail] Display bugs with the AH favorite button
   * [retail] Error with rep frame
   * [retail] Gossip text overlapping friendship bar
-  * [retail] Display bugs with acheivement alert
+  * [retail] Display bugs with achievement alert
 
 
 
@@ -109,7 +122,7 @@
   * Scroll list error in AH
   * Tooltip skin toggle didn't work
   * Font size was still set even when the font skin is disabled
-  * Backpack money frame border was postioned wrong
+  * Backpack money frame border was positioned wrong
 
 
 
@@ -147,7 +160,7 @@
 
 ### Fixed ###
 
-  * Error when opening commuities UI
+  * Error when opening communities UI
   * Display bug with the send mail money border
   * Button highlights when disabled
   * Friends tooltip is now skinned again
@@ -231,6 +244,7 @@
   * Error when opening azerite respec UI
 
 [Unreleased]: https://github.com/Haleth/Aurora/compare/master...develop
+[9.0.1.6]: https://github.com/Haleth/Aurora/compare/9.0.1.5...9.0.1.6
 [9.0.1.5]: https://github.com/Haleth/Aurora/compare/9.0.1.4...9.0.1.5
 [9.0.1.4]: https://github.com/Haleth/Aurora/compare/9.0.1.3...9.0.1.4
 [9.0.1.3]: https://github.com/Haleth/Aurora/compare/9.0.1.2...9.0.1.3
