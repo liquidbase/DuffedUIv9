@@ -14,7 +14,7 @@ local ChangeLogData = {
 	-- 115 chars per line
 	"Changes:",
 		--"• ",
-		"• Revert fix for pawn, fix breaks the function of bag script",
+		"• Fixed Pawn-Icon for bags",
 		"• Update Aurora",
 		"• Fixed issue with petaction bar",
 		"• Fixed issue with spellids",
