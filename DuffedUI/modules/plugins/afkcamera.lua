@@ -6,26 +6,17 @@ local PLevel = UnitLevel('player')
 local PClass = UnitClass('player')
 local PRace = UnitRace('player')
 local PFaction = UnitFactionGroup('player')
-local color = D['RGBToHex'](unpack(C['media'].datatextcolor1))
+local color = D['RGBToHex'](unpack(C['media']['datatextcolor1']))
 local Version = D['Version']
 local Revision = D['Revision']
 local ScreenWidth = GetScreenWidth()
 local ScreenHeight = GetScreenHeight()
 
--- Keys
-local ignoreKeys = {
-	LALT = true,
-	LSHIFT = true,
-	RSHIFT = true
-}
-
 local printKeys = {
 	["PRINTSCREEN"] = true
 }
 
-if IsMacClient() then
-	printKeys[_G["KEY_PRINTSCREEN_MAC"]] = true
-end
+if IsMacClient() then printKeys[_G["KEY_PRINTSCREEN_MAC"]] = true end
 
 -- Guild
 local function GuildText()
@@ -45,15 +36,13 @@ end
 
 -- On Key down
 local function OnKeyDown(_, key)
-	if (ignoreKeys[key]) then
-		return
-	end
 	if printKeys[key] then
 		Screenshot()
 	else
 		SpinStop()
 		DuffedUIAFKPanel:Hide()
 		Minimap:Show()
+		SendChatMessage('', 'AFK')
 	end
 end
 
