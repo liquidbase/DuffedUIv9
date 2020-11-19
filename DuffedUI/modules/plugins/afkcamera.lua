@@ -157,7 +157,6 @@ DuffedUIAFKPanel:SetScript('OnEvent', function(self, event, unit)
 				DuffedUIAFKPanel:Hide()
 				Minimap:Show()
 				ObjectiveTrackerFrame:Show()
-				SendChatMessage('', 'AFK')
 			end
 		end
 	elseif event == 'PLAYER_DEAD' then
@@ -166,7 +165,6 @@ DuffedUIAFKPanel:SetScript('OnEvent', function(self, event, unit)
 			DuffedUIAFKPanel:Hide()
 			Minimap:Show()
 			ObjectiveTrackerFrame:Show()
-			SendChatMessage('', 'AFK')
 		end
 	elseif event == 'PLAYER_REGEN_DISABLED' then
 		if UnitIsAFK('player') then
@@ -174,7 +172,6 @@ DuffedUIAFKPanel:SetScript('OnEvent', function(self, event, unit)
 			DuffedUIAFKPanel:Hide()
 			Minimap:Show()
 			ObjectiveTrackerFrame:Show()
-			SendChatMessage('', 'AFK')
 		end
 	end
 end)
