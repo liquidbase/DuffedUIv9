@@ -15,6 +15,7 @@ local ChangeLogData = {
 	"Changes:",
 		--"• ",
 		"• Fixed Invite-Function on guild and friend datatext",
+		"• Fixed option for flashing buffs / debuffs with 30s or less",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",
