@@ -96,14 +96,14 @@ local function inviteClick(self, name, guid)
 	if guid then
 		local inviteType = GetDisplayedInviteType(guid)
 		if inviteType == 'INVITE' or inviteType == 'SUGGEST_INVITE' then
-			InviteToGroup(name)
+			C_PartyInfo.InviteUnit(name)
 		elseif inviteType == 'REQUEST_INVITE' then
 			RequestInviteFromUnit(name)
 		end
 	else
 		-- if for some reason guid isnt here fallback and just try to invite them
 		-- this is unlikely but having a fallback doesnt hurt
-		InviteToGroup(name)
+		C_PartyInfo.InviteUnit(name)
 	end
 end
 
