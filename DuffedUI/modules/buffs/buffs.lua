@@ -175,7 +175,7 @@ local Skin = function(self)
 			local FadeOut = Animation:CreateAnimation('ALPHA', 'FadeOut')
 			FadeOut:SetFromAlpha(1)
 			FadeOut:SetToAlpha(0)
-			FadeOut:SetDuration(.4)
+			FadeOut:SetDuration(.6)
 			FadeOut:SetSmoothing('IN_OUT')
 
 			self.Animation = Animation
