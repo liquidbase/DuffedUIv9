@@ -169,10 +169,12 @@ local Skin = function(self)
 		self.Duration = Duration
 
 		if flash then
-			local Animation = self:CreateAnimationGroup()
-			Animation:SetLooping'BOUNCE'
+			local Animation = self:CreateAnimationGroup('FLash')
+			Animation:SetLooping('BOUNCE')
 
-			local FadeOut = Animation:CreateAnimation'Alpha'
+			local FadeOut = Animation:CreateAnimation('ALPHA', 'FadeOut')
+			FadeOut:SetFromAlpha(1)
+			FadeOut:SetToAlpha(0)
 			FadeOut:SetDuration(.4)
 			FadeOut:SetSmoothing('IN_OUT')
 
