@@ -14,12 +14,7 @@ local ChangeLogData = {
 	-- 115 chars per line
 	"Changes:",
 		--"• ",
-		"• Fixed Pawn-Icon for bags",
-		"• Update Aurora",
-		"• Fixed issue with petaction bar",
-		"• Fixed issue with spellids",
-		"• Added additional functionalty to friend and guild-datatext",
-		"• Remvoed attribute from unitframes ",
+		"• Fixed Invite-Function on guild and friend datatext",
 	" ",
 	"Important:",
 		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",
