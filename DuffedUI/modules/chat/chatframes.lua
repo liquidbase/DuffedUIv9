@@ -200,8 +200,6 @@ QuickJoinToastButton:SetAlpha(0)
 
 BNToastFrame:SetTemplate('Transparent')
 
-ChatConfigFrameDefaultButton:Kill()
-
 D['SetDefaultChatPosition'] = function(frame)
 	if frame then
 		local id = frame:GetID()
