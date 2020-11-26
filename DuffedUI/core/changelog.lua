@@ -16,6 +16,7 @@ local ChangeLogData = {
 		--"• ",
 		"• Fixed Invite-Function on guild and friend datatext",
 		"• Fixed option for flashing buffs / debuffs with 30s or less",
+		"• Fixed autoclear of status for AFK-Camera",
 		"• Update Aurora",
 	" ",
 	"Important:",
