@@ -46,7 +46,7 @@ function updateStatus()
 		backdrop:Hide()
 	end
 
-	if azeriteItemLocation and not InCombatLockdown() then
+	if azeriteItemLocation and not InCombatLockdown() or not level > 50 then
 		azeriteBar:Show()
 
 		local xp, totalLevelXP = C_AzeriteItem_GetAzeriteItemXPInfo(azeriteItemLocation)
