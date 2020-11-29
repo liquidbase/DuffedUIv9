@@ -872,8 +872,8 @@ function Stuffing:SearchUpdate(str)
 			setName = setName or ''
 
 			local ilink = GetContainerItemLink(b.bag, b.slot)
-			local class, subclass, _, equipSlot = select(6, GetItemInfo(ilink))
-			local minLevel = select(5, GetItemInfo(ilink))
+			local class, subclass, _, equipSlot = select(6, _G.GetItemInfo(ilink))
+			local minLevel = select(5, _G.GetItemInfo(ilink))
 
 			equipSlot = _G[equipSlot] or ''
 
