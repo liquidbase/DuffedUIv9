@@ -1,5 +1,5 @@
 local D, C, L = unpack(select(2, ...)) 
-if not C['misc']['azerite'] then return end
+if not C['misc']['azerite'] or UnitLevel('player') > 50 then return end
 
 local AZERITE_POWER_TOOLTIP_BODY = AZERITE_POWER_TOOLTIP_BODY
 local AZERITE_POWER_TOOLTIP_TITLE = AZERITE_POWER_TOOLTIP_TITLE
@@ -41,12 +41,12 @@ function updateStatus()
 
 	local azeriteItemLocation = C_AzeriteItem_FindActiveAzeriteItem()
 
-	if (not azeriteItemLocation and not InCombatLockdown() or level > 50) then
+	if (not azeriteItemLocation and not InCombatLockdown()) then
 		azeriteBar:Hide()
 		backdrop:Hide()
 	end
 
-	if azeriteItemLocation and not InCombatLockdown() or not level > 50 then
+	if azeriteItemLocation and not InCombatLockdown() then
 		azeriteBar:Show()
 
 		local xp, totalLevelXP = C_AzeriteItem_GetAzeriteItemXPInfo(azeriteItemLocation)
