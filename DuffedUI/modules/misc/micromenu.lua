@@ -26,7 +26,6 @@ D['MicroMenu'] = {
 	end, notCheckable = true},
 	{text = RAID, func = function() ToggleFriendsFrame(4) end, notCheckable = true},
 	{text = HELP_BUTTON, func = function() ToggleHelpFrame() end, notCheckable = true},
-	{text = CALENDAR_VIEW_EVENT, func = function() if(not CalendarFrame) then LoadAddOn('Blizzard_Calendar') end Calendar_Toggle() end, notCheckable = true},
 	{text = ENCOUNTER_JOURNAL, func = function() if not IsAddOnLoaded('Blizzard_EncounterJournal') then EncounterJournal_LoadUI() end ToggleFrame(EncounterJournal) end, notCheckable = true},
 	{text = BLIZZARD_STORE, func = function() StoreMicroButton:Click() end, notCheckable = true},
 	{text = GARRISON_LANDING_PAGE_TITLE, func = function() GarrisonLandingPageMinimapButton_OnClick() end, notCheckable = true},
