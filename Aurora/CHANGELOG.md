@@ -1,6 +1,12 @@
 ﻿## [Unreleased] ##
+### Changed ###
+
+  * [retail] Tweaked mail inbox items to not be so close to the page buttons
+
 ### Fixed ###
 
+  * [retail] Error when opening PvP frame
+  * [retail] Scouting maps were unusable with high frame opacity
   * [retail] Dressup frame borders were not skinned
   * [retail] Barber shop buttons would sometimes be unskinned
   * [retail] Spell quest rewards had a dark colored header
