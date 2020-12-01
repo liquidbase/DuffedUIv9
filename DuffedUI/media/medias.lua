@@ -31,6 +31,8 @@ C['media'] = {
 	['neutral'] = [[Interface\AddOns\DuffedUI\media\textures\neutral]],
 	['sc2'] = [[Interface\AddOns\DuffedUI\media\textures\sc2]],
 	['RaidIcons'] = [[Interface\AddOns\DuffedUI\media\textures\raidicons]],
+	['arrowup'] = [[Interface\AddOns\DuffedUI\media\textures\arrowup]],
+	['arrowdown'] = [[Interface\AddOns\DuffedUI\media\textures\arrowdown]],
 
 	['bordercolor'] = C['general']['bordercolor'] or { .125, .125, .125 },
 	['backdropcolor'] = C['general']['backdropcolor'] or { .05, .05, .05 },
