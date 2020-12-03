@@ -58,6 +58,7 @@ do --[[ AddOns\Blizzard_ObjectiveTracker.lua ]]
         function Hook.ObjectiveTracker_Initialize(self)
             Util.Mixin(_G.DEFAULT_OBJECTIVE_TRACKER_MODULE, Hook.DEFAULT_OBJECTIVE_TRACKER_MODULE)
             Util.Mixin(_G.QUEST_TRACKER_MODULE, Hook.DEFAULT_OBJECTIVE_TRACKER_MODULE)
+            Util.Mixin(_G.CAMPAIGN_QUEST_TRACKER_MODULE, Hook.DEFAULT_OBJECTIVE_TRACKER_MODULE)
             Util.Mixin(_G.BONUS_OBJECTIVE_TRACKER_MODULE, Hook.DEFAULT_OBJECTIVE_TRACKER_MODULE, Hook.BonusObjectiveTrackerModuleMixin)
             Util.Mixin(_G.WORLD_QUEST_TRACKER_MODULE, Hook.DEFAULT_OBJECTIVE_TRACKER_MODULE, Hook.BonusObjectiveTrackerModuleMixin)
             Util.Mixin(_G.SCENARIO_TRACKER_MODULE, Hook.DEFAULT_OBJECTIVE_TRACKER_MODULE, Hook.SCENARIO_TRACKER_MODULE)
@@ -115,32 +116,30 @@ do --[[ AddOns\Blizzard_ObjectiveTracker.lua ]]
             alliance = {color = private.FACTION_COLORS.Alliance, texture = [[Interface\Timer\Alliance-Logo]]},
             horde = {color = private.FACTION_COLORS.Horde, texture = [[Interface\Timer\Horde-Logo]]},
             legion = {color = Color.green:Lightness(-0.3), texture = ""},
+            ["jailerstower-scenario"] = {gradient = private.COVENANT_COLORS.Maw, texture = ""},
         }
 
         function Hook.ScenarioStage_CustomizeBlock(stageBlock, scenarioType, widgetSetID, textureKit)
             -- /dump GetUITextureKitInfo(5117)
             private.debug("ScenarioStage_CustomizeBlock", scenarioType, widgetSetID, textureKit)
 
-            if widgetSetID then
-                stageBlock._auroraOverlay:Hide()
-            else
-                stageBlock._auroraOverlay:Show()
-
-                local kit
-                if textureKit then
-                    kit = uiTextureKits[textureKit]
-                elseif scenarioType == _G.LE_SCENARIO_TYPE_LEGION_INVASION then
-                    kit = uiTextureKits.legion
-                end
-
-                if not kit then
-                    kit = uiTextureKits.Default
-                    private.debug("missing scenario block", textureKit)
-                end
-
-                Base.SetBackdropColor(stageBlock._auroraBG, kit.color, 0.75)
-                stageBlock._auroraOverlay:SetTexture(kit.texture)
+            if scenarioType == _G.LE_SCENARIO_TYPE_LEGION_INVASION then
+                textureKit = uiTextureKits.legion
             end
+
+            local kit = uiTextureKits[textureKit]
+            if not kit then
+                kit = uiTextureKits.Default
+                private.debug("Missing scenario block", textureKit)
+            end
+
+            if kit.gradient then
+                stageBlock._auroraBG:SetBackdropGradient(kit.gradient)
+                stageBlock._auroraBG:SetBackdropBorderColor(kit.gradient)
+            else
+                Base.SetBackdropColor(stageBlock._auroraBG, kit.color, 0.75)
+            end
+            stageBlock._auroraOverlay:SetTexture(kit.texture)
         end
     end
 end
@@ -219,14 +218,19 @@ do --[[ AddOns\Blizzard_ObjectiveTracker.xml ]]
         bg:Hide()
     end
     function Skin.ObjectiveTrackerProgressBarTemplate(Frame)
-        Skin.FrameTypeStatusBar(Frame.Bar)
+        local bar = Frame.Bar
+        Skin.FrameTypeStatusBar(bar)
 
-        local left, right, mid, _, bg = Frame.Bar:GetRegions()
-        left:Hide()
-        right:Hide()
-        mid:Hide()
+        local _, _, _, _, bg = bar:GetRegions()
+        bar.BorderLeft:Hide()
+        bar.BorderRight:Hide()
+        bar.BorderMid:Hide()
         bg:Hide()
     end
+
+    ----====####$$$$%%%%%$$$$####====----
+    --   Blizzard_QuestSuperTracking   --
+    ----====####$$$$%%%%%$$$$####====----
 
     ----====####$$$$%%%%$$$$####====----
     -- Blizzard_QuestObjectiveTracker --
@@ -236,6 +240,14 @@ do --[[ AddOns\Blizzard_ObjectiveTracker.xml ]]
         Frame.Check:SetAtlas("worldquest-tracker-checkmark")
         Frame.Check:SetSize(18, 16)
     end
+
+    ----====####$$$$%%%%%%%%%%%%$$$$####====----
+    -- Blizzard_CampaignQuestObjectiveTracker --
+    ----====####$$$$%%%%%%%%%%%%$$$$####====----
+
+    ----====####$$$$%%%%%%%%%%%%$$$$####====----
+    --  Blizzard_AchievementObjectiveTracker  --
+    ----====####$$$$%%%%%%%%%%%%$$$$####====----
 
     ----====####$$$$%%%%$$$$####====----
     -- Blizzard_AutoQuestPopUpTracker --
@@ -306,6 +318,10 @@ do --[[ AddOns\Blizzard_ObjectiveTracker.xml ]]
         bar.Icon:SetPoint("RIGHT", 33, 0)
         Base.CropIcon(bar.Icon)
     end
+
+    ----====####$$$$%%%%%%%%%%%%%%%%$$$$####====----
+    -- Blizzard_ObjectiveTrackerUIWidgetContainer --
+    ----====####$$$$%%%%%%%%%%%%%%%%$$$$####====----
 end
 
 function private.AddOns.Blizzard_ObjectiveTracker()
@@ -334,6 +350,10 @@ function private.AddOns.Blizzard_ObjectiveTracker()
     ----====####$$$$%%%%$$$$####====----
     -- Blizzard_QuestObjectiveTracker --
     ----====####$$$$%%%%$$$$####====----
+
+    ----====####$$$$%%%%%%%%%%%%$$$$####====----
+    -- Blizzard_CampaignQuestObjectiveTracker --
+    ----====####$$$$%%%%%%%%%%%%$$$$####====----
 
     ----====####$$$$%%%%%%%%%%$$$$####====----
     -- Blizzard_AchievementObjectiveTracker --
@@ -389,6 +409,9 @@ function private.AddOns.Blizzard_ObjectiveTracker()
     ScenarioChallengeModeBlock.StatusBar:SetStatusBarColor(Color.cyan:GetRGB())
 
     -- ScenarioProvingGroundsBlock
+
+    -- MawBuffsBlock --
+    Skin.MawBuffsContainer(_G.ScenarioBlocksFrame.MawBuffsBlock.Container)
 
 
     ----====####$$$$%%%%%%%%%%%%%%%%$$$$####====----

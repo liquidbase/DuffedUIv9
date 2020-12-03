@@ -1,10 +1,18 @@
 ﻿## [Unreleased] ##
+### Added ###
+
+  * [retail] Skinned Maw Buffs
+
 ### Changed ###
 
-  * [retail] Tweaked mail inbox items to not be so close to the page buttons
+  * Updated Warlords garrison skin
+  * Tweaked mail inbox items to not be so close to the page buttons
+  * Updated /etrace dev tool skin
 
 ### Fixed ###
 
+  * [retail] Error when completing an LFG dungeon
+  * [retail] Campaign quest progress bars were not skinned
   * [retail] Error when opening PvP frame
   * [retail] Scouting maps were unusable with high frame opacity
   * [retail] Dressup frame borders were not skinned
