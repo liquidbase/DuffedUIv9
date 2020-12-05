@@ -1605,7 +1605,9 @@ function Stuffing:ADDON_LOADED(addon)
 	self:RegisterEvent('BAG_CLOSED')
 	self:RegisterEvent('BAG_UPDATE_COOLDOWN')
 	self:RegisterEvent('SCRAPPING_MACHINE_SHOW')
-	self:RegisterEvent("BAG_UPDATE_DELAYED")
+	self:RegisterEvent('BAG_UPDATE_DELAYED')
+	self:RegisterEvent('SOULBIND_FORGE_INTERACTION_STARTED')
+	self:RegisterEvent('SOULBIND_FORGE_INTERACTION_ENDED')
 
 	self:InitBags()
 
@@ -1743,6 +1745,14 @@ function Stuffing:GUILDBANKFRAME_CLOSED()
 	end
 end
 
+function Stuffing:SOULBIND_FORGE_INTERACTION_STARTED()
+	Stuffing_Open()
+end
+
+function Stuffing:SOULBIND_FORGE_INTERACTION_ENDED()
+	Stuffing_Close()
+end
+
 function Stuffing:BAG_CLOSED(id)
 	local b = self.bags[id]
 	if b then
@@ -1794,3 +1804,4 @@ LootWonAlertFrame_OnClick = D.Noop
 LootUpgradeFrame_OnClick = D.Noop
 StorePurchaseAlertFrame_OnClick = D.Noop
 LegendaryItemAlertFrame_OnClick = D.Noop
+OpenAllBagsMatchingContext = D.Noop
