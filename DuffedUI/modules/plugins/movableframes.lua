@@ -41,7 +41,7 @@ local AddOnFrames = {
 	['Blizzard_EncounterJournal'] = {'EncounterJournal'},
 	['Blizzard_GMChatUI'] = {'GMChatStatusFrame'},
 	['Blizzard_GMSurveyUI'] = {'GMSurveyFrame'},
-	['Blizzard_GarrisonUI'] = {'GarrisonLandingPage', 'GarrisonMissionFrame', 'GarrisonCapacitiveDisplayFrame', 'GarrisonBuildingFrame', 'GarrisonRecruiterFrame', 'GarrisonRecruitSelectFrame', 'GarrisonShipyardFrame'},
+	['Blizzard_GarrisonUI'] = {'GarrisonLandingPage', 'GarrisonMissionFrame', 'GarrisonCapacitiveDisplayFrame', 'GarrisonBuildingFrame', 'GarrisonRecruiterFrame', 'GarrisonRecruitSelectFrame', 'GarrisonShipyardFrame', 'CovenantMissionFrame', 'CovenantMissionFrame.MissionTab', 'CovenantMissionFrame.MissionTab.MissionPage'},
 	['Blizzard_GuildBankUI'] = {'GuildBankFrame'},
 	['Blizzard_GuildControlUI'] = {'GuildControlUI'},
 	['Blizzard_InspectUI'] = {'InspectFrame'},
@@ -53,11 +53,13 @@ local AddOnFrames = {
 	['Blizzard_OrderHallUI'] = {'OrderHallMissionFrame'},
 	['Blizzard_QuestChoice'] = {'QuestChoiceFrame'},
 	['Blizzard_ReforgingUI'] = {'ReforgingFrame'},
+	['Blizzard_Soulbinds'] = {'SoulbindViewer'},
 	['Blizzard_TalentUI'] = {'PlayerTalentFrame'},
 	['Blizzard_TalkingHeadUI'] = {'TalkingHeadFrame'},
 	['Blizzard_TradeSkillUI'] = {'TradeSkillFrame'},
 	['Blizzard_TrainerUI'] = {'ClassTrainerFrame'},
-	['Blizzard_VoidStorageUI'] = {'VoidStorageFrame'}
+	['Blizzard_VoidStorageUI'] = {'VoidStorageFrame'},
+	['Blizzard_WeeklyRewards'] = {'WeeklyRewardsFrame'},
 }
 
 local frame = CreateFrame('Frame')
