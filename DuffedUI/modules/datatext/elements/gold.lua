@@ -142,6 +142,7 @@ local OnEnter = function(self)
 	D['Currency'](1820) -- Infused Ruby
 	D['Currency'](1822) -- Renown
 	D['Currency'](1828) -- Soul Ash
+	D['Currency'](1885) -- Grateful Offering
 	
 
 	if ImprovedCurrency['PvP'] then
