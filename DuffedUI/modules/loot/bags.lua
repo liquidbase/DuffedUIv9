@@ -1478,29 +1478,16 @@ function Stuffing:Layout(isBank)
 			local btns = self.buttons
 			b.frame:HookScript('OnEnter', function(self)
 				local bag
-				if isBank then
-					bag = v
-				else
-					bag = v + 1
-				end
-
+				if isBank then bag = v else bag = v + 1 end
 				for _, val in ipairs(btns) do
-					if val.bag == bag then
-						val.frame:SetAlpha(1)
-					else
-						val.frame:SetAlpha(0.2)
-					end
+					if val.bag == bag then val.frame:SetAlpha(1) else val.frame:SetAlpha(0.2) end
 				end
 			end)
 
 			b.frame:HookScript('OnLeave', function(self)
-				for _, btn in ipairs(btns) do
-					btn.frame:SetAlpha(1)
-				end
+				for _, btn in ipairs(btns) do btn.frame:SetAlpha(1) end
 			end)
-
 			b.frame:SetScript('OnClick', nil)
-
 			idx = idx + 1
 		end
 	end
@@ -1508,19 +1495,14 @@ function Stuffing:Layout(isBank)
 	for _, i in ipairs(bs) do
 		local x = GetContainerNumSlots(i)
 		if x > 0 then
-			if not self.bags[i] then
-				self.bags[i] = self:BagNew(i, f)
-			end
-
+			if not self.bags[i] then self.bags[i] = self:BagNew(i, f) end
 			slots = slots + GetContainerNumSlots(i)
 		end
 		self.bags_num[i] = x
 	end
 
 	rows = math_floor(slots / cols)
-	if (slots % cols) ~= 0 then
-		rows = rows + 1
-	end
+	if (slots % cols) ~= 0 then rows = rows + 1 end
 
 	f:SetWidth(cols * C['bags'].ButtonSize + (cols - 1) * C['bags'].ButtonSpace + 10 * 2)
 	f:SetHeight(rows * C['bags'].ButtonSize + (rows - 1) * C['bags'].ButtonSpace + off + 10 * 2)
@@ -1541,9 +1523,7 @@ function Stuffing:Layout(isBank)
 				local x = (idx % cols)
 				local y = math_floor(idx / cols)
 
-				if isnew then
-					table_insert(self.buttons, idx + 1, b)
-				end
+				if isnew then table_insert(self.buttons, idx + 1, b) end
 
 				xoff = 10 + (x * C['bags'].ButtonSize) + (x * C['bags'].ButtonSpace)
 				yoff = off + 10 + (y * C['bags'].ButtonSize) + ((y) * C['bags'].ButtonSpace)
@@ -1589,9 +1569,7 @@ function Stuffing:Layout(isBank)
 end
 
 function Stuffing:ADDON_LOADED(addon)
-	if addon ~= 'DuffedUI' then
-		return nil
-	end
+	if addon ~= 'DuffedUI' then return nil end
 
 	self:RegisterEvent('BAG_UPDATE')
 	self:RegisterEvent('ITEM_LOCK_CHANGED')
@@ -1642,40 +1620,30 @@ function Stuffing:PLAYERBANKSLOTS_CHANGED(id)
 				BankFrameItemButton_Update(v.frame)
 				BankFrameItemButton_UpdateLocked(v.frame)
 
-				if not v.frame.tooltipText then
-					v.frame.tooltipText = ''
-				end
+				if not v.frame.tooltipText then v.frame.tooltipText = '' end
 			end
 		end
 	end
 
-	if self.bankFrame and self.bankFrame:IsShown() then
-		self:BagSlotUpdate(-1)
-	end
+	if self.bankFrame and self.bankFrame:IsShown() then self:BagSlotUpdate(-1) end
 end
 
 function Stuffing:PLAYERREAGENTBANKSLOTS_CHANGED()
 	for i = 1, 98 do
 		local button = _G['ReagentBankFrameItem' .. i]
-		if not button then
-			return
-		end
+		if not button then return end
 
 		local _, _, _, quality = GetContainerItemInfo(-3, i)
 		local clink = GetContainerItemLink(-3, i)
 		button:SetBackdropBorderColor(unpack(C['general']['bordercolor']))
 
 		if clink then
-			if quality and quality > 1 then
-				button:SetBackdropBorderColor(GetItemQualityColor(quality))
-			end
+			if quality and quality > 1 then button:SetBackdropBorderColor(GetItemQualityColor(quality)) end
 		end
 	end
 end
 
-function Stuffing:BAG_UPDATE(id)
-	self:BagSlotUpdate(id)
-end
+function Stuffing:BAG_UPDATE(id) self:BagSlotUpdate(id) end
 
 function Stuffing:BAG_UPDATE_DELAYED(id)
 	for _, i in ipairs(BAGS_BACKPACK) do
@@ -1688,9 +1656,7 @@ function Stuffing:BAG_UPDATE_DELAYED(id)
 end
 
 function Stuffing:ITEM_LOCK_CHANGED(bag, slot)
-	if slot == nil then
-		return
-	end
+	if slot == nil then return end
 
 	for _, v in ipairs(self.buttons) do
 		if v.bag == bag and v.slot == slot then
@@ -1701,27 +1667,18 @@ function Stuffing:ITEM_LOCK_CHANGED(bag, slot)
 end
 
 function Stuffing:BANKFRAME_OPENED()
-	if not self.bankFrame then
-		self:InitBank()
-	end
+	if not self.bankFrame then self:InitBank() end
 
 	self:Layout(true)
-	for _, x in ipairs(BAGS_BANK) do
-		self:BagSlotUpdate(x)
-	end
+	for _, x in ipairs(BAGS_BANK) do self:BagSlotUpdate(x) end
 
 	self.bankFrame:Show()
 	Stuffing_Open()
 end
 
 function Stuffing:BANKFRAME_CLOSED()
-	if StuffingFrameReagent then
-		StuffingFrameReagent:Hide()
-	end
-
-	if self.bankFrame then
-		self.bankFrame:Hide()
-	end
+	if StuffingFrameReagent then StuffingFrameReagent:Hide() end
+	if self.bankFrame then self.bankFrame:Hide() end
 end
 
 function Stuffing:GUILDBANKFRAME_OPENED()
@@ -1733,25 +1690,17 @@ function Stuffing:GUILDBANKFRAME_OPENED()
 	Stuffing.guildSortbutton:SetText(L['bags']['SortTab'])
 	Stuffing.guildSortbutton:SkinButton()
 	Stuffing.guildSortbutton:Show()
-	Stuffing.guildSortbutton:SetScript('OnClick', function()
-		ModuleSort:CommandDecorator(ModuleSort.SortBags, 'guild')()
-	end)
+	Stuffing.guildSortbutton:SetScript('OnClick', function() ModuleSort:CommandDecorator(ModuleSort.SortBags, 'guild')() end)
 end
 
 function Stuffing:GUILDBANKFRAME_CLOSED()
 	Stuffing_Close()
-	if Stuffing.guildSortbutton then
-		Stuffing.guildSortbutton:Hide()
-	end
+	if Stuffing.guildSortbutton then Stuffing.guildSortbutton:Hide() end
 end
 
-function Stuffing:SOULBIND_FORGE_INTERACTION_STARTED()
-	Stuffing_Open()
-end
+function Stuffing:SOULBIND_FORGE_INTERACTION_STARTED() Stuffing_Open() end
 
-function Stuffing:SOULBIND_FORGE_INTERACTION_ENDED()
-	Stuffing_Close()
-end
+function Stuffing:SOULBIND_FORGE_INTERACTION_ENDED() Stuffing_Close() end
 
 function Stuffing:BAG_CLOSED(id)
 	local b = self.bags[id]
@@ -1778,30 +1727,22 @@ function Stuffing:BAG_CLOSED(id)
 			end
 		end
 
-		if not changed then
-			break
-		end
+		if not changed then break end
 	end
 
-	if id > 4 then
-		Stuffing_Close()
-	end
+	if id > 4 then Stuffing_Close() end
 end
 
 function Stuffing:BAG_UPDATE_COOLDOWN()
-	for _, v in pairs(self.buttons) do
-		self:UpdateCooldowns(v)
-	end
+	for _, v in pairs(self.buttons) do self:UpdateCooldowns(v) end
 end
 
 function Stuffing:SCRAPPING_MACHINE_SHOW()
-	for i = 0, #BAGS_BACKPACK - 1 do
-		Stuffing:BAG_UPDATE(i)
-	end
+	for i = 0, #BAGS_BACKPACK - 1 do Stuffing:BAG_UPDATE(i) end
 end
 
-LootWonAlertFrame_OnClick = D.Noop
-LootUpgradeFrame_OnClick = D.Noop
-StorePurchaseAlertFrame_OnClick = D.Noop
-LegendaryItemAlertFrame_OnClick = D.Noop
-OpenAllBagsMatchingContext = D.Noop
+LootWonAlertFrame_OnClick = D['Noop']
+LootUpgradeFrame_OnClick = D['Noop']
+StorePurchaseAlertFrame_OnClick = D['Noop']
+LegendaryItemAlertFrame_OnClick = D['Noop']
+OpenAllBagsMatchingContext = D['Noop']
