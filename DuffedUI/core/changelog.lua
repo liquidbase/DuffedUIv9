@@ -14,16 +14,17 @@ local ChangeLogData = {
 	-- 115 chars per line
 	"Changes:",
 		--"• ",
-		"• Fixed Invite-Function on guild and friend datatext",
-		"• Fixed option for flashing buffs / debuffs with 30s or less",
-		"• Fixed autoclear of status for AFK-Camera",
+		"• Fixed bags on Souldbinding [by Rav99]",
+		"• Fixed issue with azerite-system above level 50",
+		"• Fixed search in bags",
+		"• Removed currency Freed Soul",
+		"• Removed second entry for calendar on micromenu",
+		"• Added currency Grateful Offering",
+		"• Added textures",
 		"• Update Aurora",
 	" ",
 	"Important:",
-		"|cffC41F3BThe UI automatically performs a reset of the SavedVars and installation. AddOnSkins and ProjektAzilroka are also|r",
-		"|cffC41F3Bdeactivated!|r",
-		" ",
-		"Please Report all bugs on the issue tracker => https://github.com/liquidbase/DuffedUIv9/issues",
+		"Please Report all bugs on the issue tracker => |cffC41F3Bhttps://github.com/liquidbase/DuffedUIv9/issues|r",
 }
 
 local function ModifiedString(string)
