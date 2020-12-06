@@ -21,6 +21,7 @@ local ChangeLogData = {
 		"• Removed second entry for calendar on micromenu",
 		"• Added currency Grateful Offering",
 		"• Added textures",
+		"• Added Covenantframes and weekly Rewards to moveable frames [by Rav99]",
 		"• Update Aurora",
 	" ",
 	"Important:",
