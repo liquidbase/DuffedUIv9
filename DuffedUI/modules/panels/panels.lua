@@ -99,7 +99,7 @@ if C['actionbar']['enable'] then
 	DuffedUIBar1Mover = CreateFrame('Frame', 'DuffedUIBar1Mover', UIParent, 'BackdropTemplate')
 	DuffedUIBar1Mover:SetSize((D['buttonsize'] * 12) + (D['buttonspacing'] * 13), (D['buttonsize'] * 1) + (D['buttonspacing'] * 2))
 	if C['actionbar']['rightbarvertical'] then
-		DuffedUIBar1Mover:SetPoint('BOTTOM', icenter, 'TOP', 0, 88)
+		DuffedUIBar1Mover:SetPoint('BOTTOM', icenter, 'TOP', 0, 76)
 	else
 		DuffedUIBar1Mover:SetPoint('BOTTOM', icenter, 'TOP', 0, 39)
 	end
@@ -118,7 +118,7 @@ if C['actionbar']['enable'] then
 	Mixin(DuffedUIBar2, BackdropTemplateMixin)
 	if not C['actionbar']['hidepanels'] then DuffedUIBar2:SetTemplate('Transparent') end
 	if C['actionbar']['rightbarvertical'] then
-		DuffedUIBar2:SetPoint('BOTTOM', icenter, 'TOP', 0, 49)
+		DuffedUIBar2:SetPoint('BOTTOM', icenter, 'TOP', 0, 39)
 	else
 		DuffedUIBar2:SetPoint('BOTTOM', icenter, 'TOP', 0, 2)
 	end
