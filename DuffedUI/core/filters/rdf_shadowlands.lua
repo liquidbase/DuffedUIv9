@@ -98,7 +98,7 @@ D['Debuffids'] = {
 
 	-- Spires of Ascension
 	[GetSpellInfo(338729)] = 3, -- Charged Stomp
-	[GetSpellInfo(338747)] = 3, -- Purifying Blast 	==> Throw error on Beta, maybe canceled skill, needs testing
+	-- [GetSpellInfo(338747)] = 3, -- Purifying Blast 	==> Throw error on Beta, maybe canceled skill, needs testing
 	[GetSpellInfo(327481)] = 3, -- Dark Lance
 	[GetSpellInfo(322818)] = 3, -- Lost Confidence
 	[GetSpellInfo(322817)] = 3, -- Lingering Doubt
@@ -158,7 +158,7 @@ D['Debuffids'] = {
 	[GetSpellInfo(339181)] = 3, -- Chain Slam (Root)
 	[GetSpellInfo(331209)] = 3, -- Hateful Gaze
 	[GetSpellInfo(335293)] = 3, -- Chain Link
-	[GetSpellInfo(335270)] = 3, -- Chain This One!
+	--[GetSpellInfo(335270)] = 3, -- Chain This One!
 	[GetSpellInfo(342419)] = 3, -- Chain Them! 1
 	[GetSpellInfo(342420)] = 3, -- Chain Them! 2
 	[GetSpellInfo(335295)] = 3, -- Shattering Chain
@@ -166,7 +166,7 @@ D['Debuffids'] = {
 
 	-- Huntsman Altimor
 	[GetSpellInfo(335304)] = 3, -- Sinseeker
-	[GetSpellInfo(334971)] = 3, -- Jagged Claws
+	--[GetSpellInfo(334971)] = 3, -- Jagged Claws
 	[GetSpellInfo(335111)] = 3, -- Huntsman's Mark 3
 	[GetSpellInfo(335112)] = 3, -- Huntsman's Mark 2
 	[GetSpellInfo(335113)] = 3, -- Huntsman's Mark 1
@@ -186,8 +186,8 @@ D['Debuffids'] = {
 	-- Shriekwing
 	[GetSpellInfo(328897)] = 3, -- Exsanguinated
 	[GetSpellInfo(330713)] = 3, -- Reverberating Pain
-	[GetSpellInfo(329370)] = 3, -- Deadly Descent	==> Throw error on Beta, maybe canceled skill, needs testing
-	[GetSpellInfo(336494)] = 3, -- Echo Screech	==> Throw error on Beta, maybe canceled skill, needs testing
+	--[GetSpellInfo(329370)] = 3, -- Deadly Descent	==> Throw error on Beta, maybe canceled skill, needs testing
+	--[GetSpellInfo(336494)] = 3, -- Echo Screech	==> Throw error on Beta, maybe canceled skill, needs testing
 
 	-- Stone Legion Generals
 	[GetSpellInfo(334498)] = 3 , -- Seismic Upheaval

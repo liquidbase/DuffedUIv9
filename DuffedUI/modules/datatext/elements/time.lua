@@ -13,7 +13,10 @@ local string_utf8sub = string.utf8sub
 local table_sort, table_insert = table.sort, table.insert
 local unpack = _G.unpack
 
+local C_AreaPoiInfo_GetAreaPOIInfo = C_AreaPoiInfo.GetAreaPOIInfo
+local C_AreaPoiInfo_GetAreaPOISecondsLeft = C_AreaPoiInfo.GetAreaPOISecondsLeft
 local C_Calendar = _G.C_Calendar
+local C_UIWidgetManager_GetTextWithStateWidgetVisualizationInfo = C_UIWidgetManager.GetTextWithStateWidgetVisualizationInfo
 local DUNGEON_FLOOR_TEMPESTKEEP1 = _G.DUNGEON_FLOOR_TEMPESTKEEP1
 local EJ_GetCurrentTier = _G.EJ_GetCurrentTier
 local EJ_GetInstanceByIndex = _G.EJ_GetInstanceByIndex
@@ -30,10 +33,11 @@ local GetQuestObjectiveInfo = _G.GetQuestObjectiveInfo
 local GetSavedInstanceInfo = _G.GetSavedInstanceInfo
 local GetSavedWorldBossInfo = _G.GetSavedWorldBossInfo
 local GetWorldPVPAreaInfo = _G.GetWorldPVPAreaInfo
-local IsQuestFlaggedCompleted = _G.C_QuestLog.IsQuestFlaggedCompleted
+local IsQuestFlaggedCompleted = C_QuestLog.IsQuestFlaggedCompleted
 local QUEUE_TIME_UNAVAILABLE = _G.QUEUE_TIME_UNAVAILABLE
 local RequestRaidInfo = _G.RequestRaidInfo
 local SecondsToTime = _G.SecondsToTime
+local C_Map_GetAreaInfo = C_Map.GetAreaInfo
 local TempestKeep = select(2, GetAchievementInfo(1088)):match('%((.-)%)$')
 local TIMEMANAGER_TOOLTIP_LOCALTIME = _G.TIMEMANAGER_TOOLTIP_LOCALTIME
 local TIMEMANAGER_TOOLTIP_REALMTIME = _G.TIMEMANAGER_TOOLTIP_REALMTIME
@@ -99,21 +103,37 @@ local function OnLeave()
 	end
 end
 
+local InstanceNameByID = {
+	[749] = C_Map_GetAreaInfo(3845)
+}
+
+local locale = GetLocale()
+if locale == 'deDE' then
+	InstanceNameByID[1023] = 'Belagerung von Boralus'	-- 'Die Belagerung von Boralus'
+	InstanceNameByID[1041] = 'Königsruh'				-- 'Die Königsruh'
+	InstanceNameByID[1021] = 'Kronsteiganwesen'			-- 'Das Kronsteiganwesen'
+	InstanceNameByID[1186] = 'Spitzen des Aufstiegs'	-- 'Die Spitzen des Aufstiegs'
+end
+
 local instanceIconByName = {}
+local collectIDs, collectedIDs = false -- for testing
 local function GetInstanceImages(index, raid)
 	local instanceID, name, _, _, buttonImage = EJ_GetInstanceByIndex(index, raid)
 	while instanceID do
-		if name == DUNGEON_FLOOR_TEMPESTKEEP1 then
-			instanceIconByName[TempestKeep] = buttonImage
-		else
-			instanceIconByName[name] = buttonImage
+		if collectIDs then
+			if not collectedIDs then
+				collectedIDs = {}
+			end
+
+			collectedIDs[instanceID] = name
 		end
+
+		instanceIconByName[InstanceNameByID[instanceID] or name] = buttonImage
 		index = index + 1
 		instanceID, name, _, _, buttonImage = EJ_GetInstanceByIndex(index, raid)
 	end
 end
 
-local locale = _G.GetLocale()
 local krcntw = locale == 'koKR' or locale == 'zhCN' or locale == 'zhTW'
 local difficultyTag = { -- Raid Finder, Normal, Heroic, Mythic
 	(krcntw and PLAYER_DIFFICULTY3) or string_utf8sub(PLAYER_DIFFICULTY3, 1, 1), -- R
@@ -181,6 +201,20 @@ local function addTitle(text)
 	end
 end
 
+-- Torghast
+local TorghastWidgets, TorghastInfo = {
+	{nameID = 2925, levelID = 2930}, -- Fracture Chambers
+	{nameID = 2926, levelID = 2932}, -- Skoldus Hall
+	{nameID = 2924, levelID = 2934}, -- Soulforges
+	{nameID = 2927, levelID = 2936}, -- Coldheart Interstitia
+	{nameID = 2928, levelID = 2938}, -- Mort'regar
+	{nameID = 2929, levelID = 2940}, -- The Upper Reaches
+}
+
+local function CleanupLevelName(text)
+	return gsub(text, '|n', '')
+end
+
 local collectedInstanceImages = false
 local function OnEnter(self)
 	if not C['datatext']['ShowInCombat'] then
@@ -201,34 +235,45 @@ local function OnEnter(self)
 		local numTiers = (EJ_GetNumTiers() or 0)
 		if numTiers > 0 then
 			local currentTier = EJ_GetCurrentTier()
+
 			for i = 1, numTiers do
 				EJ_SelectTier(i)
 				GetInstanceImages(1, false)
 				GetInstanceImages(1, true)
 			end
 
-			if currentTier then EJ_SelectTier(currentTier) end
+			if collectIDs then
+				Dump(collectedIDs, true)
+			end
+
+			if currentTier then
+				EJ_SelectTier(currentTier)
+			end
+
 			collectedInstanceImages = true
 		end
 	end
 
 	local addedHeader = false
-	local localizedName, isActive, startTime, canEnter, _
+
 	for i = 1, GetNumWorldPVPAreas() do
-		_, localizedName, isActive, _, startTime, canEnter = GetWorldPVPAreaInfo(i)
-		if canEnter then
+		local _, localizedName, isActive, _, startTime, canEnter = GetWorldPVPAreaInfo(i)
+
+		if isActive then
+			startTime = WINTERGRASP_IN_PROGRESS
+		elseif not startTime then
+			startTime = QUEUE_TIME_UNAVAILABLE
+		elseif startTime ~= 0 then
+			startTime = SecondsToTime(startTime, false, nil, 3)
+		end
+
+		if canEnter and startTime ~= 0 then
 			if not addedHeader then
 				GameTooltip:AddLine(VOICE_CHAT_BATTLEGROUND)
 				addedHeader = true
 			end
-			if isActive then
-				startTime = WINTERGRASP_IN_PROGRESS
-			elseif startTime == nil then
-				startTime = QUEUE_TIME_UNAVAILABLE
-			else
-				startTime = SecondsToTime(startTime, false, nil, 3)
-			end
-			GameTooltip:AddDoubleLine(string_format(formatBattleGroundInfo, localizedName), startTime, 1, 1, 1, lockoutColorNormal.r, lockoutColorNormal.g, lockoutColorNormal.b)
+
+			GameTooltip:AddDoubleLine(format(formatBattleGroundInfo, localizedName), startTime, 1, 1, 1, lockoutColorNormal.r, lockoutColorNormal.g, lockoutColorNormal.b)
 		end
 	end
 
@@ -254,7 +299,7 @@ local function OnEnter(self)
 	local reset, maxPlayers, numEncounters, encounterProgress, lockoutColor
 	if next(lockedInstances['raids']) then
 		if GameTooltip:NumLines() > 0 then GameTooltip:AddLine(' ') end
-		GameTooltip:AddLine(L['dt']['savedraids'])
+		GameTooltip:AddLine(L['dt']['savedsaveddungeons'])
 
 		table_sort(lockedInstances['raids'], function(a, b) return a[1] < b[1] end)
 
@@ -344,7 +389,25 @@ local function OnEnter(self)
 			GameTooltip:AddDoubleLine(L['dt']['next'] .. GetNextLocation(nextTime, index), date('%m/%d %I:%M', nextTime), lockoutColorNormal.r, lockoutColorNormal.g, lockoutColorNormal.b, 1, 1, 1, 1, 1, 1)
 		end
 	end
-	
+
+	-- Torghast
+	if not TorghastInfo then
+		TorghastInfo = C_AreaPoiInfo_GetAreaPOIInfo(1543, 6640)
+	end
+	if TorghastInfo and IsQuestFlaggedCompleted(60136) then
+		title = false
+		for _, value in pairs(TorghastWidgets) do
+			local nameInfo = C_UIWidgetManager_GetTextWithStateWidgetVisualizationInfo(value.nameID)
+			if nameInfo and nameInfo.shownState == 1 then
+				addTitle(TorghastInfo.name)
+				local nameText = CleanupLevelName(nameInfo.text)
+				local levelInfo = C_UIWidgetManager_GetTextWithStateWidgetVisualizationInfo(value.levelID)
+				local levelText = levelInfo and CleanupLevelName(levelInfo.text) or UNKNOWN
+				GameTooltip:AddDoubleLine(nameText, levelText)
+			end
+		end
+	end
+
 	GameTooltip:AddLine(' ')
 	GameTooltip:AddDoubleLine(KEY_BUTTON1..':', L['dt']['timeleft'], 1, 1, 1)
 	GameTooltip:AddDoubleLine(KEY_BUTTON2..':', L['dt']['timeright'], 1, 1, 1)
