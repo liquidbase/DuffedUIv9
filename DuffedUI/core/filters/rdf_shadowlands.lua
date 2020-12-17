@@ -98,7 +98,6 @@ D['Debuffids'] = {
 
 	-- Spires of Ascension
 	[GetSpellInfo(338729)] = 3, -- Charged Stomp
-	-- [GetSpellInfo(338747)] = 3, -- Purifying Blast 	==> Throw error on Beta, maybe canceled skill, needs testing
 	[GetSpellInfo(327481)] = 3, -- Dark Lance
 	[GetSpellInfo(322818)] = 3, -- Lost Confidence
 	[GetSpellInfo(322817)] = 3, -- Lingering Doubt
@@ -186,8 +185,6 @@ D['Debuffids'] = {
 	-- Shriekwing
 	[GetSpellInfo(328897)] = 3, -- Exsanguinated
 	[GetSpellInfo(330713)] = 3, -- Reverberating Pain
-	--[GetSpellInfo(329370)] = 3, -- Deadly Descent	==> Throw error on Beta, maybe canceled skill, needs testing
-	--[GetSpellInfo(336494)] = 3, -- Echo Screech	==> Throw error on Beta, maybe canceled skill, needs testing
 
 	-- Stone Legion Generals
 	[GetSpellInfo(334498)] = 3 , -- Seismic Upheaval
