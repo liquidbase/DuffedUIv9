@@ -19,6 +19,7 @@ D['ClassFilter'] = {
 		player = {
 			-- Global
 			D['CreateSpellEntry'](48707), -- Anti-Magic Shell
+			D['CreateSpellEntry'](332829), -- Anti-Magic Zone
 			-- Blood
 			D['CreateSpellEntry'](55233), -- Vampiric Blood
 			D['CreateSpellEntry'](81141), -- Crimson Scourge

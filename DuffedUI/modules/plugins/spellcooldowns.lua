@@ -20,6 +20,7 @@ spellCooldowns = {
 		50977, -- Death Gate
 		61999, -- Raise Ally
 		212552, -- Wraith Walk
+		332829, -- Anti-Magic Zone
 		-- Shared
 		43265, -- Death and Decay
 		48792, -- Icebound Fortitude
