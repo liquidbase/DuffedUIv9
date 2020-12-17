@@ -299,7 +299,7 @@ local function OnEnter(self)
 	local reset, maxPlayers, numEncounters, encounterProgress, lockoutColor
 	if next(lockedInstances['raids']) then
 		if GameTooltip:NumLines() > 0 then GameTooltip:AddLine(' ') end
-		GameTooltip:AddLine(L['dt']['savedsaveddungeons'])
+		GameTooltip:AddLine(L['dt']['savedraids'])
 
 		table_sort(lockedInstances['raids'], function(a, b) return a[1] < b[1] end)
 
