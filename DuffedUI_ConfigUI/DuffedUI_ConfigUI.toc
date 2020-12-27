@@ -2,7 +2,7 @@
 ## Title: |cffC41F3BDuffedUI|r Config UI
 ## Notes: Someday there is only pantesaur left.
 ## Version: 9.0.2
-## X-Revision: 23
+## X-Revision: 24
 ## Author: Tohveli
 ## Editor: Tukz, Elv22
 ## SavedVariables: DuffedUIConfigAll, DuffedUIConfigPublic
