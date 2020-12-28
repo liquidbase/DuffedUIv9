@@ -30,13 +30,13 @@ function es:ToggleChatFrame(Hide)
 	local ChatFrame = es:CheckOption('HideChatFrame')
 	if ChatFrame == 'NONE' then return end
 	if Hide then
-		if _G[ChatFrame]:GetParent() ~= AS.ChatFrameHider and _G[ChatFrame..'Tab']:GetParent() ~= AS.ChatFrameHider then
+		if _G[ChatFrame]:GetParent() ~= es.ChatFrameHider and _G[ChatFrame..'Tab']:GetParent() ~= es.ChatFrameHider then
 			_G[ChatFrame].OriginalParent = _G[ChatFrame]:GetParent()
 			_G[ChatFrame..'Tab'].OriginalParent = _G[ChatFrame..'Tab']:GetParent()
 		end
 
-		_G[ChatFrame]:SetParent(AS.ChatFrameHider)
-		_G[ChatFrame..'Tab']:SetParent(AS.ChatFrameHider)
+		_G[ChatFrame]:SetParent(es.ChatFrameHider)
+		_G[ChatFrame..'Tab']:SetParent(es.ChatFrameHider)
 	else
 		if _G[ChatFrame].OriginalParent then
 			_G[ChatFrame]:SetParent(_G[ChatFrame].OriginalParent)
@@ -49,13 +49,13 @@ function es:ToggleChatFrame(Hide)
 end
 
 function es:EmbedInit()
-	if (C['embed']['enable'] or C['embed']['embed_dual']) and AS.EmbedSystemHooks and AS.EmbedSystem_WindowResize then
-		if not AS.EmbedSystemCreated then
+	if (C['embed']['enable'] or C['embed']['embed_dual']) and es.EmbedSystemHooks and es.EmbedSystem_WindowResize then
+		if not es.EmbedSystemCreated then
 			EmbedSystem_MainWindow = CreateFrame('Frame', 'EmbedSystem_MainWindow', UIParent)
 			EmbedSystem_LeftWindow = CreateFrame('Frame', 'EmbedSystem_LeftWindow', EmbedSystem_MainWindow)
 			EmbedSystem_RightWindow = CreateFrame('Frame', 'EmbedSystem_RightWindow', EmbedSystem_MainWindow)
 
-			AS.EmbedSystemCreated = true
+			es.EmbedSystemCreated = true
 
 			if (C['embed']['enable'] and C['embed']['embed_dual']) then
 				es:SetOption('EmbedSystem', false)
@@ -70,8 +70,8 @@ function es:EmbedInit()
 			es:EmbedSystem_WindowResize()
 			es:Delay(1, function() es:Embed_Check(true) end)
 
-			EmbedSystem_MainWindow:HookScript('OnShow', AS.Embed_Show)
-			EmbedSystem_MainWindow:HookScript('OnHide', AS.Embed_Hide)
+			EmbedSystem_MainWindow:HookScript('OnShow', es.Embed_Show)
+			EmbedSystem_MainWindow:HookScript('OnHide', es.Embed_Hide)
 			es:RegisterEvent('PLAYER_REGEN_DISABLED', 'EmbedEnterCombat')
 			es:RegisterEvent('PLAYER_REGEN_ENABLED', 'EmbedExitCombat')
 
@@ -90,7 +90,7 @@ function es:EmbedInit()
 					if es:CheckOption('HideChatFrame') ~= 'NONE' and not FCF_IsValidChatFrame(_G[es:CheckOption('HideChatFrame')]) then
 						es:SetOption('HideChatFrame', 'NONE')
 					end
-					AS.Options.args.embed.args.HideChatFrame.values = es:GetChatWindowInfo()
+					es.Options.args.embed.args.HideChatFrame.values = es:GetChatWindowInfo()
 				end)
 			end
 		end
@@ -125,7 +125,7 @@ end
 
 function es:Embed_Check(Message)
 	if not (C['embed']['enable'] or C['embed']['embed_dual']) then return end
-	if not AS.EmbedSystemCreated then
+	if not es.EmbedSystemCreated then
 		es:EmbedInit()
 		Message = true
 	end

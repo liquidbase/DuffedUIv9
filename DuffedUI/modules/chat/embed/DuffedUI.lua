@@ -13,8 +13,8 @@ local CreateFrame = CreateFrame
 -- GLOBALS:
 
 function es:EmbedSystemHooks()
-	es:CreateToggleButton('RightToggleButton', '►', AS.InfoRight, ASL.EmbedSystem.ToggleEmbed)
-	_G.RightToggleButton:SetPoint('RIGHT', AS.InfoRight, 'RIGHT', -2, 0)
+	es:CreateToggleButton('RightToggleButton', '►', es.InfoRight, ASL.EmbedSystem.ToggleEmbed)
+	_G.RightToggleButton:SetPoint('RIGHT', es.InfoRight, 'RIGHT', -2, 0)
 	_G.RightToggleButton:HookScript('OnClick', function(self, button)
 		if button == 'RightButton' then
 			if _G.EmbedSystem_MainWindow:IsShown() then
@@ -27,8 +27,8 @@ function es:EmbedSystemHooks()
 		end
 	end)
 
-	es:CreateToggleButton('LeftToggleButton', '◄', AS.InfoLeft, ASL.EmbedSystem.ToggleOptions)
-	_G.LeftToggleButton:SetPoint('LEFT', AS.InfoLeft, 'LEFT', 2, 0)
+	es:CreateToggleButton('LeftToggleButton', '◄', es.InfoLeft, ASL.EmbedSystem.ToggleOptions)
+	_G.LeftToggleButton:SetPoint('LEFT', es.InfoLeft, 'LEFT', 2, 0)
 	_G.LeftToggleButton:HookScript('OnClick', function(self, button)
 		if button == 'RightButton' then
 			if IsAddOnLoaded('Enhanced_Config') then
@@ -59,8 +59,8 @@ function es:CreateToggleButton(Name, Text, Panel, TooltipText)
 end
 
 function es:EmbedSystem_WindowResize()
-	local ChatPanel = es:CheckOption('EmbedRightChat') and AS.InfoRight or AS.InfoLeft
-	local ChatTab = es:CheckOption('EmbedRightChat') and AS.TabsRightBackground or AS.TabsLeftBackground
+	local ChatPanel = es:CheckOption('EmbedRightChat') and es.InfoRight or es.InfoLeft
+	local ChatTab = es:CheckOption('EmbedRightChat') and es.TabsRightBackground or es.TabsLeftBackground
 	if Tukui[2]['General']['Themes']['Value'] == 'Tukui 17' then
 		_G.EmbedSystem_MainWindow:SetPoint('BOTTOM', ChatPanel, 'TOP', 0, 2)
 		_G.EmbedSystem_MainWindow:SetSize(ChatPanel:GetWidth(), 142)

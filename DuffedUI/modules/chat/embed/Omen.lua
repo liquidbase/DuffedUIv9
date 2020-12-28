@@ -23,9 +23,9 @@ function es:Embed_Omen()
 		es:StripTextures(_G.Omen.BarList)
 	end
 
-	_G.Omen.BarList.SetBackdrop = AS.Noop
-	_G.Omen.BarList.SetBackdropColor = AS.Noop
-	_G.Omen.BarList.SetBackdropBorderColor = AS.Noop
+	_G.Omen.BarList.SetBackdrop = es.Noop
+	_G.Omen.BarList.SetBackdropColor = es.Noop
+	_G.Omen.BarList.SetBackdropBorderColor = es.Noop
 
 	_G.Omen.db.profile.Scale = 1
 	_G.Omen.db.profile.Bar.Spacing = 1

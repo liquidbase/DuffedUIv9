@@ -34,17 +34,17 @@ hooksecurefunc(AS, 'EmbedInit', function()
 			elseif (event == "DETAILS_INSTANCE_OPEN") then
 				local instance = select(1, ...)
 				if (instance._ElvUIEmbed) then
-					if (#AS.DetailsInstances >= 2) then
-						AS.DetailsInstances[1]:UngroupInstance()
-						AS.DetailsInstances[2]:UngroupInstance()
+					if (#es.DetailsInstances >= 2) then
+						es.DetailsInstances[1]:UngroupInstance()
+						es.DetailsInstances[2]:UngroupInstance()
 
-						AS.DetailsInstances[1].baseframe:ClearAllPoints()
-						AS.DetailsInstances[2].baseframe:ClearAllPoints()
+						es.DetailsInstances[1].baseframe:ClearAllPoints()
+						es.DetailsInstances[2].baseframe:ClearAllPoints()
 
-						AS.DetailsInstances[1]:RestoreMainWindowPosition()
-						AS.DetailsInstances[2]:RestoreMainWindowPosition()
+						es.DetailsInstances[1]:RestoreMainWindowPosition()
+						es.DetailsInstances[2]:RestoreMainWindowPosition()
 
-						AS.DetailsInstances[2]:MakeInstanceGroup({1})
+						es.DetailsInstances[2]:MakeInstanceGroup({1})
 					end
 				end
 			end
@@ -147,7 +147,7 @@ function es:Embed_Details()
 	wipe(AS['DetailsInstances'])
 
 	for _, instance in Details:ListInstances() do
-		tinsert(AS.DetailsInstances, instance)
+		tinsert(es.DetailsInstances, instance)
 	end
 
 	NumberToEmbed = 0
@@ -170,7 +170,7 @@ function es:Embed_Details()
 		local new_instance = Details:CreateInstance(i)
 
 		if (type(new_instance) == "table") then
-			tinsert(AS.DetailsInstances, new_instance)
+			tinsert(es.DetailsInstances, new_instance)
 		end
 	end
 
@@ -179,13 +179,13 @@ function es:Embed_Details()
 		if C['embed']['embed_dual'] then
 			EmbedParent = es:CheckOption('EmbedRight') == 'Details' and _G.EmbedSystem_RightWindow or _G.EmbedSystem_LeftWindow
 		end
-		es:EmbedDetailsWindow(AS.DetailsInstances[1], EmbedParent:GetWidth(), EmbedParent:GetHeight(), 'TOPLEFT', EmbedParent, 'TOPLEFT', 2, 0)
+		es:EmbedDetailsWindow(es.DetailsInstances[1], EmbedParent:GetWidth(), EmbedParent:GetHeight(), 'TOPLEFT', EmbedParent, 'TOPLEFT', 2, 0)
 
-		if (AS.DetailsInstances[2]) then
-			AS.DetailsInstances[2]._ElvUIEmbed = nil
+		if (es.DetailsInstances[2]) then
+			es.DetailsInstances[2]._ElvUIEmbed = nil
 		end
 	elseif NumberToEmbed == 2 then
-		es:EmbedDetailsWindow(AS.DetailsInstances[1], _G.EmbedSystem_LeftWindow:GetWidth(), _G.EmbedSystem_LeftWindow:GetHeight(), 'TOPLEFT', _G.EmbedSystem_LeftWindow, 'TOPLEFT', 2, 0)
-		es:EmbedDetailsWindow(AS.DetailsInstances[2], _G.EmbedSystem_RightWindow:GetWidth(), _G.EmbedSystem_RightWindow:GetHeight(), 'TOPRIGHT', _G.EmbedSystem_RightWindow, 'TOPRIGHT', -2, 0)
+		es:EmbedDetailsWindow(es.DetailsInstances[1], _G.EmbedSystem_LeftWindow:GetWidth(), _G.EmbedSystem_LeftWindow:GetHeight(), 'TOPLEFT', _G.EmbedSystem_LeftWindow, 'TOPLEFT', 2, 0)
+		es:EmbedDetailsWindow(es.DetailsInstances[2], _G.EmbedSystem_RightWindow:GetWidth(), _G.EmbedSystem_RightWindow:GetHeight(), 'TOPRIGHT', _G.EmbedSystem_RightWindow, 'TOPRIGHT', -2, 0)
 	end
 end

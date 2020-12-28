@@ -54,7 +54,7 @@ end
 function es:Embed_Skada()
 	wipe(AS['SkadaWindows'])
 	for _, window in pairs(_G.Skada:GetWindows()) do
-		tinsert(AS.SkadaWindows, window)
+		tinsert(es.SkadaWindows, window)
 	end
 
 	NumberToEmbed = 0
@@ -71,9 +71,9 @@ function es:Embed_Skada()
 	if NumberToEmbed == 1 then
 		local EmbedParent = _G.EmbedSystem_MainWindow
 		if C['embed']['embed_dual'] then EmbedParent = es:CheckOption('EmbedRight') == 'Skada' and _G.EmbedSystem_RightWindow or _G.EmbedSystem_LeftWindow end
-		es:EmbedSkadaWindow(AS.SkadaWindows[1], EmbedParent:GetWidth(), EmbedParent:GetHeight(), 'TOPLEFT', EmbedParent, 'TOPLEFT', 2, 0)
+		es:EmbedSkadaWindow(es.SkadaWindows[1], EmbedParent:GetWidth(), EmbedParent:GetHeight(), 'TOPLEFT', EmbedParent, 'TOPLEFT', 2, 0)
 	elseif NumberToEmbed == 2 then
-		es:EmbedSkadaWindow(AS.SkadaWindows[1], _G.EmbedSystem_LeftWindow:GetWidth(), _G.EmbedSystem_LeftWindow:GetHeight(), 'TOPLEFT', _G.EmbedSystem_LeftWindow, 'TOPLEFT', 2, 0)
-		es:EmbedSkadaWindow(AS.SkadaWindows[2], _G.EmbedSystem_RightWindow:GetWidth(), _G.EmbedSystem_RightWindow:GetHeight(), 'TOPRIGHT', _G.EmbedSystem_RightWindow, 'TOPRIGHT', -2, 0)
+		es:EmbedSkadaWindow(es.SkadaWindows[1], _G.EmbedSystem_LeftWindow:GetWidth(), _G.EmbedSystem_LeftWindow:GetHeight(), 'TOPLEFT', _G.EmbedSystem_LeftWindow, 'TOPLEFT', 2, 0)
+		es:EmbedSkadaWindow(es.SkadaWindows[2], _G.EmbedSystem_RightWindow:GetWidth(), _G.EmbedSystem_RightWindow:GetHeight(), 'TOPRIGHT', _G.EmbedSystem_RightWindow, 'TOPRIGHT', -2, 0)
 	end
 end
