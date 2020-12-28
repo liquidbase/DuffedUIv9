@@ -1,7 +1,7 @@
 local D, C, L = unpack(select(2, ...))
 local es = D['Embed']
 --local AS = unpack(AddOnSkins)
-if not es:CheckAddOn('Omen') then return end
+if not D['IsAddOnEnabled']('Omen') then return end
 
 -- Cache global variables
 --Lua functions

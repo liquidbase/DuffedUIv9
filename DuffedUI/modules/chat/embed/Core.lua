@@ -116,7 +116,7 @@ function es:Embed_Hide()
 end
 
 function es:CheckEmbed(AddOn)
-	if es:CheckAddOn(AddOn) and (C['embed']['enable'] or C['embed']['embed_dual']) and (strmatch(es:CheckOption('EmbedMain'), AddOn) or strmatch(es:CheckOption('EmbedLeft'), AddOn) or strmatch(es:CheckOption('EmbedRight'), AddOn)) then
+	if D['IsAddOnEnabled'](AddOn) and (C['embed']['enable'] or C['embed']['embed_dual']) and (strmatch(es:CheckOption('EmbedMain'), AddOn) or strmatch(es:CheckOption('EmbedLeft'), AddOn) or strmatch(es:CheckOption('EmbedRight'), AddOn)) then
 		return true
 	else
 		return false
