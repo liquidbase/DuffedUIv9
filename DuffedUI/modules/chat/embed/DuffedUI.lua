@@ -1,6 +1,5 @@
 local D, C, L = unpack(select(2, ...))
 local es = D['Embed']
---local AS = unpack(AddOnSkins)
 
 -- Cache global variables
 --Lua functions

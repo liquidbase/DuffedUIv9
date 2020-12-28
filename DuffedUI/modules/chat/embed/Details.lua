@@ -1,6 +1,5 @@
 local D, C, L = unpack(select(2, ...))
 local es = D['Embed']
---local AS = unpack(AddOnSkins)
 if not D['IsAddOnEnabled']('Details') then return end
 
 -- Cache global variables
