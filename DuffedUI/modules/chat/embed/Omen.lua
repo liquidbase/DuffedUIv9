@@ -1,5 +1,5 @@
 local D, C, L = unpack(select(2, ...))
-local ec = D['Embed']
+local es = D['Embed']
 --local AS = unpack(AddOnSkins)
 if not AS:CheckAddOn('Omen') then return end
 

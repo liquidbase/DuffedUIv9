@@ -1,5 +1,5 @@
 local D, C, L = unpack(select(2, ...))
-local ec = D['Embed']
+local es = D['Embed']
 --local AS = unpack(AddOnSkins)
 
 -- Cache global variables
@@ -14,8 +14,8 @@ local FCF_IsValidChatFrame = FCF_IsValidChatFrame
 local hooksecurefunc = hooksecurefunc
 -- GLOBALS:
 
-AS.ChatFrameHider = CreateFrame('Frame')
-AS.ChatFrameHider:Hide()
+es.ChatFrameHider = CreateFrame('Frame')
+es.ChatFrameHider:Hide()
 local EmbedSystem_MainWindow, EmbedSystem_LeftWindow, EmbedSystem_RightWindow
 
 function AS:GetChatWindowInfo()
