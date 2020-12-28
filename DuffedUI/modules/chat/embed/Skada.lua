@@ -1,7 +1,7 @@
 local D, C, L = unpack(select(2, ...))
 local es = D['Embed']
 --local AS = unpack(AddOnSkins)
-if not AS:CheckAddOn('Skada') then return end
+if not es:CheckAddOn('Skada') then return end
 
 -- Cache global variables
 --Lua functions
@@ -16,7 +16,7 @@ local NumberToEmbed
 
 AS['SkadaWindows'] = {}
 
-function AS:EmbedSkadaWindow(window, width, height, point, relativeFrame, relativePoint, ofsx, ofsy)
+function es:EmbedSkadaWindow(window, width, height, point, relativeFrame, relativePoint, ofsx, ofsy)
 	if not window then return end
 	local barmod = _G.Skada.displays['bar']
 	if window.db.reversegrowth then
@@ -25,7 +25,7 @@ function AS:EmbedSkadaWindow(window, width, height, point, relativeFrame, relati
 		ofsy = 2 + (window.db.enabletitle and window.db.title.height or 0)
 	end
 	window.db.barwidth = width - 4
-	window.db.background.height = height - (window.db.enabletitle and window.db.title.height or 0) - AS:AdjustForTheme(4)
+	window.db.background.height = height - (window.db.enabletitle and window.db.title.height or 0) - es:AdjustForTheme(4)
 	window.db.spark = false
 	window.db.barslocked = true
 	window.db.background.bordertexture = "None"
@@ -41,8 +41,8 @@ function AS:EmbedSkadaWindow(window, width, height, point, relativeFrame, relati
 	window.bargroup:SetFrameLevel(relativeFrame:GetFrameLevel())
 	window.bargroup:SetBackdrop(nil)
 	if window.bargroup.Backdrop then
-		AS:SetTemplate(window.bargroup.Backdrop, AS:CheckOption('EmbedBackdropTransparent') and "Transparent" or 'Default')
-		if AS:CheckOption('EmbedBackdrop') then
+		es:SetTemplate(window.bargroup.Backdrop, es:CheckOption('EmbedBackdropTransparent') and "Transparent" or 'Default')
+		if es:CheckOption('EmbedBackdrop') then
 			window.bargroup.Backdrop:Show()
 		else
 			window.bargroup.Backdrop:Hide()
@@ -51,7 +51,7 @@ function AS:EmbedSkadaWindow(window, width, height, point, relativeFrame, relati
 	barmod.ApplySettings(barmod, window)
 end
 
-function AS:Embed_Skada()
+function es:Embed_Skada()
 	wipe(AS['SkadaWindows'])
 	for _, window in pairs(_G.Skada:GetWindows()) do
 		tinsert(AS.SkadaWindows, window)
@@ -59,21 +59,21 @@ function AS:Embed_Skada()
 
 	NumberToEmbed = 0
 
-	if AS:CheckOption('EmbedSystem') then
+	if es:CheckOption('EmbedSystem') then
 		NumberToEmbed = 1
 	end
 
 	if C['embed']['embed_dual'] then
-		if AS:CheckOption('EmbedRight') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
-		if AS:CheckOption('EmbedLeft') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
+		if es:CheckOption('EmbedRight') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
+		if es:CheckOption('EmbedLeft') == 'Skada' then NumberToEmbed = NumberToEmbed + 1 end
 	end
 
 	if NumberToEmbed == 1 then
 		local EmbedParent = _G.EmbedSystem_MainWindow
-		if C['embed']['embed_dual'] then EmbedParent = AS:CheckOption('EmbedRight') == 'Skada' and _G.EmbedSystem_RightWindow or _G.EmbedSystem_LeftWindow end
-		AS:EmbedSkadaWindow(AS.SkadaWindows[1], EmbedParent:GetWidth(), EmbedParent:GetHeight(), 'TOPLEFT', EmbedParent, 'TOPLEFT', 2, 0)
+		if C['embed']['embed_dual'] then EmbedParent = es:CheckOption('EmbedRight') == 'Skada' and _G.EmbedSystem_RightWindow or _G.EmbedSystem_LeftWindow end
+		es:EmbedSkadaWindow(AS.SkadaWindows[1], EmbedParent:GetWidth(), EmbedParent:GetHeight(), 'TOPLEFT', EmbedParent, 'TOPLEFT', 2, 0)
 	elseif NumberToEmbed == 2 then
-		AS:EmbedSkadaWindow(AS.SkadaWindows[1], _G.EmbedSystem_LeftWindow:GetWidth(), _G.EmbedSystem_LeftWindow:GetHeight(), 'TOPLEFT', _G.EmbedSystem_LeftWindow, 'TOPLEFT', 2, 0)
-		AS:EmbedSkadaWindow(AS.SkadaWindows[2], _G.EmbedSystem_RightWindow:GetWidth(), _G.EmbedSystem_RightWindow:GetHeight(), 'TOPRIGHT', _G.EmbedSystem_RightWindow, 'TOPRIGHT', -2, 0)
+		es:EmbedSkadaWindow(AS.SkadaWindows[1], _G.EmbedSystem_LeftWindow:GetWidth(), _G.EmbedSystem_LeftWindow:GetHeight(), 'TOPLEFT', _G.EmbedSystem_LeftWindow, 'TOPLEFT', 2, 0)
+		es:EmbedSkadaWindow(AS.SkadaWindows[2], _G.EmbedSystem_RightWindow:GetWidth(), _G.EmbedSystem_RightWindow:GetHeight(), 'TOPRIGHT', _G.EmbedSystem_RightWindow, 'TOPRIGHT', -2, 0)
 	end
 end

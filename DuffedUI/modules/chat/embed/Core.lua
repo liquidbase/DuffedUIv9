@@ -18,7 +18,7 @@ es.ChatFrameHider = CreateFrame('Frame')
 es.ChatFrameHider:Hide()
 local EmbedSystem_MainWindow, EmbedSystem_LeftWindow, EmbedSystem_RightWindow
 
-function AS:GetChatWindowInfo()
+function es:GetChatWindowInfo()
 	local ChatTabInfo = {['NONE'] = 'NONE'}
 	for i = 1, FCF_GetNumActiveChatFrames() do
 		ChatTabInfo["ChatFrame"..i] = _G["ChatFrame"..i.."Tab"]:GetText()
@@ -26,8 +26,8 @@ function AS:GetChatWindowInfo()
 	return ChatTabInfo
 end
 
-function AS:ToggleChatFrame(Hide)
-	local ChatFrame = AS:CheckOption('HideChatFrame')
+function es:ToggleChatFrame(Hide)
+	local ChatFrame = es:CheckOption('HideChatFrame')
 	if ChatFrame == 'NONE' then return end
 	if Hide then
 		if _G[ChatFrame]:GetParent() ~= AS.ChatFrameHider and _G[ChatFrame..'Tab']:GetParent() ~= AS.ChatFrameHider then
@@ -48,7 +48,7 @@ function AS:ToggleChatFrame(Hide)
 	end
 end
 
-function AS:EmbedInit()
+function es:EmbedInit()
 	if (C['embed']['enable'] or C['embed']['embed_dual']) and AS.EmbedSystemHooks and AS.EmbedSystem_WindowResize then
 		if not AS.EmbedSystemCreated then
 			EmbedSystem_MainWindow = CreateFrame('Frame', 'EmbedSystem_MainWindow', UIParent)
@@ -58,28 +58,28 @@ function AS:EmbedInit()
 			AS.EmbedSystemCreated = true
 
 			if (C['embed']['enable'] and C['embed']['embed_dual']) then
-				AS:SetOption('EmbedSystem', false)
-				AS:SetOption('EmbedSystemDual', false)
+				es:SetOption('EmbedSystem', false)
+				es:SetOption('EmbedSystemDual', false)
 			end
 
-			if AS:CheckOption('HideChatFrame') ~= 'NONE' and not FCF_IsValidChatFrame(_G[AS:CheckOption('HideChatFrame')]) then
-				AS:SetOption('HideChatFrame', 'NONE')
+			if es:CheckOption('HideChatFrame') ~= 'NONE' and not FCF_IsValidChatFrame(_G[es:CheckOption('HideChatFrame')]) then
+				es:SetOption('HideChatFrame', 'NONE')
 			end
 
-			AS:EmbedSystemHooks()
-			AS:EmbedSystem_WindowResize()
-			AS:Delay(1, function() AS:Embed_Check(true) end)
+			es:EmbedSystemHooks()
+			es:EmbedSystem_WindowResize()
+			es:Delay(1, function() es:Embed_Check(true) end)
 
 			EmbedSystem_MainWindow:HookScript('OnShow', AS.Embed_Show)
 			EmbedSystem_MainWindow:HookScript('OnHide', AS.Embed_Hide)
-			AS:RegisterEvent('PLAYER_REGEN_DISABLED', 'EmbedEnterCombat')
-			AS:RegisterEvent('PLAYER_REGEN_ENABLED', 'EmbedExitCombat')
+			es:RegisterEvent('PLAYER_REGEN_DISABLED', 'EmbedEnterCombat')
+			es:RegisterEvent('PLAYER_REGEN_ENABLED', 'EmbedExitCombat')
 
 			UIParent:HookScript('OnShow', function()
-				if AS:CheckOption('EmbedIsHidden') or AS:CheckOption('EmbedOoC') then
-					AS:Embed_Hide()
+				if es:CheckOption('EmbedIsHidden') or es:CheckOption('EmbedOoC') then
+					es:Embed_Hide()
 				else
-					AS:Embed_Show()
+					es:Embed_Show()
 				end
 			end)
 
@@ -87,82 +87,82 @@ function AS:EmbedInit()
 
 			for _, Function in pairs({"FCF_Close", "FCF_OpenNewWindow", "FCF_SetWindowName"}) do
 				hooksecurefunc(Function, function()
-					if AS:CheckOption('HideChatFrame') ~= 'NONE' and not FCF_IsValidChatFrame(_G[AS:CheckOption('HideChatFrame')]) then
-						AS:SetOption('HideChatFrame', 'NONE')
+					if es:CheckOption('HideChatFrame') ~= 'NONE' and not FCF_IsValidChatFrame(_G[es:CheckOption('HideChatFrame')]) then
+						es:SetOption('HideChatFrame', 'NONE')
 					end
-					AS.Options.args.embed.args.HideChatFrame.values = AS:GetChatWindowInfo()
+					AS.Options.args.embed.args.HideChatFrame.values = es:GetChatWindowInfo()
 				end)
 			end
 		end
 	end
 end
 
-function AS:Embed_Show()
+function es:Embed_Show()
 	EmbedSystem_MainWindow:Show()
 	if C['embed']['embed_dual'] then
 		EmbedSystem_LeftWindow:Show()
 		EmbedSystem_RightWindow:Show()
 	end
-	AS:ToggleChatFrame(true)
+	es:ToggleChatFrame(true)
 end
 
-function AS:Embed_Hide()
+function es:Embed_Hide()
 	EmbedSystem_MainWindow:Hide()
 	if C['embed']['embed_dual'] then
 		EmbedSystem_LeftWindow:Hide()
 		EmbedSystem_RightWindow:Hide()
 	end
-	AS:ToggleChatFrame(false)
+	es:ToggleChatFrame(false)
 end
 
-function AS:CheckEmbed(AddOn)
-	if AS:CheckAddOn(AddOn) and (C['embed']['enable'] or C['embed']['embed_dual']) and (strmatch(AS:CheckOption('EmbedMain'), AddOn) or strmatch(AS:CheckOption('EmbedLeft'), AddOn) or strmatch(AS:CheckOption('EmbedRight'), AddOn)) then
+function es:CheckEmbed(AddOn)
+	if es:CheckAddOn(AddOn) and (C['embed']['enable'] or C['embed']['embed_dual']) and (strmatch(es:CheckOption('EmbedMain'), AddOn) or strmatch(es:CheckOption('EmbedLeft'), AddOn) or strmatch(es:CheckOption('EmbedRight'), AddOn)) then
 		return true
 	else
 		return false
 	end
 end
 
-function AS:Embed_Check(Message)
+function es:Embed_Check(Message)
 	if not (C['embed']['enable'] or C['embed']['embed_dual']) then return end
 	if not AS.EmbedSystemCreated then
-		AS:EmbedInit()
+		es:EmbedInit()
 		Message = true
 	end
 
-	AS:EmbedSystem_WindowResize()
-	EmbedSystem_MainWindow:SetShown(not AS:CheckOption('EmbedIsHidden'))
+	es:EmbedSystem_WindowResize()
+	EmbedSystem_MainWindow:SetShown(not es:CheckOption('EmbedIsHidden'))
 
 	for _, Window in pairs({EmbedSystem_MainWindow, EmbedSystem_LeftWindow, EmbedSystem_RightWindow}) do
-		Window:SetFrameStrata(strsub(AS:CheckOption('EmbedFrameStrata'), 3))
-		Window:SetFrameLevel(AS:CheckOption('EmbedFrameLevel'))
+		Window:SetFrameStrata(strsub(es:CheckOption('EmbedFrameStrata'), 3))
+		Window:SetFrameLevel(es:CheckOption('EmbedFrameLevel'))
 	end
 
-	if AS:CheckEmbed('Details') then AS:Embed_Details() end
-	if AS:CheckEmbed('Omen') then AS:Embed_Omen() end
-	if AS:CheckEmbed('Skada') then AS:Embed_Skada() end
-	if AS:CheckEmbed('TinyDPS') then AS:Embed_TinyDPS() end
-	if AS:CheckEmbed('Recount') then AS:Embed_Recount() end
+	if es:CheckEmbed('Details') then es:Embed_Details() end
+	if es:CheckEmbed('Omen') then es:Embed_Omen() end
+	if es:CheckEmbed('Skada') then es:Embed_Skada() end
+	if es:CheckEmbed('TinyDPS') then es:Embed_TinyDPS() end
+	if es:CheckEmbed('Recount') then es:Embed_Recount() end
 
-	if Message and AS:CheckOption('EmbedSystemMessage') then
-		Message = format("Main: '%s'", AS:CheckOption('EmbedMain'))
-		if C['embed']['embed_dual'] then Message = format("Left: '%s' | Right: '%s'", AS:CheckOption('EmbedLeft'), AS:CheckOption('EmbedRight')) end
-		AS:Print(format('Embed System: - %s', Message))
+	if Message and es:CheckOption('EmbedSystemMessage') then
+		Message = format("Main: '%s'", es:CheckOption('EmbedMain'))
+		if C['embed']['embed_dual'] then Message = format("Left: '%s' | Right: '%s'", es:CheckOption('EmbedLeft'), es:CheckOption('EmbedRight')) end
+		es:Print(format('Embed System: - %s', Message))
 	end
 end
 
 local EmbedOoCCombatStart
-function AS:EmbedEnterCombat()
+function es:EmbedEnterCombat()
 	EmbedOoCCombatStart = true
-	if AS:CheckOption('EmbedOoC') then
+	if es:CheckOption('EmbedOoC') then
 		EmbedSystem_MainWindow:Show()
 	end
 end
 
-function AS:EmbedExitCombat()
+function es:EmbedExitCombat()
 	EmbedOoCCombatStart = false
-	if AS:CheckOption('EmbedOoC') then
-		AS:Delay(AS:CheckOption('EmbedOoCDelay'), function()
+	if es:CheckOption('EmbedOoC') then
+		es:Delay(es:CheckOption('EmbedOoCDelay'), function()
 			if not EmbedOoCCombatStart then
 				EmbedSystem_MainWindow:Hide()
 			end

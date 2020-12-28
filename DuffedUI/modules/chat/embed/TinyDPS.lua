@@ -1,7 +1,7 @@
 local D, C, L = unpack(select(2, ...))
 local es = D['Embed']
 --local AS = unpack(AddOnSkins)
-if not AS:CheckAddOn('TinyDPS') then return end
+if not es:CheckAddOn('TinyDPS') then return end
 
 -- Cache global variables
 --Lua functions
@@ -9,11 +9,11 @@ local _G = _G
 --WoW API / Variables
 -- GLOBALS:
 
-function AS:Embed_TinyDPS()
+function es:Embed_TinyDPS()
 	local EmbedParent = _G.EmbedSystem_MainWindow
-	if C['embed']['embed_dual'] then EmbedParent = AS:CheckOption('EmbedRight') == 'TinyDPS' and _G.EmbedSystem_RightWindow or _G.EmbedSystem_LeftWindow end
+	if C['embed']['embed_dual'] then EmbedParent = es:CheckOption('EmbedRight') == 'TinyDPS' and _G.EmbedSystem_RightWindow or _G.EmbedSystem_LeftWindow end
 
-	AS:SetTemplate(_G.tdpsFrame.Backdrop, AS:CheckOption('EmbedBackdropTransparent') and 'Transparent' or 'Default')
+	es:SetTemplate(_G.tdpsFrame.Backdrop, es:CheckOption('EmbedBackdropTransparent') and 'Transparent' or 'Default')
 	_G.tdpsFrame:SetParent(EmbedParent)
 	_G.tdpsFrame:SetFrameStrata(EmbedParent:GetFrameStrata())
 	_G.tdpsFrame:SetFrameLevel(EmbedParent:GetFrameLevel())
