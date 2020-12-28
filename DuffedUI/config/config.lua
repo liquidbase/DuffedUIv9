@@ -298,11 +298,6 @@ C['merchant'] = {
 	['autoguildrepair'] = false,
 }
 
-C['embed_chat'] = {
-	['enable'] = true,
-	['embed_dual'] = true,
-}
-
 -- Test Table
 C['uitextures'] = {
 }
