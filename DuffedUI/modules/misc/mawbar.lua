@@ -51,6 +51,7 @@ function Module:CreateMawWidgetFrame()
 	bar.text = D['CreateFontString'](bar, 12, 'OUTLINE')
 	bar:SetStatusBarTexture(C['media']['normTex'])
 	bar:SetTemplate('Transparent')
+	bar:CreateBorder()
 	bar.Smooth = true
 	Module.mawbar = bar
 
