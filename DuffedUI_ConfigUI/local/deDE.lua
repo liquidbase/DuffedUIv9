@@ -571,6 +571,10 @@ DuffedUIConfig['deDE'] = {
 		['itemlevel'] = {
 			['Name'] = 'Gegenstandsstufenanzeige im Charakterbildschirm',
 		},
+
+		['mawbar'] = {
+			['Name'] = 'Schlundleiste anzeigen',
+		},
 	},
 	
 	['nameplate'] = {

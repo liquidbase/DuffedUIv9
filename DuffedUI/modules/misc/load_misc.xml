@@ -12,6 +12,7 @@
 	<Script file='func_misc.lua' />
 	<Script file='invite.lua' />
 	<Script file='kill.lua' />
+	<Script file='mawbar.lua' />
 	<Script file='micromenu.lua' />
 	<Script file='objectivetracker.lua' />
 	<Script file='raidutilities.lua' />
