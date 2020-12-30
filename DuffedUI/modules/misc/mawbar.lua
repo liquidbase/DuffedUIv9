@@ -27,10 +27,10 @@ function Module:UpdateMawBarLayout()
 	if rank then
 		bar:SetStatusBarColor(unpack(MawRankColor[rank]))
 		if rank == 5 then
-			bar.text:SetText('Lv'..rank)
+			bar.text:SetText('Eye of the Jailer - Tier ' .. rank)
 			bar:SetValue(maxValue)
 		else
-			bar.text:SetText('Lvl '..rank..' - '..value..'/'..maxValue)
+			bar.text:SetText('Eye of the Jailer - Tier ' .. rank .. ' - ' .. value .. '/' .. maxValue)
 			bar:SetValue(value)
 		end
 		bar:Show()
@@ -62,16 +62,12 @@ function Module:CreateMawWidgetFrame()
 		if widgetInfo and widgetInfo.shownState == 1 then
 			GameTooltip:SetOwner(self, 'ANCHOR_BOTTOM', 0, -10)
 			local header, nonHeader = SplitTextIntoHeaderAndNonHeader(widgetInfo.tooltip)
-			if header then
-				GameTooltip:AddLine(header, nil,nil,nil, 1)
-			end
-			if nonHeader then
-				GameTooltip:AddLine(nonHeader, nil,nil,nil, 1)
-			end
+			if header then GameTooltip:AddLine(header, nil,nil,nil, 1) end
+			if nonHeader then GameTooltip:AddLine(nonHeader, nil,nil,nil, 1) end
 			GameTooltip:Show()
 		end
 	end)
-	bar:SetScript('OnLeave', D.HideTooltip)
+	bar:SetScript('OnLeave', D['HideTooltip'])
 
 	Module:UpdateMawBarLayout()
 	D:RegisterEvent('PLAYER_ENTERING_WORLD', Module.UpdateMawBarLayout)
@@ -80,6 +76,5 @@ end
 
 function Module:OnEnable()
 	if not C['misc']['mawbar'] then return end
-
 	self:CreateMawWidgetFrame()
 end
