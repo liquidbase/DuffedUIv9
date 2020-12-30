@@ -235,6 +235,7 @@ C['misc'] = {
 	['azeriteheight'] = 5,
 	['gemenchantinfo'] = true,
 	['itemlevel'] = true,
+	['mawbar'] = true,
 }
 
 C['announcements'] = {

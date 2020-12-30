@@ -576,6 +576,10 @@ DuffedUIConfig['ruRU'] = {
 		['itemlevel'] = {
 			['Name'] = 'Item level display on the character screen',
 		},
+
+		['mawbar'] = {
+			['Name'] = 'Show Mawbar',
+		},
 	},
 		
 	['nameplate'] = {
