@@ -338,7 +338,8 @@ if D['Client'] == 'deDE' then
 	}
 
 	L['misc'] = {
-		['Resolution'] = 'Du hast Auto-Skalierung aktiviert und es wurde ein Wechsel der Auflösung registriert. Möchtest du den Client jetzt neustarten?'
+		['Resolution'] = 'Du hast Auto-Skalierung aktiviert und es wurde ein Wechsel der Auflösung registriert. Möchtest du den Client jetzt neustarten?',
+		['mawbartext'] = 'Auge des Kerkermeisters - Stufe ',
 	}
 
 	L['welcome'] = {

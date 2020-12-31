@@ -27,10 +27,10 @@ function Module:UpdateMawBarLayout()
 	if rank then
 		bar:SetStatusBarColor(unpack(MawRankColor[rank]))
 		if rank == 5 then
-			bar.text:SetText('Eye of the Jailer - Tier ' .. rank)
+			bar.text:SetText(L['misc']['mawbartext'] .. rank)
 			bar:SetValue(maxValue)
 		else
-			bar.text:SetText('Eye of the Jailer - Tier ' .. rank .. ' - ' .. value .. '/' .. maxValue)
+			bar.text:SetText(L['misc']['mawbartext'] .. rank .. ' - ' .. value .. '/' .. maxValue)
 			bar:SetValue(value)
 		end
 		bar:Show()
