@@ -49,7 +49,7 @@ function Module:CreateMawWidgetFrame()
 
 	local bar = CreateFrame('StatusBar', 'MawBar', UIParent)
 	bar:SetPoint('TOP', 0, -30)
-	bar:SetSize(200, 16)
+	bar:SetSize(270, 16)
 	bar:SetMinMaxValues(0, maxValue)
 	bar.text = D['CreateFontString'](bar, 11, 'OUTLINE')
 	bar:SetStatusBarTexture(C['media']['normTex'])
