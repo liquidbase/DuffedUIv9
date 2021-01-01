@@ -24,13 +24,15 @@ local MawRankColor = {
 function Module:UpdateMawBarLayout()
 	local bar = Module.mawbar
 	local rank, value = GetMawBarValue()
+	local widgetInfo = rank and C_UIWidgetManager.GetTextureWithAnimationVisualizationInfo(2873 + rank)
+	local header, nonheader = SplitTextIntoHeaderAndNonHeader(widgetInfo.tooltip)
 	if rank then
 		bar:SetStatusBarColor(unpack(MawRankColor[rank]))
 		if rank == 5 then
-			bar.text:SetText('Eye of the Jailer - Tier ' .. rank)
+			bar.text:SetText(header .. ' - ' .. GARRISON_TIER .. ' ' .. rank)
 			bar:SetValue(maxValue)
 		else
-			bar.text:SetText('Eye of the Jailer - Tier ' .. rank .. ' - ' .. value .. '/' .. maxValue)
+			bar.text:SetText(header .. ' - ' .. GARRISON_TIER .. ' ' .. rank .. ' - ' .. value .. '/' .. maxValue)
 			bar:SetValue(value)
 		end
 		bar:Show()
