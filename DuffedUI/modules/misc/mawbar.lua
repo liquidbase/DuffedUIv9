@@ -45,10 +45,10 @@ function Module:CreateMawWidgetFrame()
 	if Module.mawbar then return end
 
 	local bar = CreateFrame('StatusBar', 'MawBar', UIParent)
-	bar:SetPoint('TOP', 0, -6)
+	bar:SetPoint('TOP', 0, -30)
 	bar:SetSize(200, 16)
 	bar:SetMinMaxValues(0, maxValue)
-	bar.text = D['CreateFontString'](bar, 12, 'OUTLINE')
+	bar.text = D['CreateFontString'](bar, 11, 'OUTLINE')
 	bar:SetStatusBarTexture(C['media']['normTex'])
 	bar:SetTemplate('Transparent')
 	bar:CreateBorder()
