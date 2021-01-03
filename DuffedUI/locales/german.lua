@@ -278,7 +278,7 @@ if D['Client'] == 'deDE' then
 		['currently'] = "|CFFFFFFFFMomentan:|r ",
 		['still'] = "Noch: %.2d Std. und %.2d Min.",
 		['next'] = "|CFFFFFFFFNächster:|r ",
-		['cfe'] = '|cffC41F3BWährungen früher Erweiterungen:|r',
+		['cfe'] = '|cffC41F3BWährungen älterer Erweiterungen:|r',
 		['cce'] = '|cffC41F3BAktuelle Währungen:|r',
 	}
 
@@ -338,7 +338,7 @@ if D['Client'] == 'deDE' then
 	}
 
 	L['misc'] = {
-		['Resolution'] = 'Du hast Auto-Skalierung aktiviert und es wurde ein Wechsel der Auflösung registriert. Möchtest du den Client jetzt neustarten?'
+		['Resolution'] = 'Du hast Auto-Skalierung aktiviert und es wurde ein Wechsel der Auflösung registriert. Möchtest du den Client jetzt neustarten?',
 	}
 
 	L['welcome'] = {

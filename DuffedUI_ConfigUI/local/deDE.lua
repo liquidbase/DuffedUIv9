@@ -131,6 +131,10 @@ DuffedUIConfig['deDE'] = {
 			['Name'] = 'Itemlevel im Chat' .. ModuleNewFeature,
 			['Desc'] = 'Zeigt den Itemlevel der Gegenstände im Chat an',
 		},
+
+		['emojis'] = {
+			['Name'] = 'Emojis anzeigen' .. ModuleNewFeature,
+		},
 	},
 
 	['auras'] = {
