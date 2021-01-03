@@ -1,6 +1,7 @@
 ﻿<Ui xmlns='http://www.blizzard.com/wow/ui/'>
 	<!-- engine -->
 	<Script file='libs\LibStub\LibStub.lua' />
+	<Script file="libs\LibBase64-1.0\LibBase64-1.0.lua" />
 	<Script file='libs\CallbackHandler-1.0\CallbackHandler-1.0.lua' />
 	<Script file='libs\Ace\AceAddon-3.0\AceAddon-3.0.lua' />
 	<Script file='libs\Ace\AceEvent-3.0\AceEvent-3.0.lua' />
@@ -59,6 +60,7 @@
 	<Include file='modules\actionbars\load_ab.xml' />
 	<Script file='modules\chat\chatbubbles.lua' />
 	<Script file='modules\chat\chatframes.lua' />
+	<Script file='modules\chat\emojis.lua' />
 	<Script file='modules\chat\telltarget.lua' />
 	<Script file='modules\chat\copychat.lua' />
 	<Script file='modules\chat\mousescroll.lua' />

@@ -10,6 +10,7 @@ Engine[4] = {}
 
 _G[AddOnName] = Engine
 AddOn.cargBags = Engine.cargBags
+AddOn.Base64 = LibStub("LibBase64-1.0")
 
 AddOn.Title = GetAddOnMetadata(AddOnName, 'Title')
 AddOn.Author = GetAddOnMetadata(AddOnName, 'Author')

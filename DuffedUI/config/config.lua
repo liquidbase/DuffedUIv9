@@ -69,6 +69,7 @@ C['chat'] = {
 	['newchatbubbles'] = true,
 	['chatbubblesfontsize'] = 11,
 	['chatitemlevel'] = true,
+	['emojis'] = true,
 }
 
 C['castbar'] = {

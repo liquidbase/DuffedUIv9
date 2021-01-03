@@ -132,6 +132,10 @@ DuffedUIConfig['ptBR'] = {
 			['Name'] = 'Item level in chat'  ..  ModuleNewFeature,
 			['Desc'] = 'Shows the item level of the items in the chat',
 		},
+
+		['emojis'] = {
+			['Name'] = 'Show Emojis' .. ModuleNewFeature,
+		},
 	},
 
 	['auras'] = {
