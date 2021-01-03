@@ -24,13 +24,16 @@ local MawRankColor = {
 function Module:UpdateMawBarLayout()
 	local bar = Module.mawbar
 	local rank, value = GetMawBarValue()
+	
 	if rank then
+		local widgetInfo = rank and C_UIWidgetManager.GetTextureWithAnimationVisualizationInfo(2873 + rank)
+		local header, nonheader = SplitTextIntoHeaderAndNonHeader(widgetInfo.tooltip)
 		bar:SetStatusBarColor(unpack(MawRankColor[rank]))
 		if rank == 5 then
-			bar.text:SetText(L['misc']['mawbartext'] .. rank)
+			bar.text:SetText(header .. ' - ' .. GARRISON_TIER .. ' ' .. rank)
 			bar:SetValue(maxValue)
 		else
-			bar.text:SetText(L['misc']['mawbartext'] .. rank .. ' - ' .. value .. '/' .. maxValue)
+			bar.text:SetText(header .. ' - ' .. GARRISON_TIER .. ' ' .. rank .. ' - ' .. value .. '/' .. maxValue)
 			bar:SetValue(value)
 		end
 		bar:Show()
@@ -45,10 +48,10 @@ function Module:CreateMawWidgetFrame()
 	if Module.mawbar then return end
 
 	local bar = CreateFrame('StatusBar', 'MawBar', UIParent)
-	bar:SetPoint('TOP', 0, -6)
-	bar:SetSize(200, 16)
+	bar:SetPoint('TOP', 0, -30)
+	bar:SetSize(270, 16)
 	bar:SetMinMaxValues(0, maxValue)
-	bar.text = D['CreateFontString'](bar, 12, 'OUTLINE')
+	bar.text = D['CreateFontString'](bar, 11, 'OUTLINE')
 	bar:SetStatusBarTexture(C['media']['normTex'])
 	bar:SetTemplate('Transparent')
 	bar:CreateBorder()
