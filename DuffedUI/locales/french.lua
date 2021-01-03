@@ -338,7 +338,6 @@ if D['Client'] == 'frFR' then
 
 	L['misc'] = {
 		['Resolution'] = 'You have auto-scale enabled and we detected a resolution change. Do you want to restart the Client?',
-		['mawbartext'] = 'Eye of the Jailer - Tier ',
 	}
 
 	L['welcome'] = {
