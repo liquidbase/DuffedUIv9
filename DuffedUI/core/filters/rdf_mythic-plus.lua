@@ -33,6 +33,7 @@ D['Debuffids'] = {
 	-- The Necrotic Wake
 	[GetSpellInfo(321754)] = 3, -- Icebound Aegis
 	[GetSpellInfo(343558)] = 3, -- Morbid Fixation
+	[GetSpellInfo(343470)] = 3, -- Boneshatter Shield
 
 	-- Theater of Pain
 	[GetSpellInfo(331510)] = 3, -- Death Wish

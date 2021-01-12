@@ -187,16 +187,18 @@ D['Debuffids'] = {
 	[GetSpellInfo(330713)] = 3, -- Reverberating Pain
 
 	-- Stone Legion Generals
-	[GetSpellInfo(334498)] = 3 , -- Seismic Upheaval
-	[GetSpellInfo(337643)] = 3 , -- Unstable Footing
-	[GetSpellInfo(334765)] = 3 , -- Heart Rend
-	[GetSpellInfo(333377)] = 3 , -- Wicked Mark
-	[GetSpellInfo(334616)] = 3 , -- Petrified
-	[GetSpellInfo(334541)] = 3 , -- Curse of Petrification
-	[GetSpellInfo(339690)] = 3 , -- Crystalize
-	[GetSpellInfo(342655)] = 3 , -- Volatile Anima Infusion
-	[GetSpellInfo(342698)] = 3 , -- Volatile Anima Infection
-	[GetSpellInfo(343881)] = 3 , -- Serrated Tear
+	[GetSpellInfo(334498)] = 3, -- Seismic Upheaval
+	[GetSpellInfo(337643)] = 3, -- Unstable Footing
+	[GetSpellInfo(334765)] = 3, -- Heart Rend
+	[GetSpellInfo(333377)] = 3, -- Wicked Mark
+	[GetSpellInfo(334616)] = 3, -- Petrified
+	[GetSpellInfo(334541)] = 3, -- Curse of Petrification
+	[GetSpellInfo(339690)] = 3, -- Crystalize
+	[GetSpellInfo(342655)] = 3, -- Volatile Anima Infusion
+	[GetSpellInfo(342698)] = 3, -- Volatile Anima Infection
+	[GetSpellInfo(343881)] = 3, -- Serrated Tear
+	[GetSpellInfo(329808)] = 3, -- Hardened Stone Form / Grashaal
+	[GetSpellInfo(329636)] = 3, -- Hardened Stone Form / Kaal
 
 	-- Artificer Xy'mox
 	[GetSpellInfo(327902)] = 3, -- Fixate
