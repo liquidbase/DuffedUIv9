@@ -106,11 +106,11 @@ local function GetTooltipAnchor(self)
 	local Y = D['Scale'](5)
 
 	if (Position == 1) then
-		Anchor = "ANCHOR_LEFT"
+		Anchor = "ANCHOR_TOPLEFT"
 		From = DuffedUIInfoLeft
 		Y = D['Scale'](5)
 	elseif (Position == 2) then
-		Anchor = "ANCHOR_LEFT"
+		Anchor = "ANCHOR_TOPLEFT"
 		From = DuffedUIInfoLeft
 		Y = D['Scale'](5)
 	elseif (Position == 3) then
