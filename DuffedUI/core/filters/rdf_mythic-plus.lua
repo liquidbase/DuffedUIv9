@@ -29,6 +29,7 @@ D['Debuffids'] = {
 
 	-- Plaguefall
 	[GetSpellInfo(336451)] = 3, -- Bulwark of Maldraxxus
+	[GetSpellInfo(333737)] = 3, -- Congealed Contagion
 
 	-- The Necrotic Wake
 	[GetSpellInfo(321754)] = 3, -- Icebound Aegis
@@ -47,6 +48,7 @@ D['Debuffids'] = {
 	-- Spires of Ascension
 	[GetSpellInfo(327416)] = 3, -- Recharge Anima
 	[GetSpellInfo(317936)] = 3, -- Forsworn Doctrine
+	[GetSpellInfo(327808)] = 3, -- Inspiring Presence
 
 	-- De Other Side
 	[GetSpellInfo(344739)] = 3, -- Spectral
