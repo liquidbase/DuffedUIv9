@@ -185,6 +185,10 @@ D['Debuffids'] = {
 	-- Shriekwing
 	[GetSpellInfo(328897)] = 3, -- Exsanguinated
 	[GetSpellInfo(330713)] = 3, -- Reverberating Pain
+	[GetSpellInfo(329370)] = 3, -- Deadly Descent
+	[GetSpellInfo(336494)] = 3, -- Echo Screech
+	[GetSpellInfo(346301)] = 3, -- Bloodlight
+	[GetSpellInfo(342077)] = 3, -- Echolocation
 
 	-- Stone Legion Generals
 	[GetSpellInfo(334498)] = 3, -- Seismic Upheaval
@@ -199,6 +203,7 @@ D['Debuffids'] = {
 	[GetSpellInfo(343881)] = 3, -- Serrated Tear
 	[GetSpellInfo(329808)] = 3, -- Hardened Stone Form / Grashaal
 	[GetSpellInfo(329636)] = 3, -- Hardened Stone Form / Kaal
+	[GetSpellInfo(340037)] = 3, -- Volatile Stone Shell
 
 	-- Artificer Xy'mox
 	[GetSpellInfo(327902)] = 3, -- Fixate
