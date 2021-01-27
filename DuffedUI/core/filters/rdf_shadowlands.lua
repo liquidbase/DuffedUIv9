@@ -185,8 +185,8 @@ D['Debuffids'] = {
 	-- Shriekwing
 	[GetSpellInfo(328897)] = 3, -- Exsanguinated
 	[GetSpellInfo(330713)] = 3, -- Reverberating Pain
-	[GetSpellInfo(329370)] = 3, -- Deadly Descent
-	[GetSpellInfo(336494)] = 3, -- Echo Screech
+	--[GetSpellInfo(329370)] = 3, -- Deadly Descent
+	--[GetSpellInfo(336494)] = 3, -- Echo Screech
 	[GetSpellInfo(346301)] = 3, -- Bloodlight
 	[GetSpellInfo(342077)] = 3, -- Echolocation
 
