@@ -19,6 +19,26 @@ local OldMoney
 local myPlayerRealm = D['MyRealm']
 local myPlayerName  = UnitName('player')
 
+local C_CurrencyInfo_GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
+local C_Covenants_GetCovenantData = C_Covenants.GetCovenantData
+local C_Covenants_GetActiveCovenantID = C_Covenants.GetActiveCovenantID
+
+local covenantMap = {
+    [1] = L['dt']['kyrian'],
+    [2] = L['dt']['venthyr'],
+    [3] = L['dt']['nightfae'],
+    [4] = L['dt']['necrolord'],
+}
+
+local function GetTokenInfo(id)
+	local info = C_CurrencyInfo_GetCurrencyInfo(id)
+	if info then
+		return info.name, info.quantity, info.maxQuantity
+	else
+		return
+	end
+end
+
 local function formatMoney(money)
 	local gold = floor(math.abs(money) / 10000)
 	local silver = mod(floor(math.abs(money) / 100), 100)
@@ -49,24 +69,6 @@ local function checkTables()
 	if DuffedUIData['Class'][myPlayerRealm] == nil then DuffedUIData['Class'][myPlayerRealm] = {} end
 	if DuffedUIData['FavouriteItems'] == nil then DuffedUIData['FavouriteItems'] = {} end
 	DuffedUIData['Class'][myPlayerRealm][myPlayerName] = D['Class']
-end
-
-local Update = function(self, event)
-	local NewMoney = GetMoney()
-	
-	OldMoney = OldMoney or NewMoney
-
-	local Change = NewMoney - OldMoney
-
-	if (OldMoney > NewMoney) then
-		Spent = Spent - Change
-	else
-		Profit = Profit + Change
-	end
-
-	self.Text:SetText(formatMoney(NewMoney))
-	DuffedUIData['gold'][myPlayerRealm][myPlayerName] = NewMoney
-	OldMoney = NewMoney
 end
 
 local OnEnter = function(self)
@@ -139,7 +141,7 @@ local OnEnter = function(self)
 	D['Currency'](1813) -- Reservoir Anima
 	D['Currency'](1816) -- Sinstone Fragments
 	D['Currency'](1820) -- Infused Ruby
-	D['Currency'](1822) -- Renown
+	-- D['Currency'](1822) -- Renown
 	D['Currency'](1828) -- Soul Ash
 	D['Currency'](1885) -- Grateful Offering
 	
@@ -191,7 +193,7 @@ local OnEnter = function(self)
 		D['Currency'](1174) -- Demonic
 	end
 
-	if C['datatext']['oldcurrency'] then
+	if IsShiftKeyDown() and C['datatext']['oldcurrency'] then
 		GameTooltip:AddLine(' ')
 		GameTooltip:AddLine(L['dt']['cfe'])
 		if ImprovedCurrency[EXPANSION_NAME7] then
@@ -271,8 +273,26 @@ local OnEnter = function(self)
 			D['Currency'](241) -- Champion's Seal
 		end
 	end
+	
+	local RenownID = 1822
+	local covenantID = C_Covenants.GetActiveCovenantID()
+	local name, amount, totalMax = GetTokenInfo(RenownID)
+	if C_Covenants_GetCovenantData(C_Covenants_GetActiveCovenantID()) then
+		amount = amount + 1
+		totalMax = totalMax + 1
+	else
+		amount = '-'
+		totalMax = '-'
+	end
 
+	if covenantID > 0 and covenantID < 5 then
+		GameTooltip:AddLine(' ')
+		GameTooltip:AddLine(name)
+		GameTooltip:AddDoubleLine(covenantMap[covenantID], format(amount..'/'..totalMax), 1, 1, 1, 1, 1, 1)
+	end
+	
 	GameTooltip:AddLine(' ')
+	GameTooltip:AddDoubleLine("Info:", L['dt']['missioninfo'], 1, 1, 1)
 	GameTooltip:AddDoubleLine(KEY_BUTTON1..':', L['dt']['goldbagsopen'], 1, 1, 1)
 	GameTooltip:AddDoubleLine(KEY_BUTTON2..':', L['dt']['goldcurrency'], 1, 1, 1)
 	GameTooltip:AddDoubleLine(L['dt']['goldreset'], L['dt']['goldreset2'], 1, 1, 1)
@@ -337,6 +357,26 @@ local OnMouseDown = function(self, btn)
 	end
 end
 
+local Update = function(self, event)
+	local NewMoney = GetMoney()
+	
+	OldMoney = OldMoney or NewMoney
+
+	local Change = NewMoney - OldMoney
+
+	if (OldMoney > NewMoney) then
+		Spent = Spent - Change
+	else
+		Profit = Profit + Change
+	end
+
+	self.Text:SetText(formatMoney(NewMoney))
+	DuffedUIData['gold'][myPlayerRealm][myPlayerName] = NewMoney
+	OldMoney = NewMoney
+
+	if event == 'MODIFIER_STATE_CHANGED' and not IsAltKeyDown() and GetMouseFocus() == self then OnEnter(self) end
+end
+
 local function Enable(self)
 	self:RegisterEvent('PLAYER_MONEY')
 	self:RegisterEvent('SEND_MAIL_MONEY_CHANGED')
@@ -345,6 +385,8 @@ local function Enable(self)
 	self:RegisterEvent('TRADE_MONEY_CHANGED')
 	--self:RegisterEvent('PLAYER_ENTERING_WORLD')
 	self:RegisterEvent('PLAYER_LOGIN')
+	self:RegisterEvent('MODIFIER_STATE_CHANGED')
+	self:RegisterEvent('COVENANT_SANCTUM_RENOWN_LEVEL_CHANGED')
 	self:SetScript('OnEvent', Update)
 	self:SetScript('OnMouseDown', OnMouseDown)
 	self:SetScript('OnEnter', OnEnter)

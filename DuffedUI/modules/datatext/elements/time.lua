@@ -67,6 +67,14 @@ local localizedName, isActive, startTime, canEnter, _
 
 if lastPanel ~= nil then Update(lastPanel, 20000) end
 
+local function FormatTooltipMoney(money)
+	local gold, silver, copper = abs(money / 10000), abs(mod(money / 100, 100)), abs(mod(money, 100))
+	local cash = ''
+
+	cash = format('%.2d' .. '|cffffd700g|r' .. ' %.2d' .. '|cffc7c7cfs|r' .. ' %.2d' .. '|cffeda55fc|r', gold, silver, copper)
+	return cash
+end
+
 local function ConvertTime(h, m)
 	local AmPm
 	if C['datatext']['time24'] == true then
@@ -410,6 +418,10 @@ local function OnEnter(self)
 	end
 
 	GameTooltip:AddLine(' ')
+	GameTooltip:AddLine('WoW Token')
+	GameTooltip:AddDoubleLine(AUCTION_HOUSE_BROWSE_HEADER_PRICE, FormatTooltipMoney(C_WowTokenPublic.GetCurrentMarketPrice() or 0), 1, 1, 1, 1, 1, 1)
+
+	GameTooltip:AddLine(' ')
 	GameTooltip:AddDoubleLine(KEY_BUTTON1..':', L['dt']['timeleft'], 1, 1, 1)
 	GameTooltip:AddDoubleLine(KEY_BUTTON2..':', L['dt']['timeright'], 1, 1, 1)
 	GameTooltip:Show()
@@ -446,6 +458,11 @@ function Update(self, t)
 		self.Text:SetFormattedText(europeDisplayFormat, ValueColor, Hr, ValueColor, Min)
 	else
 		self.Text:SetFormattedText(ukDisplayFormat, ValueColor, Hr, ValueColor, Min, NameColor, APM[AmPm])
+	end
+	
+	if not Ticker then
+		C_WowTokenPublic.UpdateMarketPrice()
+		Ticker = C_Timer.NewTicker(60, C_WowTokenPublic.UpdateMarketPrice)
 	end
 end
 
