@@ -397,14 +397,10 @@ end
 
 local lastGUID
 function Module:AddInspectInfo(tooltip, unit, numTries, r, g, b)
-	if (not unit) or (numTries > 3) or not CanInspect(unit) then
-		return
-	end
+	if (not unit) or (numTries > 3) or not CanInspect(unit) then return end
 
 	local unitGUID = UnitGUID(unit)
-	if not unitGUID then
-		return
-	end
+	if not unitGUID then return end
 
 	if unitGUID == UnitGUID("player") then
 		tooltip:AddDoubleLine(SPECIALIZATION..':', self:GetSpecializationInfo(unit, true), nil, nil, nil, r, g, b)
@@ -416,17 +412,13 @@ function Module:AddInspectInfo(tooltip, unit, numTries, r, g, b)
 			inspectGUIDCache[unitGUID].time = nil
 			inspectGUIDCache[unitGUID].specName = nil
 			inspectGUIDCache[unitGUID].itemLevel = nil
-			return D.Delay(0.33, function()
-				self:AddInspectInfo(tooltip, unit, numTries + 1, r, g, b)
-			end)
+			return D.Delay(0.33, function() self:AddInspectInfo(tooltip, unit, numTries + 1, r, g, b) end)
 		end
 
 		tooltip:AddDoubleLine(SPECIALIZATION..':', specName, nil, nil, nil, r, g, b)
 		tooltip:AddDoubleLine(STAT_AVERAGE_ITEM_LEVEL..':', itemLevel, nil, nil, nil, 1, 1, 1)
 	elseif unitGUID then
-		if not inspectGUIDCache[unitGUID] then
-			inspectGUIDCache[unitGUID] = {unitColor = {r, g, b}}
-		end
+		if not inspectGUIDCache[unitGUID] then inspectGUIDCache[unitGUID] = {unitColor = {r, g, b}} end
 
 		if lastGUID ~= unitGUID then
 			lastGUID = unitGUID
@@ -439,13 +431,9 @@ function Module:AddInspectInfo(tooltip, unit, numTries, r, g, b)
 end
 
 function Module:GameTooltip_OnTooltipSetUnit(tt)
-	if tt:IsForbidden() then
-		return
-	end
+	if tt:IsForbidden() then return end
 	
-	if  InCombatLockdown() and C['tooltip']['HideInCombat'] then
-		tt:Hide()
-	end
+	if  InCombatLockdown() and C['tooltip']['HideInCombat'] then tt:Hide() end
 
 	local unit = select(2, tt:GetUnit())
 	local isShiftKeyDown = IsShiftKeyDown()
@@ -454,12 +442,8 @@ function Module:GameTooltip_OnTooltipSetUnit(tt)
 
 	if not unit then
 		local GMF = GetMouseFocus()
-		if GMF and GMF.GetAttribute and GMF:GetAttribute('unit') then
-			unit = GMF:GetAttribute('unit')
-		end
-		if not unit or not UnitExists(unit) then
-			return
-		end
+		if GMF and GMF.GetAttribute and GMF:GetAttribute('unit') then unit = GMF:GetAttribute('unit') end
+		if not unit or not UnitExists(unit) then return end
 	end
 
 	self:RemoveTrashLines(tt)
@@ -526,19 +510,14 @@ function Module:GameTooltip_OnTooltipSetUnit(tt)
 			end
 		end
 	end
-
-	if isShiftKeyDown and isPlayerUnit then
-		self:AddInspectInfo(tt, unit, 0, color.r, color.g, color.b)
-	end
+	self:AddInspectInfo(tt, unit, 0, color.r, color.g, color.b)
 
 	if C['tooltip']['FactionIcon'] then
 		local unit = select(2, tt:GetUnit())
 		if (UnitIsPlayer(unit)) then
 
 			local faction = UnitFactionGroup(unit)
-			if faction and faction ~= "Neutral" then
-				Module.InsertFactionFrame(tt, faction)
-			end
+			if faction and faction ~= "Neutral" then Module.InsertFactionFrame(tt, faction) end
 		end
 	end
 
@@ -548,9 +527,7 @@ function Module:GameTooltip_OnTooltipSetUnit(tt)
 
 		local guid = UnitGUID(unit) or ''
 		local id = tonumber(guid:match('%-(%d-)%-%x-$'), 10)
-		if id then
-			tt:AddLine(('|cFFCA3C3C%s|r %d'):format(ID, id))
-		end
+		if id then tt:AddLine(('|cFFCA3C3C%s|r %d'):format(ID, id)) end
 	end
 
 	if color then
@@ -560,24 +537,18 @@ function Module:GameTooltip_OnTooltipSetUnit(tt)
 	end
 
 	local textWidth = GameTooltipStatusBar.text:GetStringWidth()
-	if textWidth then
-		tt:SetMinimumWidth(textWidth)
-	end
+	if textWidth then tt:SetMinimumWidth(textWidth) end
 end
 
 function Module:GameTooltipStatusBar_OnValueChanged(tt, value)
-	if tt:IsForbidden() then
-		return
-	end
+	if tt:IsForbidden() then return end
 
 	if not value or not C['tooltip']['HealthBarText'] or not tt.text then return end
 
 	local unit = select(2, tt:GetParent():GetUnit())
 	if (not unit) then
 		local GMF = GetMouseFocus()
-		if (GMF and GMF.GetAttribute and GMF:GetAttribute('unit')) then
-			unit = GMF:GetAttribute('unit')
-		end
+		if (GMF and GMF.GetAttribute and GMF:GetAttribute('unit')) then unit = GMF:GetAttribute('unit') end
 	end
 
 	local _, max = tt:GetMinMaxValues()
@@ -592,23 +563,17 @@ function Module:GameTooltipStatusBar_OnValueChanged(tt, value)
 end
 
 function Module:GameTooltip_OnTooltipBug()
-	if GameTooltip:IsShown() then
-		TOOLTOP_BUG = true
-	end
+	if GameTooltip:IsShown() then TOOLTOP_BUG = true end
 end
 
 function Module:BAG_UPDATE_DELAYED()
 	if StuffingFrameBags and StuffingFrameBags:IsShown() then
-		if GameTooltip:IsShown() then
-			TOOLTOP_BUG = true
-		end
+		if GameTooltip:IsShown() then TOOLTOP_BUG = true end
 	end
 end
 
 function Module:GameTooltip_OnTooltipCleared(tt)
-	if tt:IsForbidden() then
-		return
-	end
+	if tt:IsForbidden() then return end
 
 	tt.itemCleared = false
 
@@ -617,15 +582,11 @@ function Module:GameTooltip_OnTooltipCleared(tt)
 		TOOLTOP_BUG = false
 	end
 
-	if tt.factionFrame and tt.factionFrame:GetAlpha() ~= 0 then
-		tt.factionFrame:SetAlpha(0)
-	end
+	if tt.factionFrame and tt.factionFrame:GetAlpha() ~= 0 then tt.factionFrame:SetAlpha(0) end
 end
 
 function Module:GameTooltip_OnTooltipSetItem(tt)
-	if tt:IsForbidden() then
-		return
-	end
+	if tt:IsForbidden() then return end
 
 	if not tt.itemCleared then
 		local _, link = tt:GetItem()
@@ -635,21 +596,16 @@ function Module:GameTooltip_OnTooltipSetItem(tt)
 		local right = ' '
 		local bankCount = ' '
 
-		if link ~= nil and C['tooltip']['SpellID'] and IsShiftKeyDown() then
-			left = (('|cFFCA3C3C%s|r %s'):format(ID, link)):match(':(%w+)')
-		end
+		if link ~= nil and C['tooltip']['SpellID'] then left = (('|cFFCA3C3C%s|r %s'):format(ID, link)):match(':(%w+)') end
 
 		right = ('|cFFCA3C3C%s|r %d'):format(L['tooltip']['count'], num)
 		bankCount = ('|cFFCA3C3C%s|r %d'):format(L['tooltip']['bank'], (numall - num))
 
-		if left ~= ' ' or right ~= ' ' and IsShiftKeyDown() then
+		if left ~= ' ' or right ~= ' ' then
 			tt:AddLine(' ')
 			tt:AddDoubleLine(left, right)
 		end
-
-		if bankCount ~= ' ' and IsShiftKeyDown() then
-			tt:AddDoubleLine(' ', bankCount)
-		end
+		if bankCount ~= ' ' then tt:AddDoubleLine(' ', bankCount) end
 
 		tt.itemCleared = true
 	end
@@ -662,10 +618,7 @@ function Module:GameTooltip_OnTooltipSetItem(tt)
 			tt.currentItem = link
 
 			local name, _, quality, _, _, type, subType = GetItemInfo(link)
-
-			if not quality then
-				quality = 0
-			end
+			if not quality then quality = 0 end
 
 			local r, g, b
 			if type == GetItemClassInfo(LE_ITEM_CLASS_QUESTITEM) then
@@ -676,9 +629,7 @@ function Module:GameTooltip_OnTooltipSetItem(tt)
 				local _, id = C_PetJournal_FindPetIDByName(name)
 				if id then
 					local _, _, _, _, petQuality = C_PetJournal_GetPetStats(id)
-					if petQuality then
-						quality = petQuality - 1
-					end
+					if petQuality then quality = petQuality - 1 end
 				end
 			end
 
@@ -686,29 +637,20 @@ function Module:GameTooltip_OnTooltipSetItem(tt)
 				r, g, b = GetItemQualityColor(quality)
 				tt:SetBackdropBorderColor(r, g, b)
 			end
-
-			if r then
-				tt:SetBackdropBorderColor(r, g, b)
-			end
+			if r then tt:SetBackdropBorderColor(r, g, b) end
 		else
-			if tt == ItemRefTooltip then
-				tt:SetBackdropBorderColor(C['general']['bordercolor'])
-			end
+			if tt == ItemRefTooltip then tt:SetBackdropBorderColor(C['general']['bordercolor']) end
 		end
 	end
 end
 
 function Module:GameTooltip_AddQuestRewardsToTooltip(tt, questID)
-	if not (tt and questID and tt.pbBar and tt.pbBar.GetValue) or tt:IsForbidden() then
-		return
-	end
+	if not (tt and questID and tt.pbBar and tt.pbBar.GetValue) or tt:IsForbidden() then return end
 
 	local cur = tt.pbBar:GetValue()
 	if cur then
 		local max, _
-		if tt.pbBar.GetMinMaxValues then
-			_, max = tt.pbBar:GetMinMaxValues()
-		end
+		if tt.pbBar.GetMinMaxValues then _, max = tt.pbBar:GetMinMaxValues() end
 	end
 end
 
@@ -716,12 +658,9 @@ function Module:GameTooltip_ShowProgressBar(tt)
 	if not tt or tt:IsForbidden() or not tt.progressBarPool then return	end
 
 	local sb = tt.progressBarPool:GetNextActive()
-	if (not sb or not sb.Bar) then
-		return
-	end
+	if (not sb or not sb.Bar) then return end
 
 	sb.Bar:SetStatusBarTexture(C['media']['normTex'])
-
 	tt.pbBar = sb.Bar
 end
 
@@ -729,9 +668,7 @@ function Module:GameTooltip_ShowStatusBar(tt)
 	if not tt or tt:IsForbidden() or not tt.statusBarPool then return end
 
 	local sb = tt.statusBarPool:GetNextActive()
-	if (not sb or not sb.Text) then
-		return
-	end
+	if (not sb or not sb.Text) then return end
 
 	sb:SetStatusBarTexture(C['media']['normTex'])
 end
@@ -744,16 +681,12 @@ function Module:CheckBackdropColor(tt)
 		r, g, b = D.Round(r, 1), D.Round(g, 1), D.Round(b, 1)
 
 		local red, green, blue = C['media']['backdropcolor'][1], C['media']['backdropcolor'][2], C['media']['backdropcolor'][3]
-		if r ~= red or g ~= green or b ~= blue then
-			tt:SetBackdropColor(red, green, blue, C['media']['backdropcolor'][4])
-		end
+		if r ~= red or g ~= green or b ~= blue then tt:SetBackdropColor(red, green, blue, C['media']['backdropcolor'][4]) end
 	end
 end
 
 function Module:SetStyle(tt)
-	if not tt or tt:IsForbidden() then
-		return
-	end
+	if not tt or tt:IsForbidden() then return end
 	
 	tt:SetBackdrop({
 		bgFile = C['media']['blank'],
@@ -776,9 +709,7 @@ function Module:SetStyle(tt)
 end
 
 function Module:MODIFIER_STATE_CHANGED(_, key)
-	if((key == 'LSHIFT' or key == 'RSHIFT' or key == 'LCTRL' or key == 'RCTRL') and UnitExists('mouseover')) then
-		GameTooltip:SetUnit('mouseover')
-	end
+	if((key == 'LSHIFT' or key == 'RSHIFT' or key == 'LCTRL' or key == 'RCTRL') and UnitExists('mouseover')) then GameTooltip:SetUnit('mouseover') end
 end
 
 function Module:SetUnitAura(tt, unit, index, filter)
@@ -813,9 +744,7 @@ end
 function Module:GameTooltip_OnTooltipSetSpell(tt)
 	if tt:IsForbidden() then return	end
 
-	if  InCombatLockdown() and C['tooltip']['HideInCombat'] then
-		tt:Hide()
-	end
+	if  InCombatLockdown() and C['tooltip']['HideInCombat'] then tt:Hide() end
 
 	local id = select(2, tt:GetSpell())
 	if not id or not C['tooltip']['SpellID'] then return end
@@ -888,9 +817,7 @@ function Module:OnEnable()
 
 	self.MountIDs = {}
 	local mountIDs = C_MountJournal_GetMountIDs()
-	for _, mountID in ipairs(mountIDs) do
-		self.MountIDs[select(2, C_MountJournal_GetMountInfoByID(mountID))] = mountID
-	end
+	for _, mountID in ipairs(mountIDs) do self.MountIDs[select(2, C_MountJournal_GetMountInfoByID(mountID))] = mountID end
 	
 	local tooltips = {
 		ItemRefTooltip,
@@ -918,18 +845,14 @@ function Module:OnEnable()
 		_G.ShoppingTooltip2,
 	}
 	
-	hooksecurefunc(GameTooltip.ItemTooltip.IconBorder, 'SetVertexColor', function(self, r, g, b)
-		self:SetTexture('')
-	end)
+	hooksecurefunc(GameTooltip.ItemTooltip.IconBorder, 'SetVertexColor', function(self, r, g, b) self:SetTexture('') end)
 	
 	for _, tt in pairs(tooltips) do
 		Module:SecureHookScript(tt, 'OnShow', 'SetStyle')
 		Module:SecureHookScript(tt, 'OnUpdate', 'CheckBackdropColor')
 	end
 	
-	for _, tt in pairs(qualityTooltips) do
-		Module:SecureHookScript(tt, 'OnTooltipSetItem', 'GameTooltip_OnTooltipSetItem')
-	end
+	for _, tt in pairs(qualityTooltips) do Module:SecureHookScript(tt, 'OnTooltipSetItem', 'GameTooltip_OnTooltipSetItem') end
 
 	if GameTooltipStatusBar then
 		GameTooltipStatusBar:SetHeight(C['tooltip']['HealthbarHeight'])
