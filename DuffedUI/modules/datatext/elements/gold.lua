@@ -159,7 +159,6 @@ local OnEnter = function(self)
 	D['Currency'](1813) -- Reservoir Anima
 	D['Currency'](1816) -- Sinstone Fragments
 	D['Currency'](1820) -- Infused Ruby
-	--D['Currency'](1822) -- Renown
 	D['Currency'](1828) -- Soul Ash
 	D['Currency'](1885) -- Grateful Offering
 	
