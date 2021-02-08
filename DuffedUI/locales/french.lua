@@ -279,10 +279,6 @@ if D['Client'] == 'frFR' then
 		['next'] = "|CFFFFFFFFNext:|r ",
 		['cfe'] = '|cffC41F3BCurrencies of early expansions:|r',
 		['cce'] = '|cffC41F3BCurrent currencies:|r',
-		['kyrian'] = '|cff68ccefKyrians|r',
-		['venthyr'] = '|cffff4040Venthyrs|r',
-		['nightfae'] = '|cffa330c9Fae nocturnes|r',
-		['necrolord'] = '|cff40bf40Nécro-seigneurs|r',
 	}
 
 	L['Slots'] = {

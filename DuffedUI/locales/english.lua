@@ -278,10 +278,6 @@ L['dt'] = {
 	['next'] = "|CFFFFFFFFNext:|r ",
 	['cfe'] = '|cffC41F3BCurrencies of early expansions:|r',
 	['cce'] = '|cffC41F3BCurrent currencies:|r',
-	['kyrian'] = '|cff68ccefKyrian|r',
-	['venthyr'] = '|cffff4040Venthyr|r',
-	['nightfae'] = '|cffa330c9Night Fae|r',
-	['necrolord'] = '|cff40bf40Necrolord|r',
 }
 
 L['Slots'] = {

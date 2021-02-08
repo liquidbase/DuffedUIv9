@@ -280,10 +280,6 @@ if D['Client'] == 'deDE' then
 		['next'] = "|CFFFFFFFFNächster:|r ",
 		['cfe'] = '|cffC41F3BWährungen älterer Erweiterungen:|r',
 		['cce'] = '|cffC41F3BAktuelle Währungen:|r',
-		['kyrian'] = '|cff68ccefKyrianer|r',
-		['venthyr'] = '|cffff4040Venthyr|r',
-		['nightfae'] = '|cffa330c9Nachtfae|r',
-		['necrolord'] = '|cff40bf40Nekrolords|r',
 	}
 
 	L['Slots'] = {
