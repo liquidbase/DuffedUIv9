@@ -19,6 +19,26 @@ local OldMoney
 local myPlayerRealm = D['MyRealm']
 local myPlayerName  = UnitName('player')
 
+--local C_CurrencyInfo_GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
+--local C_Covenants_GetCovenantData = C_Covenants.GetCovenantData
+--local C_Covenants_GetActiveCovenantID = C_Covenants.GetActiveCovenantID
+
+local covenantMap = {
+    [1] = L['dt']['kyrian'],
+    [2] = L['dt']['venthyr'],
+    [3] = L['dt']['nightfae'],
+    [4] = L['dt']['necrolord'],
+}
+
+local function GetTokenInfo(id)
+	local info = C_CurrencyInfo.GetCurrencyInfo(id)
+	if info then
+		return info.name, info.quantity, info.maxQuantity
+	else
+		return
+	end
+end
+
 local function formatMoney(money)
 	local gold = floor(math.abs(money) / 10000)
 	local silver = mod(floor(math.abs(money) / 100), 100)
@@ -139,7 +159,6 @@ local OnEnter = function(self)
 	D['Currency'](1813) -- Reservoir Anima
 	D['Currency'](1816) -- Sinstone Fragments
 	D['Currency'](1820) -- Infused Ruby
-	D['Currency'](1822) -- Renown
 	D['Currency'](1828) -- Soul Ash
 	D['Currency'](1885) -- Grateful Offering
 	
@@ -270,6 +289,23 @@ local OnEnter = function(self)
 			D['Currency'](61) -- Dalaran Jewelcrafter's Token
 			D['Currency'](241) -- Champion's Seal
 		end
+	end
+
+	local RenownID = 1822
+	local covenantID = C_Covenants.GetActiveCovenantID()
+	local name, amount, totalMax = GetTokenInfo(RenownID)
+	if C_Covenants.GetCovenantData(C_Covenants.GetActiveCovenantID()) then
+		amount = amount + 1
+		totalMax = totalMax + 1
+	else
+		amount = '-'
+		totalMax = '-'
+	end
+
+	if covenantID > 0 and covenantID < 5 then
+		GameTooltip:AddLine(' ')
+		GameTooltip:AddLine(name)
+		GameTooltip:AddDoubleLine(covenantMap[covenantID], format(amount..'/'..totalMax), 1, 1, 1, 1, 1, 1)
 	end
 
 	GameTooltip:AddLine(' ')
