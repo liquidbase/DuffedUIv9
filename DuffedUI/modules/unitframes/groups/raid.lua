@@ -251,7 +251,7 @@ D['ConstructUFRaid'] = function(self)
 			RaidDebuffs.cd:SetHideCountdownNumbers(true)
 
 			RaidDebuffs.ShowDispelableDebuff = true
-			RaidDebuffs.FilterDispelableDebuff = true
+			RaidDebuffs.FilterDispelableDebuff = C['raid']['enableDebuffFilter']
 			RaidDebuffs.MatchBySpellName = true
 			RaidDebuffs.ShowBossDebuff = true
 			RaidDebuffs.BossDebuffPriority = 5
