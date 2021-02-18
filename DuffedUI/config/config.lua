@@ -152,7 +152,6 @@ C['raid'] = {
 	['frameheight'] = 35,
 	['aurawatchiconsize'] = 7,
 	['aurawatchtexturedicon'] = false,
-	--['enableDebuffFilter'] = true,
 	['raidlayout'] = {
 		['Options'] = {
 			[DAMAGE] = 'damage',
