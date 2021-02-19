@@ -1,6 +1,4 @@
 local D, C, L = unpack(select(2, ...)) 
-if C["raid"].raidunitdebuffwatch ~= true then return end
-
 
 --[=[
 	.icon                   [texture]
@@ -122,6 +120,7 @@ do
 			['Poison'] = true,
 			['Magic'] = false,
 			['Disease'] = true,
+			['none'] = true,
 		},
 		['DRUID'] = {
 			['Magic'] = false,
