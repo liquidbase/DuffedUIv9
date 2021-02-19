@@ -1,7 +1,7 @@
 local D, C, L = unpack(select(2, ...))
 
 -- Mythic+ Debuffs
---[[D['Debuffids'] = {
+D['Debuffids'] = {
 	-- General Affix
 	[GetSpellInfo(209858)] = 3, -- Necrotic
 	[GetSpellInfo(226512)] = 3, -- Sanguine
@@ -54,4 +54,4 @@ local D, C, L = unpack(select(2, ...))
 	[GetSpellInfo(344739)] = 3, -- Spectral
 	[GetSpellInfo(333227)] = 3, -- Undying Rage
 	[GetSpellInfo(322773)] = 3, -- Blood Barrier
-}]]--
+}
