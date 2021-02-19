@@ -250,8 +250,8 @@ D['ConstructUFRaid'] = function(self)
 			RaidDebuffs.cd:SetAllPoints(RaidDebuffs)
 			RaidDebuffs.cd:SetHideCountdownNumbers(true)
 
-			RaidDebuffs.ShowDispelableDebuff = false
-			RaidDebuffs.FilterDispelableDebuff = true
+			RaidDebuffs.ShowDispelableDebuff = true
+			RaidDebuffs.FilterDispelableDebuff = false
 			RaidDebuffs.MatchBySpellName = true
 			RaidDebuffs.ShowBossDebuff = true
 			RaidDebuffs.BossDebuffPriority = 5
@@ -262,7 +262,7 @@ D['ConstructUFRaid'] = function(self)
 			RaidDebuffs.count:SetTextColor(1, .9, 0)
 
 			RaidDebuffs.SetDebuffTypeColor = RaidDebuffs.SetBackdropBorderColor
-			RaidDebuffs.Debuffs = D['Debuffids']
+			RaidDebuffs.Debuffs = D['DebuffIds']
 
 			self.RaidDebuffs = RaidDebuffs			
 			self.AuraWatch = D.CreateAuraWatch(self)

@@ -32,8 +32,6 @@
 	<Script file='core\filters\errorfilters.lua' />
 	<Script file='core\filters\ctclass-filter.lua' />
 	<Script file='core\filters\cttrinket-filter.lua' />
-	<Script file='core\filters\rdf_mythic-plus.lua' />
-	<Script file='core\filters\rdf_bfa.lua' />
 	<Script file='core\filters\rdf_shadowlands.lua' />
 	<Script file='core\filters\buff-filter.lua' />
 	<Script file='core\filters\rangecheck-filter.lua' />
