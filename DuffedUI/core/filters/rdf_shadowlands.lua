@@ -2,8 +2,7 @@ local D, C, L = unpack(select(2, ...))
 
 -- Shadowlands Dungeon & Raid Debuffs
 
-D['Debuffids'] = {
-	--Mythic+
+D['DebuffIds'] = {
 	-- General Affix
 	[GetSpellInfo(209858)] = 3, -- Necrotic
 	[GetSpellInfo(226512)] = 3, -- Sanguine
@@ -56,7 +55,7 @@ D['Debuffids'] = {
 	[GetSpellInfo(344739)] = 3, -- Spectral
 	[GetSpellInfo(333227)] = 3, -- Undying Rage
 	[GetSpellInfo(322773)] = 3, -- Blood Barrier
-	
+
 	--Shadowlands Dungeons & Raids
 	-- Halls of Atonement
 	[GetSpellInfo(335338)] = 3, -- Ritual of Woe

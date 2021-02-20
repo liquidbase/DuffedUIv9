@@ -262,7 +262,7 @@ D['ConstructUFRaid'] = function(self)
 			RaidDebuffs.count:SetTextColor(1, .9, 0)
 
 			RaidDebuffs.SetDebuffTypeColor = RaidDebuffs.SetBackdropBorderColor
-			RaidDebuffs.Debuffs = D['Debuffids']
+			RaidDebuffs.Debuffs = D['DebuffIds']
 
 			self.RaidDebuffs = RaidDebuffs			
 			self.AuraWatch = D.CreateAuraWatch(self)

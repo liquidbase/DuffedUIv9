@@ -11,6 +11,14 @@
 	<Script file='core\init.lua' />
 	<Script file='core\constants.lua' />
 
+	<!-- filters -->
+	<Script file='core\filters\errorfilters.lua' />
+	<Script file='core\filters\ctclass-filter.lua' />
+	<Script file='core\filters\cttrinket-filter.lua' />
+	<Script file='core\filters\rdf_shadowlands.lua' />
+	<Script file='core\filters\buff-filter.lua' />
+	<Script file='core\filters\rangecheck-filter.lua' />
+	
 	<!-- core -->
 	<Include file='locales\load_locales.xml' />
 	<Script file='config\config.lua' />
@@ -29,14 +37,6 @@
 	<Script file='core\install.lua' />
 	<Script file='core\filters\f_cbticks.lua' />
 	<Script file='core\filters\extraquestbutton.lua' />
-	<Script file='core\filters\errorfilters.lua' />
-	<Script file='core\filters\ctclass-filter.lua' />
-	<Script file='core\filters\cttrinket-filter.lua' />
-	<Script file='core\filters\rdf_mythic-plus.lua' />
-	<Script file='core\filters\rdf_bfa.lua' />
-	<Script file='core\filters\rdf_shadowlands.lua' />
-	<Script file='core\filters\buff-filter.lua' />
-	<Script file='core\filters\rangecheck-filter.lua' />
 	<Script file='core\cversion.lua' />
 	<Script file='core\mapinfo.lua' />
 	<Script file='core\status.lua' />
