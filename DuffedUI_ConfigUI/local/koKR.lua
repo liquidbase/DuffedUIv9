@@ -136,6 +136,10 @@ DuffedUIConfig['koKR'] = {
 		['emojis'] = {
 			['Name'] = 'Show Emojis' .. ModuleNewFeature,
 		},
+
+		['history'] = {
+			['Name'] = 'Show Chat History' .. ModuleNewFeature,
+		},
 	},
 
 	['auras'] = {
