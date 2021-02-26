@@ -64,9 +64,7 @@ function t.ADDON_LOADED(addon)
 			end
 		end)
 		hooksecurefunc("FCFManager_UnregisterDedicatedFrame", function(frame)
-			if CF[frame] > NUM_CHAT_WINDOWS then
-				DB[frame.name] = frame.historyBuffer.elements
-			end
+			if CF[frame] > NUM_CHAT_WINDOWS then DB[frame.name] = frame.historyBuffer.elements end
 		end)
 	end
 	f:UnregisterEvent("PLAYER_ENTERING_WORLD")
@@ -97,9 +95,7 @@ end
 
 function t.PLAYER_LEAVING_WORLD()
 	for frame, id in next, CF do
-		if frame ~= COMBATLOG then
-			DB[id > NUM_CHAT_WINDOWS and frame.name or id] = frame.historyBuffer.elements
-		end
+		if frame ~= COMBATLOG then DB[id > NUM_CHAT_WINDOWS and frame.name or id] = frame.historyBuffer.elements end
 	end
 end
 

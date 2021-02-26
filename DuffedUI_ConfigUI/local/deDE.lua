@@ -139,6 +139,10 @@ DuffedUIConfig['deDE'] = {
 		['history'] = {
 			['Name'] = 'Chat Historie anzeigen' .. ModuleNewFeature,
 		},
+
+		['roleicons'] = {
+			['Name'] = 'Rollensymbole anzeigen' .. ModuleNewFeature,
+		},
 	},
 
 	['auras'] = {

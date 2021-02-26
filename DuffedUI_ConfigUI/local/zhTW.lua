@@ -140,6 +140,10 @@ DuffedUIConfig['zhTW'] = {
 		['history'] = {
 			['Name'] = 'Show Chat History' .. ModuleNewFeature,
 		},
+
+		['roleicons'] = {
+			['Name'] = 'Show RoleIcons' .. ModuleNewFeature,
+		},
 	},
 
 	['auras'] = {

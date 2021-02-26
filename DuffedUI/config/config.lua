@@ -71,6 +71,7 @@ C['chat'] = {
 	['chatitemlevel'] = true,
 	['emojis'] = true,
 	['history'] = false,
+	['roleicons'] = true,
 }
 
 C['castbar'] = {
