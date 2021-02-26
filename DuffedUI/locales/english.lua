@@ -165,6 +165,7 @@ L['chat'] = {
 	['recruitment'] = 'GuildRecruitment',
 	['lfg'] = 'LookingForGroup',
 	['whisper'] = 'Whisper',
+	['historymess'] = 'End of Chat History',
 }
 
 L['dt'] = {

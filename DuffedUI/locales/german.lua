@@ -166,6 +166,7 @@ if D['Client'] == 'deDE' then
 		['recruitment'] = 'Gildenrekrutierung',
 		['lfg'] = 'SucheNachGruppe',
 		['whisper'] = 'Flüstern',
+		['historymess'] = 'Ende der Chat Historie',
 	}
 
 	L['dt'] = {

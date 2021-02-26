@@ -135,6 +135,10 @@ DuffedUIConfig['deDE'] = {
 		['emojis'] = {
 			['Name'] = 'Emojis anzeigen' .. ModuleNewFeature,
 		},
+
+		['history'] = {
+			['Name'] = 'Chat Historie anzeigen' .. ModuleNewFeature,
+		},
 	},
 
 	['auras'] = {

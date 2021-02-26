@@ -166,6 +166,7 @@ if D['Client'] == 'frFR' then
 		['recruitment'] = 'GuildRecruitment',
 		['lfg'] = 'LookingForGroup',
 		['whisper'] = 'Whisper',
+		['historymess'] = 'End of Chat History',
 	}
 
 	L['dt'] = {

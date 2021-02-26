@@ -7,7 +7,7 @@
 ## Title: |cffC41F3BDuffedUI|r
 ## X-Credits: humfras aka Shinizu, Hizuro, Azilroka, Caith, Ishtara, Hungtar, Tulla, P3lim, Alza, Roth, Tekkub, Shestak, Caellian, Haleth, Nightcracker, Haste, Hydra, Elv, Tukz, Phanx, Duugu, Kkthnx, Goldpaw, simpy, siweia, Mera and the whole ElvUI Team
 ## SavedVariables: DuffedUIData
-## SavedVariablesPerCharacter: DuffedUIDataPerChar, ImprovedCurrency, CurrencyData
+## SavedVariablesPerCharacter: DuffedUIDataPerChar, ImprovedCurrency, CurrencyData, DuffedUIChatHistory
 ## OptionalDeps: DuffedUI_ConfigUI
 ## X-oUF: oUFDuffedUI
 ## X-BugReport: https://github.com/liquidbase/DuffedUIv8/issues
