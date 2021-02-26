@@ -9,9 +9,9 @@ local chats = {
 }
 
 local role_tex = {
-	TANK = "\124T"..[[Interface\AddOns\DuffedUI\media\roles\tank.tga]]..":12:12:0:0:64:64:5:59:5:59\124t",
-	HEALER	= "\124T"..[[Interface\AddOns\DuffedUI\media\roles\healer.tga]]..":12:12:0:0:64:64:5:59:5:59\124t",
-	DAMAGER = "\124T"..[[Interface\AddOns\DuffedUI\media\roles\dps.tga]]..":12:12:0:0:64:64:5:59:5:59\124t",
+	TANK = '\124T'..[[Interface\AddOns\DuffedUI\media\roles\tank.tga]]..':12:12:0:0:64:64:5:59:5:59\124t',
+	HEALER	= '\124T'..[[Interface\AddOns\DuffedUI\media\roles\healer.tga]]..':12:12:0:0:64:64:5:59:5:59\124t',
+	DAMAGER = '\124T'..[[Interface\AddOns\DuffedUI\media\roles\dps.tga]]..':12:12:0:0:64:64:5:59:5:59\124t',
 }
 
 local GetColoredName_orig = _G.GetColoredName
@@ -21,8 +21,8 @@ local function GetColoredName_hook(event, arg1, arg2, ...)
 	local ret = GetColoredName_orig(event, arg1, arg2, ...)
 	if chats[event] then
 		local role = UnitGroupRolesAssigned(arg2)
-		if role == "NONE" then role = UnitGroupRolesAssigned(arg2:gsub(" *-[^-]+$","")) end
-		if role and role ~= "NONE" then ret = role_tex[role]..""..ret end
+		if role == 'NONE' then role = UnitGroupRolesAssigned(arg2:gsub(' *-[^-]+$','')) end
+		if role and role ~= 'NONE' then ret = role_tex[role]..''..ret end
 	end
 	return ret
 end

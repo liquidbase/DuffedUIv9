@@ -65,6 +65,7 @@
 	<Script file='modules\chat\sounds.lua' />
 	<Script file='modules\chat\chatitemlevel.lua' />
 	<Script file='modules\chat\history.lua' />
+	<Script file='modules\chat\roleicons.lua' />
 	<Script file='modules\tooltip\tooltip.lua' />
 	<Script file='modules\tooltip\tooltipazerite.lua' />
 	<Script file='modules\tooltip\tooltipicons.lua' />
