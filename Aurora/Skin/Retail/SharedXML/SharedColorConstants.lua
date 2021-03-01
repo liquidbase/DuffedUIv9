@@ -16,7 +16,7 @@ do --[[ SharedXML\SharedColorConstants.lua ]]
         Alliance = Color.Create(0.0, 0.2, 0.6),
         Horde = Color.Create(0.5, 0.0, 0.0),
     }
-	private.AZERITE_COLORS = {
+    private.AZERITE_COLORS = {
         Color.Create(0.3765, 0.8157, 0.9098),
         Color.Create(0.7098, 0.5019, 0.1725),
     }

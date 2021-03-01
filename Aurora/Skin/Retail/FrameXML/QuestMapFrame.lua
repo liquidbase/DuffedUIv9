@@ -231,7 +231,7 @@ function private.FrameXML.QuestMapFrame()
 
     Skin.FrameTypeFrame(QuestsFrame.StoryTooltip)
 
-	do -- QuestSessionManagement
+    do -- QuestSessionManagement
         local QuestSessionManagement = QuestMapFrame.QuestSessionManagement
         Util.Mixin(QuestSessionManagement, Hook.QuestSessionManagementMixin)
 

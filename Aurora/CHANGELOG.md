@@ -1,7 +1,9 @@
 ﻿## [9.0.2.0] ##
 ### Added ###
 
-  * [retail] Campaign recap skin
+  * [retail] Campaign Recap
+  * [retail] Torghast Level Picker
+  * [retail] Anima Diversion
 
 ### Changed ###
 
@@ -9,6 +11,7 @@
 
 ### Fixed ###
 
+  * [retail] Error when clicking optional reagents
   * [retail] Achievement search preview backdrop was broken
   * [retail] Adventure rewards weren't skinned
   * [retail] SSAO graphics option was not skinned
