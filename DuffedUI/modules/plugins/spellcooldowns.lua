@@ -16,6 +16,7 @@ spellCooldowns = {
 		-- Global
 		47528, -- Mind Freeze
 		48707, -- Anti-Magic Shell
+		49039, -- Lichborne
 		49576, -- Death Grip
 		50977, -- Death Gate
 		61999, -- Raise Ally
