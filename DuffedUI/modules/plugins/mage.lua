@@ -18,6 +18,7 @@ local spells = (UnitFactionGroup('player') == 'Horde') and {
 	[12] = {120145, 120146}, -- Old Dalaran
 	[13] = {224869, 224871}, -- Dalaran, Broken Isles
 	[14] = {281404, 267877}, -- Daza'alor
+	[15] = {344587, 344597}, -- Oribos
 } or { -- ALLIANCE
 	[1] = {53140,53142}, -- Dalaran
 	[2] = {3561,10059}, -- Stormwind
@@ -33,6 +34,7 @@ local spells = (UnitFactionGroup('player') == 'Horde') and {
 	[12] = {120145, 120146}, -- Old Dalaran
 	[13] = {224869, 224871}, -- Dalaran, Broken Isles
 	[14] = {281403, 267877}, -- Boralus
+	[15] = {344587, 344597}, -- Oribos
 };
 
 local UTF = function(string, i, dots)
