@@ -332,6 +332,7 @@ D['ClassFilter'] = {
 			D['CreateSpellEntry'](12051), -- Evocation
 			D['CreateSpellEntry'](110960), -- Greater Invisibility
 			D['CreateSpellEntry'](212799), -- Displacement
+			D['CreateSpellEntry'](235450), -- Prismatic Barrier
 			-- Fire
 			D['CreateSpellEntry'](48108), -- Hot Streak
 			D['CreateSpellEntry'](190319), -- Combustion
