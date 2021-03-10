@@ -153,6 +153,7 @@ local OnEnter = function(self)
 	GameTooltip:AddLine(' ')
 	GameTooltip:AddLine(L['dt']['cce'])
 	GameTooltip:AddLine(EXPANSION_NAME8)
+	D['Currency'](1191) -- Valor
 	D['Currency'](1754) -- Argent Commendation - Shadowlands PreEvent
 	D['Currency'](1767) -- Stygia
 	D['Currency'](1810) -- Willing Soul
