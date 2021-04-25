@@ -503,10 +503,6 @@ DuffedUIConfig['enUS'] = {
 			['Name'] = 'Show cooldowns in group',
 		},
 		
-		['rcdarena'] = {
-			['Name'] = 'Show cooldowns in arena',
-		},
-		
 		['scdenable'] = {
 			['Name'] = 'Activate SpellCooldown plugin',
 		},

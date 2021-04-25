@@ -177,7 +177,6 @@ C['cooldown'] = {
 	['rcdenable'] = true,
 	['rcdraid'] = true,
 	['rcdparty'] = false,
-	['rcdarena'] = false,
 	['scdenable'] = true,
 	['scdfsize'] = 12,
 	['scdsize'] = 28,

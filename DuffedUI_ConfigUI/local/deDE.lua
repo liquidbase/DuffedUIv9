@@ -498,10 +498,6 @@ DuffedUIConfig['deDE'] = {
 			['Name'] = 'Abklingzeiten in der Gruppe anzeigen',
 		},
 		
-		['rcdarena'] = {
-			['Name'] = 'Abklingzeiten in der Arena anzeigen',
-		},
-		
 		['scdenable'] = {
 			['Name'] = 'SpellCooldown-Plugin aktivieren',
 		},

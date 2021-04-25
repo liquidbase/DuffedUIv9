@@ -10,7 +10,6 @@ local texture = C['media']['normTex']
 local show = {
 	raid = C['cooldown']['rcdraid'],
 	party = C['cooldown']['rcdparty'],
-	arena = C['cooldown']['rcdarena'],
 }
 
 local spells = {
@@ -203,8 +202,6 @@ local OnEvent = function(self, event, ...)
 			local spellId = select(12, ...)
 			if spells[spellId] and show[select(2, IsInInstance())] then StartTimer(sourceName, spellId) end
 		end
-	elseif event == 'ZONE_CHANGED_NEW_AREA' and select(2, IsInInstance()) == 'arena' then
-		for k, v in pairs(bars) do StopTimer(v) end
 	end
 end
 
