@@ -1,4 +1,11 @@
-﻿## [9.0.2.1] ##
+﻿## [9.0.5.0] ##
+### Fixed ###
+
+  * [retail] Call to Arms reward role icons were misaligned
+
+
+
+## [9.0.2.1] ##
 ### Added ###
 
   * [retail] Campaign Recap
@@ -297,6 +304,7 @@
   * Error when opening azerite respec UI
 
 [Unreleased]: https://github.com/Haleth/Aurora/compare/master...develop
+[9.0.5.0]: https://github.com/Haleth/Aurora/compare/9.0.2.1...9.0.5.0
 [9.0.2.1]: https://github.com/Haleth/Aurora/compare/9.0.2.0...9.0.2.1
 [9.0.2.0]: https://github.com/Haleth/Aurora/compare/9.0.1.7...9.0.2.0
 [9.0.1.7]: https://github.com/Haleth/Aurora/compare/9.0.1.6...9.0.1.7

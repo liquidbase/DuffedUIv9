@@ -152,6 +152,13 @@ function private.FrameXML.InterfaceOptionsPanels()
     Skin.InterfaceOptionsCheckButtonTemplate(Accessibility.MovePad)
     Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelCinematicSubtitles)
     Skin.InterfaceOptionsCheckButtonTemplate(Accessibility.OverrideFadeOut)
+    if private.isPatch then
+        Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelSpeechToText)
+        Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelTextToSpeech)
+        Skin.InterfaceOptionsCheckButtonTemplate(_G.InterfaceOptionsAccessibilityPanelRemoteTextToSpeech)
+    end
+    Skin.UIDropDownMenuTemplate(Accessibility.MotionSicknessDropdown)
+    Skin.UIDropDownMenuTemplate(Accessibility.ShakeIntensityDropdown)
     Skin.InterfaceOptionsCheckButtonTemplate(Accessibility.ColorblindMode)
 
     local FilterExamples = Accessibility.ColorblindFilterExamples
