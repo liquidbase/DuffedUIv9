@@ -16,6 +16,7 @@ local ChangeLogData = {
 		"- Update Aurora",
 		"- Added Valor to currency datatext",
 		"- Option removed",
+		"- ",
 	" ",
 	"Important:",
 		"Please Report all bugs on the issue tracker => |cffC41F3Bhttps://github.com/liquidbase/DuffedUIv9/issues|r",
