@@ -1,5 +1,5 @@
 local _, private = ...
-if private.isRetail then return end
+if not private.isClassic then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals
@@ -40,7 +40,7 @@ function private.FrameXML.InterfaceOptionsFrame()
     Skin.OptionsFrameTabButtonTemplate(_G.InterfaceOptionsFrameTab1)
     Skin.OptionsFrameTabButtonTemplate(_G.InterfaceOptionsFrameTab2)
 
-    if not private.isBC then
+    if not private.isBCC then
         _G.InterfaceOptionsFrameTab1TabSpacer:SetAlpha(0)
         _G.InterfaceOptionsFrameTab2TabSpacer1:SetAlpha(0)
         _G.InterfaceOptionsFrameTab2TabSpacer2:SetAlpha(0)

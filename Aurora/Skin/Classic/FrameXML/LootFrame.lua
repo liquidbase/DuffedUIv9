@@ -1,5 +1,5 @@
 local _, private = ...
-if private.isRetail then return end
+if not private.isClassic then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals select
@@ -51,6 +51,32 @@ do --[[ FrameXML\LootFrame.lua ]]
             else
                 questTexture:Hide()
             end
+        end
+    end
+    function Hook.LootFrame_Show(self)
+        if _G.GetCVar("lootUnderMouse") == "1" then
+            self:Show()
+            -- position loot window under mouse cursor
+            local x, y = _G.GetCursorPosition()
+            x = x / self:GetEffectiveScale()
+            y = y / self:GetEffectiveScale()
+
+            local posX = x - 80
+            local posY = y + 15
+
+            if self.numLootItems > 0 then
+                posX = x - 30
+                posY = y + 50
+            end
+
+            if posY < 350 then
+                posY = 350
+            end
+
+            self:ClearAllPoints()
+            self:SetPoint("TOPLEFT", nil, "BOTTOMLEFT", posX, posY)
+            self:GetCenter()
+            self:Raise()
         end
     end
     function Hook.BonusRollFrame_OnShow(self)
@@ -147,6 +173,7 @@ end
 
 function private.FrameXML.LootFrame()
     _G.hooksecurefunc("LootFrame_UpdateButton", Hook.LootFrame_UpdateButton)
+    _G.hooksecurefunc("LootFrame_Show", Hook.LootFrame_Show)
 
     ---------------
     -- LootFrame --

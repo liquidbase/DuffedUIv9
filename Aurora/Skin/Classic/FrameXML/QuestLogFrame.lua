@@ -1,5 +1,5 @@
 local _, private = ...
-if private.isRetail then return end
+if not private.isClassic then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals select
@@ -102,7 +102,7 @@ function private.FrameXML.QuestLogFrame()
     BotLeft:Hide()
     BotRight:Hide()
 
-    if private.isBC then
+    if private.isBCC then
         _G.QuestLogCountTopRight:Hide()
         _G.QuestLogCountBottomRight:Hide()
         _G.QuestLogCountRight:Hide()

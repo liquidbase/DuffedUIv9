@@ -1,5 +1,5 @@
 local _, private = ...
-if private.isRetail then return end
+if not private.isClassic then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals
@@ -27,7 +27,7 @@ do --[[ FrameXML\OptionsFrameTemplates.xml ]]
     end
     function Skin.OptionsFrameListTemplate(Frame)
         local name = Frame:GetName()
-        if not private.isBC then
+        if not private.isBCC then
             Base.CreateBackdrop(Frame, private.backdrop, {
                 tl = _G[name.."TopLeft"],
                 bl = _G[name.."BottomLeft"],

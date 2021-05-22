@@ -1,5 +1,5 @@
 local _, private = ...
-if private.isRetail then return end
+if not private.isClassic then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals next tinsert type
@@ -366,6 +366,9 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
     end
 
     function Skin.PortraitFrameTemplateNoCloseButton(Frame)
+        Skin.FrameTypeFrame(Frame)
+        local bg = Frame:GetBackdropTexture("bg")
+
         Frame.Bg:Hide()
 
         Frame.TitleBg:Hide()
@@ -377,8 +380,8 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
 
         local titleText = Frame.TitleText
         titleText:ClearAllPoints()
-        titleText:SetPoint("TOPLEFT")
-        titleText:SetPoint("BOTTOMRIGHT", Frame, "TOPRIGHT", 0, -private.FRAME_TITLE_HEIGHT)
+        titleText:SetPoint("TOPLEFT", bg)
+        titleText:SetPoint("BOTTOMRIGHT", bg, "TOPRIGHT", 0, -private.FRAME_TITLE_HEIGHT)
 
         Frame.TopTileStreaks:SetTexture("")
         Frame.BotLeftCorner:Hide()
@@ -387,7 +390,6 @@ do --[[ SharedXML\SharedUIPanelTemplates.xml ]]
         Frame.LeftBorder:Hide()
         Frame.RightBorder:Hide()
 
-        Skin.FrameTypeFrame(Frame)
     end
     function Skin.PortraitFrameTemplate(Frame)
         Skin.PortraitFrameTemplateNoCloseButton(Frame)

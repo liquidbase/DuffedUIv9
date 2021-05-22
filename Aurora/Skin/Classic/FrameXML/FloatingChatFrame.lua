@@ -1,5 +1,5 @@
 local _, private = ...
-if private.isRetail then return end
+if not private.isClassic then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals
@@ -22,7 +22,7 @@ do --[[ FrameXML\FloatingChatFrame.lua ]]
         frame:SetBackdropColor(r, g, b)
         frame:SetBackdropBorderColor(r, g, b)
 
-        if private.isBC then
+        if private.isBCC then
             frame.buttonFrame:SetBackdropColor(r, g, b)
             frame.buttonFrame:SetBackdropBorderColor(r, g, b)
         end
