@@ -13,8 +13,7 @@ local Skin = Aurora.Skin
 --end
 
 do --[[ FrameXML\ScrollBar.xml ]]
-    function Skin.ScrollBarTemplate(Frame)
-        Skin.ScrollControllerTemplate(Frame)
+    function Skin.ScrollBarBaseTemplate(Frame)
     end
     function Skin.FrameTypeScrollBarButton(Button)
         Skin.FrameTypeButton(Button)

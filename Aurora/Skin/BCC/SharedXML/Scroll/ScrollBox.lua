@@ -1,5 +1,5 @@
 local _, private = ...
-if not private.isRetail then return end
+if not private.isBCC then return end
 
 --[[ Lua Globals ]]
 -- luacheck: globals
@@ -12,8 +12,7 @@ local Skin = Aurora.Skin
 --end
 
 do --[[ FrameXML\ScrollBox.xml ]]
-    function Skin.ScrollBoxTemplate(Frame)
-        Skin.ScrollControllerTemplate(Frame)
+    function Skin.ScrollBoxBaseTemplate(Frame)
     end
 end
 
