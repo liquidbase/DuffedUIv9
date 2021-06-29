@@ -792,7 +792,10 @@ DuffedUIConfig['deDE'] = {
 		['SpecHelper'] = {
 			['Name'] = 'Talente am Spezialisierungsfenster anzeigen',
 		},
-		
+
+		['DungeonScore'] = {
+			['Name'] = 'Mythic+ Dungeon Score anzeigen',
+		},
 	},
 	
 	['unitframes'] = {

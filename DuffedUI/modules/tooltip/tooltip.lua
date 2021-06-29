@@ -24,6 +24,8 @@ local C_PetBattles_IsInBattle = _G.C_PetBattles.IsInBattle
 local C_PetJournal_FindPetIDByName = _G.C_PetJournal.FindPetIDByName
 local C_PetJournal_GetPetStats = _G.C_PetJournal.GetPetStats
 local C_PetJournal_GetPetTeamAverageLevel = _G.C_PetJournal.GetPetTeamAverageLevel
+local C_ChallengeMode_GetDungeonScoreRarityColor = C_ChallengeMode.GetDungeonScoreRarityColor
+local C_PlayerInfo_GetPlayerMythicPlusRatingSummary = C_PlayerInfo.GetPlayerMythicPlusRatingSummary
 local CanInspect = _G.CanInspect
 local CreateFrame = _G.CreateFrame
 local DEAD = _G.DEAD
@@ -286,6 +288,13 @@ function Module:SetUnitText(tt, unit, level, isShiftKeyDown)
 				end
 
 				GameTooltip:AddDoubleLine(string_format('%s:', ROLE), role, nil, nil, nil, r, g, b)
+			end
+		end
+		if C['tooltip']['DungeonScore'] then
+			local data = C_PlayerInfo_GetPlayerMythicPlusRatingSummary(unit)
+			if data and data.currentSeasonScore then
+				local color = C_ChallengeMode_GetDungeonScoreRarityColor(data.currentSeasonScore)
+				GameTooltip:AddDoubleLine("Mythic+ Score:", data.currentSeasonScore, nil, nil, nil, color.r or 1, color.g or 1, color.b or 1)
 			end
 		end
 	else

@@ -215,7 +215,7 @@ D['SetDefaultChatPosition'] = function(frame)
 			else
 				frame:Point('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 5, 24)
 			end
-		elseif id == 4 and name == LOOT then
+		elseif id == 5 and name == LOOT then
 			if not frame.isDocked then
 				frame:ClearAllPoints()
 				if C['chat']['rbackground'] then

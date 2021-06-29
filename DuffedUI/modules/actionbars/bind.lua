@@ -12,7 +12,6 @@ function quickbind:OnEvent(event, addon)
 	local background = frame.BG
 	local tooltip = QuickKeybindTooltip
 	local checkBox = frame.characterSpecificButton
-	local extra = frame.phantomExtraActionButton
 	local buttons = {
 		"okayButton",
 		"defaultsButton",
@@ -30,8 +29,6 @@ function quickbind:OnEvent(event, addon)
 	for _, button in pairs(buttons) do frame[button]:SkinButton() end
 	MultiBarBottomLeft.QuickKeybindGlow:SetAlpha(0)
 	MultiBarBottomRight.QuickKeybindGlow:SetAlpha(0)
-
-	extra:SetParent(DuffedUIHider)
 end
 
 function quickbind:Enable()

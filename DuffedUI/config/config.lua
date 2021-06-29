@@ -291,6 +291,7 @@ C['tooltip'] = {
 	['ShowMount'] = true,
 	['FactionIcon'] = true,
 	['SpecHelper'] = true,
+	['DungeonScore'] = false,
 }
 
 C['merchant'] = {

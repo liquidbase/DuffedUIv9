@@ -70,8 +70,6 @@
 	<Script file='modules\tooltip\tooltipicons.lua' />
 	<Script file='modules\loot\sort.lua' />
 	<Script file='modules\loot\bags.lua' />
-	<Script file='modules\loot\masterloot.lua' />
-	<Script file='modules\loot\rollframe.lua' />
 	<Script file='modules\announcements\interrupt.lua' />
 	<Script file='modules\announcements\dispell.lua' />
 

@@ -798,7 +798,10 @@ DuffedUIConfig['ruRU'] = {
 		['SpecHelper'] = {
 			['Name'] = 'Show Talents on Specframe',
 		},
-		
+
+		['DungeonScore'] = {
+			['Name'] = 'Show Mythic+ Dungeon Score',
+		},
 	},
 
 	['unitframes'] = {

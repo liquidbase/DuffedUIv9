@@ -53,8 +53,10 @@ end
 local function Copy(cf)
 	local _, size = cf:GetFont()
 	FCF_SetChatWindowFontSize(cf, cf, .01)
+
 	local lineCt = GetLines(cf:GetRegions())
 	local text = table.concat(lines, '\n', 1, lineCt)
+	
 	for i = 1, cf:GetNumMessages() do text = text..cf:GetMessageInfo(i)..'\n' end
 	FCF_SetChatWindowFontSize(cf, cf, size)
 	if not isf then CreateCopyFrame() end
@@ -95,20 +97,23 @@ if C['chat']['lbackground'] then
 	DuffedUIButtonCF1:SetPoint('LEFT', DuffedUIChatChannels, 'RIGHT', 2, 0)
 	DuffedUIButtonCF2:SetPoint('LEFT', DuffedUIChatChannels, 'RIGHT', 2, 0)
 	DuffedUIButtonCF3:SetPoint('LEFT', DuffedUIChatChannels, 'RIGHT', 2, 0)
+	DuffedUIButtonCF4:SetPoint('LEFT', DuffedUIChatChannels, 'RIGHT', 2, 0)
 else
 	DuffedUIButtonCF1:SetPoint('LEFT', DuffedUIChatChannels, 'RIGHT', 2, 0)
 	DuffedUIButtonCF2:SetPoint('LEFT', DuffedUIChatChannels, 'RIGHT', 2, 0)
 	DuffedUIButtonCF3:SetPoint('LEFT', DuffedUIChatChannels, 'RIGHT', 2, 0)
+	DuffedUIButtonCF4:SetPoint('LEFT', DuffedUIChatChannels, 'RIGHT', 2, 0)
 	D['ButtonMO'](DuffedUIButtonCF1)
 	D['ButtonMO'](DuffedUIButtonCF2)
 	D['ButtonMO'](DuffedUIButtonCF3)
+	D['ButtonMO'](DuffedUIButtonCF4)
 end
 
 if C['chat']['rbackground'] then
-	DuffedUIButtonCF4:SetPoint('TOPRIGHT', DuffedUIChatBackgroundRight, 'TOPRIGHT', -4, -4)
+	DuffedUIButtonCF5:SetPoint('TOPRIGHT', DuffedUIChatBackgroundRight, 'TOPRIGHT', -4, -4)
 else
-	DuffedUIButtonCF4:SetPoint('TOPRIGHT', ChatFrame4, 'TOPRIGHT', -4, 20)
-	D['ButtonMO'](DuffedUIButtonCF4)
+	DuffedUIButtonCF5:SetPoint('TOPRIGHT', ChatFrame4, 'TOPRIGHT', -4, 20)
+	D['ButtonMO'](DuffedUIButtonCF5)
 end
 
 for i = 1, NUM_CHAT_WINDOWS do

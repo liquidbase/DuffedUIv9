@@ -57,6 +57,29 @@ D['DebuffIds'] = {
 	[GetSpellInfo(322773)] = 3, -- Blood Barrier
 
 	--Shadowlands Dungeons & Raids
+	-- Tazavesh, the Veiled Market
+	[GetSpellInfo(350804)] = 3, -- Collapsing Energy
+	[GetSpellInfo(350885)] = 3, -- Hyperlight Jolt
+	[GetSpellInfo(351101)] = 3, -- Energy Fragmentation
+	[GetSpellInfo(346828)] = 3, -- Sanitizing Field
+	[GetSpellInfo(355641)] = 3, -- Scintillate
+	[GetSpellInfo(355451)] = 3, -- Undertow
+	[GetSpellInfo(355581)] = 3, -- Crackle
+	[GetSpellInfo(349999)] = 3, -- Anima Detonation
+	[GetSpellInfo(346961)] = 3, -- Purging Field
+	[GetSpellInfo(351956)] = 3, -- High-Value Target
+	[GetSpellInfo(346297)] = 3, -- Unstable Explosion
+	[GetSpellInfo(347728)] = 3, -- Flock!
+	[GetSpellInfo(356408)] = 3, -- Ground Stomp
+	[GetSpellInfo(347744)] = 3, -- Quickblade
+	[GetSpellInfo(347481)] = 3, -- Shuri
+	[GetSpellInfo(355915)] = 3, -- Glyph of Restraint
+	[GetSpellInfo(350134)] = 3, -- Infinite Breath
+	[GetSpellInfo(350013)] = 3, -- Gluttonous Feast
+	[GetSpellInfo(355465)] = 3, -- Boulder Throw
+	[GetSpellInfo(346116)] = 3, -- Shearing Swings
+	[GetSpellInfo(356011)] = 3, -- Beam Splicer
+
 	-- Halls of Atonement
 	[GetSpellInfo(335338)] = 3, -- Ritual of Woe
 	[GetSpellInfo(326891)] = 3, -- Anguish
@@ -275,4 +298,109 @@ D['DebuffIds'] = {
 	[GetSpellInfo(329951)] = 3, -- Impale
 	[GetSpellInfo(327039)] = 3, -- Feeding Time
 	[GetSpellInfo(332794)] = 3, -- Fatal Finesse
+	
+	-- Sanctum of Domination
+	-- The Tarragrue
+	[GetSpellInfo(347283)] = 3, -- Predator's Howl
+	[GetSpellInfo(347286)] = 3, -- Unshakeable Dread
+	[GetSpellInfo(346986)] = 3, -- Crushed Armor
+	[GetSpellInfo(347991)] = 3, -- Ten of Towers
+	[GetSpellInfo(347269)] = 3, -- Chains of Eternity
+	[GetSpellInfo(346985)] = 3, -- Overpower
+	[GetSpellInfo(347274)] = 3, -- Annihilating Smash
+
+	-- Eye of the Jailer
+	[GetSpellInfo(350606)] = 3, -- Hopeless Lethargy
+	[GetSpellInfo(355240)] = 3, -- Scorn
+	[GetSpellInfo(355245)] = 3, -- Ire
+	[GetSpellInfo(349979)] = 3, -- Dragging Chains
+	[GetSpellInfo(348074)] = 3, -- Assailing Lance
+	[GetSpellInfo(351827)] = 3, -- Spreading Misery
+	[GetSpellInfo(355143)] = 3, -- Deathlink
+	[GetSpellInfo(350763)] = 3, -- Annihilating Glare
+
+	-- The Nine
+	[GetSpellInfo(350287)] = 3, -- Song of Dissolution
+	[GetSpellInfo(350542)] = 3, -- Fragments of Destiny
+	[GetSpellInfo(350202)] = 3, -- Unending Strike
+	[GetSpellInfo(350475)] = 3, -- Pierce Soul
+	[GetSpellInfo(350555)] = 3, -- Shard of Destiny
+	[GetSpellInfo(350109)] = 3, -- Brynja's Mournful Dirge
+	[GetSpellInfo(350483)] = 3, -- Link Essence
+	[GetSpellInfo(350039)] = 3, -- Arthura's Crushing Gaze
+	[GetSpellInfo(350184)] = 3, -- Daschla's Mighty Impact
+	[GetSpellInfo(350374)] = 3, -- Wings of Rage
+	
+	-- Remnant of Ner'zhul
+	[GetSpellInfo(350073)] = 3, -- Torment
+	[GetSpellInfo(349890)] = 3, -- Suffering
+	[GetSpellInfo(350469)] = 3, -- Malevolence
+	[GetSpellInfo(354634)] = 3, -- Spite 1
+	[GetSpellInfo(354479)] = 3, -- Spite 2
+	[GetSpellInfo(354534)] = 3, -- Spite 3
+
+	-- Soulrender Dormazain
+	[GetSpellInfo(353429)] = 3, -- Tormented
+	[GetSpellInfo(353023)] = 3, -- Torment
+	[GetSpellInfo(351787)] = 3, -- Agonizing Spike
+	[GetSpellInfo(350647)] = 3, -- Brand of Torment
+	[GetSpellInfo(350422)] = 3, -- Ruinblade
+	[GetSpellInfo(350851)] = 3, -- Vessel of Torment
+	[GetSpellInfo(354231)] = 3, -- Soul Manacles
+	[GetSpellInfo(348987)] = 3, -- Warmonger Shackle 1
+	[GetSpellInfo(350927)] = 3, -- Warmonger Shackle 2
+
+	-- Painsmith Raznal
+	[GetSpellInfo(356472)] = 3, -- Lingering Flames
+	[GetSpellInfo(355505)] = 3, -- Shadowsteel Chains 1
+	[GetSpellInfo(355506)] = 3, -- Shadowsteel Chains 2
+	[GetSpellInfo(348456)] = 3, -- Flameclasp Trap
+	[GetSpellInfo(356870)] = 3, -- Flameclasp Eruption
+	[GetSpellInfo(355568)] = 3, -- Cruciform Axe
+	[GetSpellInfo(355786)] = 3, -- Blackened Armor
+	[GetSpellInfo(348255)] = 3, -- Spiked
+
+	-- Guardian of the First Ones
+	[GetSpellInfo(352394)] = 3, -- Radiant Energy
+	[GetSpellInfo(350496)] = 3, -- Threat Neutralization
+	[GetSpellInfo(347359)] = 3, -- Suppression Field
+	[GetSpellInfo(355357)] = 3, -- Obliterate
+	[GetSpellInfo(350732)] = 3, -- Sunder
+	[GetSpellInfo(352833)] = 3, -- Disintegration
+
+	-- Fatescribe Roh-Kalo
+	[GetSpellInfo(354365)] = 3, -- Grim Portent
+	[GetSpellInfo(350568)] = 3, -- Call of Eternity
+	[GetSpellInfo(353435)] = 3, -- Overwhelming Burden
+	[GetSpellInfo(351680)] = 3, -- Invoke Destiny
+	[GetSpellInfo(353432)] = 3, -- Burden of Destiny
+	[GetSpellInfo(353693)] = 3, -- Unstable Accretion
+	[GetSpellInfo(350355)] = 3, -- Fated Conjunction
+	[GetSpellInfo(353931)] = 3, -- Twist Fate
+
+	-- Kel'Thuzad
+	[GetSpellInfo(346530)] = 3, -- Frozen Destruction
+	[GetSpellInfo(354289)] = 3, -- Sinister Miasma
+	[GetSpellInfo(347454)] = 3, -- Oblivion's Echo 1
+	[GetSpellInfo(347518)] = 3, -- Oblivion's Echo 2
+	[GetSpellInfo(347292)] = 3, -- Oblivion's Echo 3
+	[GetSpellInfo(348978)] = 3, -- Soul Exhaustion
+	[GetSpellInfo(355389)] = 3, -- Relentless Haunt (Fixate)
+	[GetSpellInfo(357298)] = 3, -- Frozen Binds
+	[GetSpellInfo(355137)] = 3, -- Shadow Pool
+	[GetSpellInfo(348638)] = 3, -- Return of the Damned
+	[GetSpellInfo(348760)] = 3, -- Frost Blast
+
+	-- Sylvanas Windrunner
+	[GetSpellInfo(349458)] = 3, -- Domination Chains
+	[GetSpellInfo(347704)] = 3, -- Veil of Darkness
+	[GetSpellInfo(347607)] = 3, -- Banshee's Mark
+	[GetSpellInfo(347670)] = 3, -- Shadow Dagger
+	[GetSpellInfo(351117)] = 3, -- Crushing Dread
+	[GetSpellInfo(351870)] = 3, -- Haunting Wave
+	[GetSpellInfo(351253)] = 3, -- Banshee Wail
+	[GetSpellInfo(351451)] = 3, -- Curse of Lethargy
+	[GetSpellInfo(351092)] = 3, -- Destabilize 1
+	[GetSpellInfo(351091)] = 3, -- Destabilize 2
+	[GetSpellInfo(348064)] = 3, -- Wailing Arrow
 }

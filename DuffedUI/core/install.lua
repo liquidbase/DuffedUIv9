@@ -5,14 +5,14 @@ D['ChatSetup'] = function()
 	FCF_SetLocked(ChatFrame1, 1)
 	FCF_DockFrame(ChatFrame2)
 	FCF_SetLocked(ChatFrame2, 1)
-	FCF_OpenNewWindow(GENERAL)
 	FCF_SetLocked(ChatFrame3, 1)
-	FCF_DockFrame(ChatFrame3)
+
+	FCF_OpenNewWindow(L['chat']['whisper'])
 
 	FCF_OpenNewWindow(LOOT)
-	FCF_UnDockFrame(ChatFrame4)
-	FCF_SetLocked(ChatFrame4, 1)
-	ChatFrame4:Show()
+	FCF_UnDockFrame(ChatFrame5)
+	FCF_SetLocked(ChatFrame5, 1)
+	ChatFrame5:Show()
 
 	for i = 1, NUM_CHAT_WINDOWS do
 		local frame = _G[format('ChatFrame%s', i)]
@@ -23,7 +23,8 @@ D['ChatSetup'] = function()
 		FCF_SavePositionAndDimensions(frame)
 		if i == 1 then FCF_SetWindowName(frame, 'G, S & W') end
 		if i == 2 then FCF_SetWindowName(frame, 'Log') end
-		if i == 3 then FCF_SetWindowName(frame, L['chat']['whisper']) end
+		if i == 4 then FCF_SetWindowName(frame, L['chat']['whisper']) end
+		if i == 5 then FCF_SetWindowName(frame, LOOT) end
 		if C['chat']['enable'] then D['SetDefaultChatPosition'](frame) end
 	end
 
@@ -52,31 +53,33 @@ D['ChatSetup'] = function()
 	ChatFrame_AddMessageGroup(ChatFrame1, 'ACHIEVEMENT')
 
 	ChatFrame_RemoveAllMessageGroups(ChatFrame3)
-	ChatFrame_AddMessageGroup(ChatFrame3, 'WHISPER')
-	ChatFrame_AddMessageGroup(ChatFrame3, 'BN_WHISPER')
 
 	ChatFrame_RemoveAllMessageGroups(ChatFrame4)
-	ChatFrame_AddChannel(ChatFrame4, TRADE)
-	ChatFrame_AddChannel(ChatFrame4, GENERAL)
-	ChatFrame_AddChannel(ChatFrame4, L['chat']['defense'])
-	ChatFrame_AddChannel(ChatFrame4, L['chat']['recruitment'])
-	ChatFrame_AddChannel(ChatFrame4, L['chat']['lfg'])
-	ChatFrame_AddMessageGroup(ChatFrame4, 'COMBAT_XP_GAIN')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'COMBAT_HONOR_GAIN')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'COMBAT_FACTION_CHANGE')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'LOOT')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'MONEY')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'EMOTE')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'YELL')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'MONSTER_SAY')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'MONSTER_EMOTE')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'MONSTER_YELL')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'MONSTER_WHISPER')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'MONSTER_BOSS_EMOTE')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'MONSTER_BOSS_WHISPER')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'SYSTEM')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'ERRORS')
-	ChatFrame_AddMessageGroup(ChatFrame4, 'IGNORED')
+	ChatFrame_AddMessageGroup(ChatFrame4, 'WHISPER')
+	ChatFrame_AddMessageGroup(ChatFrame4, 'BN_WHISPER')
+
+	ChatFrame_RemoveAllMessageGroups(ChatFrame5)
+	ChatFrame_AddChannel(ChatFrame5, TRADE)
+	ChatFrame_AddChannel(ChatFrame5, GENERAL)
+	ChatFrame_AddChannel(ChatFrame5, L['chat']['defense'])
+	ChatFrame_AddChannel(ChatFrame5, L['chat']['recruitment'])
+	ChatFrame_AddChannel(ChatFrame5, L['chat']['lfg'])
+	ChatFrame_AddMessageGroup(ChatFrame5, 'COMBAT_XP_GAIN')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'COMBAT_HONOR_GAIN')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'COMBAT_FACTION_CHANGE')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'LOOT')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'MONEY')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'EMOTE')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'YELL')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'MONSTER_SAY')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'MONSTER_EMOTE')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'MONSTER_YELL')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'MONSTER_WHISPER')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'MONSTER_BOSS_EMOTE')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'MONSTER_BOSS_WHISPER')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'SYSTEM')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'ERRORS')
+	ChatFrame_AddMessageGroup(ChatFrame5, 'IGNORED')
 
 	ToggleChatColorNamesByClassGroup(true, 'SAY')
 	ToggleChatColorNamesByClassGroup(true, 'EMOTE')

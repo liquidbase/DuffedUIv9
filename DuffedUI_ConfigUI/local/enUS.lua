@@ -798,7 +798,10 @@ DuffedUIConfig['enUS'] = {
 		['SpecHelper'] = {
 			['Name'] = 'Show Talents on Specframe',
 		},
-		
+
+		['DungeonScore'] = {
+			['Name'] = 'Show Mythic+ Dungeon Score',
+		},
 	},
 
 	['unitframes'] = {

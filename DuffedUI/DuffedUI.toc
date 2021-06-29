@@ -1,9 +1,9 @@
-## Interface: 90005
+## Interface: 90100
 ## Title: DuffedUI
 ## Author: Merith @ Zirkel des Cenarius EU, Rav
 ## Notes: DuffedUI is a minimalistic Interface for PvE and most of the PvP-Content. It provides many plugins like Nameplate-Debuffs, Cooldowntracking (PvE & PvP), a global design and many other things.
-## Version: 9.0.5
-## X-Revision: 28
+## Version: 9.1.0
+## X-Revision: 38
 ## Title: |cffC41F3BDuffedUI|r
 ## X-Credits: humfras aka Shinizu, Hizuro, Azilroka, Caith, Ishtara, Hungtar, Tulla, P3lim, Alza, Roth, Tekkub, Shestak, Caellian, Haleth, Nightcracker, Haste, Hydra, Elv, Tukz, Phanx, Duugu, Kkthnx, Goldpaw, simpy, siweia, Mera and the whole ElvUI Team
 ## SavedVariables: DuffedUIData
