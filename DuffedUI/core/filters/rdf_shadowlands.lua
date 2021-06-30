@@ -358,7 +358,6 @@ D['DebuffIds'] = {
 	[GetSpellInfo(356870)] = 3, -- Flameclasp Eruption
 	[GetSpellInfo(355568)] = 3, -- Cruciform Axe
 	[GetSpellInfo(355786)] = 3, -- Blackened Armor
-	[GetSpellInfo(348255)] = 3, -- Spiked
 
 	-- Guardian of the First Ones
 	[GetSpellInfo(352394)] = 3, -- Radiant Energy

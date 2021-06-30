@@ -73,18 +73,9 @@ Kill:SetScript('OnEvent', function(self, event, addon)
 	end
 
 	SetCVar('showArenaEnemyFrames', 0)
-	if C['raid']['arena'] then
-		InterfaceOptionsFrameCategoriesButton10:SetScale(0.00001)
-		InterfaceOptionsFrameCategoriesButton10:SetAlpha(0) 
-	end
 
 	if C['chat']['enable'] then SetCVar('WholeChatWindowClickable', 0) end
-
-	if C['unitframes']['enable'] then
-		PlayerFrame:SetParent(DuffedUIHider)
-		InterfaceOptionsFrameCategoriesButton9:SetScale(0.00001)
-		InterfaceOptionsFrameCategoriesButton9:SetAlpha(0)
-	end
+	if C['unitframes']['enable'] then PlayerFrame:SetParent(DuffedUIHider) end
 
 	if C['actionbar']['enable'] then
 		local optionFrames = {

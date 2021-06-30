@@ -392,6 +392,9 @@ SlashCmdList['CONFIGURE'] = D['Install']
 SLASH_RESETUI1 = '/reset'
 SlashCmdList['RESETUI'] = function() f:Show() step1() end
 
+SLASH_RESETUI2 = '/resetchat'
+SlashCmdList['RESETUI'] = function() D['ChatSetup']() end
+
 D['CreatePopup']['DUFFEDUIDISABLE_UI'] = {
 	question = L['ui']['disableui'],
 	answer1 = ACCEPT,

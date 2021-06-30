@@ -882,7 +882,7 @@ function DuffedUIConfig:CreateConfigWindow()
 				DuffedUIConfigAll[myPlayerRealm][myPlayerName] = false
 				DuffedUIConfigPrivate = nil
 			end
-				ReloadUI()
+			ReloadUI()
 		end,
 		OnCancel = function()
 			if DuffedUIConfigAllCharacters:GetChecked() then
