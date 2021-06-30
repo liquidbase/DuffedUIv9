@@ -13,16 +13,8 @@ local CLOSE = _G.CLOSE
 local ChangeLogData = {
 	-- 115 chars per line
 	"Changes:",
-		"- Update for 9.1",
-		"- Update Aurora",
-		"- Added Valor to currency datatext",
-		"- Option removed",
-		"- Added new Socket of Domination",
-		"- Removed scripts for master loot and roll frame",
-		"- Bugfixes for 9.1",
-		"- Ignore item level on gems by Rav99",
-		"- Raid debuffs for raid Sanctum of Domination by Rav99",
-		"- Mythic+ Score on tooltip by Rav99",
+		"- Removed debuff from raid debuffs",
+		"- Enabled Accessbility-Options",
 	" ",
 	"Important:",
 		"Please Report all bugs on the issue tracker => |cffC41F3Bhttps://github.com/liquidbase/DuffedUIv9/issues|r",
