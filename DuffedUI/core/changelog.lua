@@ -13,8 +13,7 @@ local CLOSE = _G.CLOSE
 local ChangeLogData = {
 	-- 115 chars per line
 	"Changes:",
-		"- Removed debuff from raid debuffs",
-		"- Enabled Accessbility-Options",
+		"- Update Aurora",
 	" ",
 	"Important:",
 		"Please Report all bugs on the issue tracker => |cffC41F3Bhttps://github.com/liquidbase/DuffedUIv9/issues|r",
