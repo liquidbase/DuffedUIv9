@@ -265,7 +265,7 @@ D['ConstructUFRaid'] = function(self)
 			RaidDebuffs.Debuffs = D['DebuffIds']
 
 			self.RaidDebuffs = RaidDebuffs			
-			self.AuraWatch = D.CreateAuraWatch(self)
+			self.AuraWatch = D['CreateAuraWatch'](self)
 		end
 	end
 end
