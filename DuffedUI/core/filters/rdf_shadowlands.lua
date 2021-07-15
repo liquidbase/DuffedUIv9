@@ -10,7 +10,14 @@ D['DebuffIds'] = {
 	[GetSpellInfo(240443)] = 3, -- Bursting
 
 	-- Shadowlands
-	[GetSpellInfo(342494)] = 3, -- Belligerent Boast (Prideful)
+	-- Saison 1
+	[GetSpellInfo(342494)] = 3, -- Belligerent Boast (Prideful)	
+	-- Saison 2
+	[GetSpellInfo(356667)] = 3, -- Biting Cold 1
+	[GetSpellInfo(356666)] = 3, -- Biting Cold 2
+	[GetSpellInfo(355732)] = 3, -- Melt Soul
+	[GetSpellInfo(356925)] = 3, -- Carnage
+	[GetSpellInfo(358777)] = 3, -- Bindings of Misery
 
 	-- Mythic+ General
 	[GetSpellInfo(209859)] = 3, -- Bolster
